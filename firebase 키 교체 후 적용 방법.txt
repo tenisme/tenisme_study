@@ -1,6 +1,0 @@
-firebase 키 교체 후 적용 방법
-android > res(generated) > values > values.xml에서
-<string name="google_api_key" translatable="false">
-와
-<string name="google_crash_reporting_api_key" translatable="false">
-를 새로 바뀐 API KEY로 교체해주면 됨.
