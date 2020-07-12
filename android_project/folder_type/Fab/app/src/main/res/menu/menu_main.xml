@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="cox.tenisme.fab.MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_add"
+        android:icon="@android:drawable/ic_input_add"
+        android:orderInCategory="200"
+        android:title="추가"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/menu_delete"
+        android:title="삭제"
+        android:orderInCategory="300"
+        app:showAsAction="always" />
+</menu>

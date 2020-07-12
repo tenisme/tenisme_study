@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "57095348629",
+    "firebase_url": "https://user-d3fc6.firebaseio.com",
+    "project_id": "user-d3fc6",
+    "storage_bucket": "user-d3fc6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57095348629:android:eaa77b1b4d38e92856569c",
+        "android_client_info": {
+          "package_name": "com.tenisme.user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "57095348629-hbl39semdro0jn2q6dr62tv2iqfti5o8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcWdEv6q5zdgWtiGoC8y3C4DYbRTgHnPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "57095348629-hbl39semdro0jn2q6dr62tv2iqfti5o8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

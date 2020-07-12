@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "987184575164",
+    "firebase_url": "https://cloudcontacts-31d60.firebaseio.com",
+    "project_id": "cloudcontacts-31d60",
+    "storage_bucket": "cloudcontacts-31d60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987184575164:android:d8223849f169c24f0456b9",
+        "android_client_info": {
+          "package_name": "com.tenisme.cloudcontacts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987184575164-cd20ocrn4m9rddape7ng0kikcstc9hbo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkxv94lNPvqebmz92dEGkW6gIWLffOPz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987184575164-cd20ocrn4m9rddape7ng0kikcstc9hbo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

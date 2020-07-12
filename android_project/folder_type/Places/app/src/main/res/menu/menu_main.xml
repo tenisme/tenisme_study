@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="cox.tenisme.places.MainActivity">
+
+    <item
+        android:id="@+id/menu_see_all_places"
+        android:icon="@drawable/ic_pin_drop_white_24dp"
+        android:orderInCategory="100"
+        android:title="전체 위치 조회"
+        app:showAsAction="always|withText" />
+</menu>

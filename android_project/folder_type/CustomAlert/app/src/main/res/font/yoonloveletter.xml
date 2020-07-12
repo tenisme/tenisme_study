@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="900"
+        android:font="@font/yoon_love_letter" />
+<!--    폰트를 사용하려면 xml(화면) 에서 입력해 개별 적용해 사용해야 한다. -->
+</font-family>
