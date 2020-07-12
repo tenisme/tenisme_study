@@ -1,5 +1,7 @@
 ## tenisme_study
 
+이 폴더에 push된 private key(ex. google key)값은 모두 사용할 수 없는 값으로 변경되어있습니다.
+
 #### 폴더 설명
 
 - __android_java__
