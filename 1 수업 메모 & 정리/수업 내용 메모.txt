@@ -1669,7 +1669,7 @@ dog200512 화요일 수업 내용 요약
     // 클래스의 행동은 "함수".
       // 클래스가 할 수 있는 행동. 함수! 여기에는 static이 없음.
     // 클래스 이름의 첫 시작은 무조건 대문자여야 한다.
-    // 패키지 > 클래스 > 함수(메소드) > 코드(블록)
+    // 패키지 > 클래스 > 함수(메소드) > 코드 블록
     // 클래스는 '클래스이름' 클래스라고 부른다.
     // 각각의 클래스는 서로 다른 클래스에서 구성요소나 행동을 불러와 실행시킬 수 있다.
     // CPU는 무조건 main함수에서 시작.
@@ -9681,6 +9681,7 @@ from emp as e
 Join salgrade as s
 on e.sal between s.losal and s.hisal
 where e.comm is not NULL  -- null인 사원은 제외
+and e.comm > 0;  -- 이거는 강사님이 > 이걸로 수정함. 처음엔 != 0이라고 수강생이 써주셨는데 이러면 마이너스가 적혀있어도 맞다고 뜨것지. ★★★ 그리고 > 0이라고 쓰면 이 0에는 널이 포함됨. ★★★
 and e.comm > 0;  -- 이거는 강사님이 > 이걸로 수정함. 처음엔 != 0이라고 수강생이 써주셨는데 이러면 마이너스가 적혀있어도 맞다고 뜨것지. ★★★ 그리고 > 0이라고 쓰면 이 0에는 널이 포함됨. ★★★
 ----이하 강사님이 쓴 코드(모든 사원들)
 select e.empno as "사원번호", e.ename as "사원이름", e.sal as "연봉",
@@ -19207,6 +19208,239 @@ changed : n << 실제로 바뀐 row 개수를 알려줌
 	affectedRows와 changed의 개수가 다를 수 있음.
 
 조회 결과가 여러개일 경우 for문으로 값을 하나씩 불러와서 조회한다.
+
+=======================  200713 월요일 수업 내용 메모
+
+==================================  시험 문제 해설
+
+localhost : 서버 컴으로만 접속 가능
+% : 어디서든 원격 접속 가능
+
+DDL : 
+	update는 데이터와 관련된 SQL, 즉 DDL이 아니라 DML이다.
+
+이번주 금요일 시험은 SQL.. 이번에 책 나눠준 거.
+
+======================================  수업 내용
+
+깃허브에서 새 리파지토리 생성 : node-mysql
+
+vsc에서 새 리파지토리에서 새 폴더 생성 : js-test
+
+js-test 폴더에서 파일 생성 : app.js
+
+노드 .js 파일 실행하기 명령어 : node 파일명.js
+	서버 개발자는 리눅스(터미널) 명령어를 할 줄 알아야 한다.
+
+npm 사이트(npmjs.com) 이동
+	npm이란?
+		node.js로 작업할 때 필요한 라이브러리(패키지)를 모아놓은 곳.
+			노드에서 http 통신할 때 필요한 라이브러리 등등이 있음.
+		다양한 라이브러리들이 있다.
+	node.js의 모듈을 배울 것임.
+
+npm에서 fs 검색 > 첫번째거 클릭
+	fs - Security holding package
+
+npm에서 email validate 검색 > 이메일 체크 라이브러리들이 쭉 나옴
+
+node.js 관련 검색은 구글에서 nodejs 키워드로 검색하면 된다.
+
+nodejs.org은 nodejs 공식페이지.
+	라이브러리(모듈) 검색은 npm, 그럼 여기서는..?-? 기본 제공 라이브러리와 API 정보 등을 확인할 수 있음.
+		기본 제공 모듈은 nodejs.org에서 검색하고, 기타 오픈소스 모듈 등은 npmjs.com에서 검색해서 찾아 쓰자.
+
+구글에서 writefildsync 검색해서 nodejs.org에서 fs.writefilesync 찾아봄.
+	여기서 왼쪽에서 file system 클릭해서 fs.writefildsync 검색해서 클릭해서 API 페이지로 이동함.
+	여기서 왼쪽 리스트는 노드의 기본 라이브러리들임.
+
+★★★노드 라이브러리 사용 방법!!!
+
+nodejs에서 파일 하나 만들기
+	1) 라이브러리를 노드js에서 불러와야 한다.
+	fs 라이브러리 불러와서 사용하는 방법
+		const fs = require('fs')
+			const(콘스턴트)는 상수 선언이다.
+			const : 옛날 문법, 오리지날 문법.
+			자바의 import ~와 같다.
+				es6 문법으로 자바와 비슷한 문법으로 import할 수 있다.
+					es6 npm 모듈 설치해서 써야한다. 이건 나중에 배울 거. 최신 문법. 보통은 require()를 쓴다.
+	★★중요한 규칙 : 라이브러리 이름과 상수 이름은 통일시킨다.
+	2) fs.writefilesync로 파일을 만든다.
+
+★★★node.js에서는 라이브러리를 "모듈"이라고 부른다.
+
+fs 모듈로 파일에 내용 추가하기 (예시)
+	1) fs 모듈 불러오기
+	2) try{}catch(err){}의 try 안에서 fs.appendFileSync() 사용하기
+try {
+    fs.appendFileSync('note.txt', '\n내용추가', 'utf8')
+  } catch (err) {
+    /* Handle the error */
+  }
+// note.txt 파일에 \n내용추가를 추가하는데 캐릭터셋은 utf-8로 함. 오류 나면 catch()에서 처리함.
+
+===================  다른 파일에 있는 정보 불러오기 과정
+
+js-test에 새 파일 만들기 : app2.js
+
+내용
+const name = 'Andrew'
+console.log(name)
+
+js-test에 새 파일 만들기 : utils.js
+
+내용
+console.log('util.js called')
+
+app2.js 첫 줄에 ★require('./utils.js')★ 추가
+	./ => 현재 디렉토리 안
+	../ => 현재의 위에 있는 디렉토리 안
+
+터미널에서 app2.js 실행 결과
+util.js called
+Andrew
+
+★★★require('')
+	파일이나 라이브러리를 불러오는 함수.
+	안에 파일 경로나 라이브러리 이름을 적어준다.
+
+가지고 있는 상수/상수 함수를 노출시키기 module.exports = 
+	= 다른 파일이 가져다 쓸 수 있도록 하기
+	내보내려는 파일에서 아래 코드 작성
+	module.exports = 내보낼상수이름
+		이렇게 쓰면 다른 파일에서 require()로 이 파일을 불러들인 다음 이 파일이 "노출시킨" 상수를 불러올 수 있다.
+
+=============================================
+
+npm에서 라이브러리 받아서 js-test에 깔기
+
+프로젝트로 만들 폴더를 지정해서 터미널에 npm init 입력 > 엔터엔터엔터
+	npm init -y
+		-y : 엔터 안 쳐도 됨(전부 yes)
+		npm init은 package.json을 만드는 명령어. 새로운 "프로젝트나 패키지를 만들 때" 사용
+
+entry point app.js : app.js를 메인으로 실행시키겠다라는 뜻
+
+디렉토리 하나 단위로 하나의 프로젝트라고 생각하면 됨.
+	js-test 안에서 터미널에서 npm init을 침 > js-test가 하나의 노드 프로젝트가 되었다는 뜻임.
+
+npm에서 ★validator★ 검색 > 첫번째 나오는 거에 들어감
+	주로 "형식"이 맞는지 알아서 체크해주는 모듈임.
+	서버에서 이메일/url 형식을 체크할 때는 이 모듈을 사용.
+
+npm 인스톨 방법
+Installation and Usage
+	Server-side usage
+		Install the library with "npm install(or i) validator"
+터미널에 저 명령어 치면 이 라이브러리(모듈)이 설치됨.
+패키지를 설치하면 node_modules폴더가 알아서 생성된다. 모듈을 추가하면 이 폴더 안에 알아서 생긴다.
+
+★★★모듈 = 패키지 = 라이브러리★★★
+
+실습 : chalk 패키지 설치해서 라이브러리 보면서 써먹기
+
+=============================================
+npm init > mysqljs 설치해서 접속 connection 파일을 만들고 export해서 다른 파일에서 가져다 쓰기
+=============================================
+
+새로운 디렉토리 만듦 : mysql-test
+
+새 js파일 만들기 : index.js / mysql_connection.js
+
+이 디렉토리로 이동해서 터미널에서 npm init 해서 npm 설치
+	entry point를 mysql_connection.js로 설정함
+
+npm에서x 구글에서 Mysqljs 검색해서 모듈을 찾아서 설치하기
+	(mysqljs 즐찾해놓음)
+	설치 명령어 npm i mysql
+
+aws에 접속할 connection을 export하시오
+	mysql_connection.js에서 aws 연결하는 코드 쓰기
+		★상수 처리하기~
+		const mysql = require("mysql")
+
+		const connection = mysql.createConnection(
+		{
+			host : "aws-mysql.c8urw0tytlbj.ap-northeast-2.rds.amazonaws.com",
+			user : "node_user",
+			password : "패스워드",
+			database : "my_test"
+		}
+		)
+	
+		module.exports = connection
+		// mysql 패키지 불러온 거는 파일 불러올 때 알아서 실행되니까 connection에 알아서 적용되어 있어서 굳이 mysql은 안 불러오고 커넥션 함수만 가져다 써도 되는 건가.
+
+export한 데이터를 index.js파일에서 사용하기
+	const connection = require('./mysql_connection.js')
+	끝.
+
+connection.end()해서 접속 끊어주고 저장하고 테스트해보기
+
+끝
+
+===================  깃헙 실습 : Node Mysql 실습 3 풀이
+
+-- 실습문제 2 자주 씀.
+select concat(substring(title, 1, 10), "...") as "short title" from books;
+
+-- 실습문제 4 ★이거 중요 : char_length()★ 시험 예상 ^.^
+select title, char_length(title) as "character count" from books;
+
+나중에 서버에서 페이징 처리할 때 SQL문에서 limit 써먹음.
+
+node ~.js의 실행 결과는 json으로 가져온다.
+
+=============================  node - mysql 실습 4
+
+200713.sql / node-mysql\mysql-test\index.js 참고
+
+어떤 테이블이든 왠만하면 id(not null auto_increment primary key) 컬럼을 넣어서 쓰는 게 좋다.
+
+foreign key가 추가된 테이블은 연관된 id 키가 이상하게 입력되어 저장되는 것을 방지해준다.
+
+그냥 평범한 join할 때는 맨 왼쪽에 배치하는 컬럼을 먼저 써주는 게 국룰..? ?_? 아무 상관없나
+
+-- 실습문제 3 ★중요 문법 : ifnull() 실무에서 많이 씀★
+select s.first_name as first_name, ifnull(p.title, "MISSING") as title, ifnull(p.grade, "0") as grade
+from students as s left join papers as p on s.id = p.student_id order by s.id;
+
+★★★컬럼 이름은 되도록이면 as ~ 로 줘야 나중에 안드로이드에서 json 파싱할 때 키값 가져오기가 매우 편하다.
+
+======================================  기타 메모
+
+책 받는 날 : 7/17 & 7/24
+
+인터넷에 널려있는 정보들 잘 찾아서 쓰깅.
+
+서버 개발자는 항상 워크벤치를 켜놓고 서버 상태를 보면서 개발한다.
+
+터미널 강제 빠져나오기는 Ctrl+C 잊지말깅
+
+내일은 http로 남의 api json으로 가져와서 우리 database에 저장하는 거 실습할 것임.
+
+"공백" 문자열 개수에 포함되는 거 잊지 말기.
+
+결과가 여러개로 돌아오는 것은 되도록 for 루프 써서 가져오기.
+
+SQL문 여태 배운 거 마스터하기. 잘 쓸줄 알아야한다.
+
+무조건 직접 실습 복습 타이핑 디버깅~!
+
+안드로이드도 클라이언트으으
+
+======================================  수업 요약
+
+mysql 모듈 설치하기 전에 무조건
+npm init 명령어로 초기화 시켜주기!!
+설치한 모듈을 require()해서 사용할 수 있다.
+AWS 접속 커넥션 파일을 하나 만들고 다른 데에서 require해서 사용한다.
+	언제든지 다른 파일에서 이 파일을 호출해서 사용(접속) 가능!
+	실무에서도 이렇게 쓴다.
+
+
+
 
 
 ~여기부터~

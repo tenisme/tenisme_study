@@ -1,0 +1,908 @@
+<map version="freeplane 1.8.0">
+<!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
+<node TEXT="요구사항확인" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_1558303792" CREATED="1592440191535" MODIFIED="1592516465727"><hook NAME="MapStyle" background="#3c3f41">
+    <properties show_icon_for_attributes="true" fit_to_viewport="false" show_note_icons="true" edgeColorConfiguration="#808080ff,#00ddddff,#dddd00ff,#dd0000ff,#00dd00ff,#dd0000ff,#7cddddff,#dddd7cff,#dd7cddff,#7cdd7cff,#dd7c7cff,#7c7cddff"/>
+
+<map_styles>
+<stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24.0 pt">
+<font SIZE="24"/>
+<stylenode LOCALIZED_TEXT="styles.predefined" POSITION="right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="default" ICON_SIZE="12.0 pt" COLOR="#009999" BACKGROUND_COLOR="#ffffff" BACKGROUND_ALPHA="0" STYLE="fork" FORMAT="STANDARD_FORMAT" BORDER_WIDTH_LIKE_EDGE="false" BORDER_WIDTH="2.0 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#999900">
+<font NAME="Malgun Gothic" SIZE="10" BOLD="true"/>
+<hook NAME="NodeConditionalStyles">
+    <conditional_style ACTIVE="true" LOCALIZED_STYLE_REF="default" LAST="false"/>
+</hook>
+<edge COLOR="#999900" WIDTH="1"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.details" STYLE="fork" BORDER_WIDTH="0.0 px">
+<font SIZE="8"/>
+<hook NAME="NodeConditionalStyles">
+    <conditional_style ACTIVE="true" LOCALIZED_STYLE_REF="defaultstyle.details" LAST="false"/>
+</hook>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.attributes">
+<font SIZE="9"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.note" COLOR="#cccccc" BACKGROUND_COLOR="#3c3f41" TEXT_ALIGN="LEFT"/>
+<stylenode LOCALIZED_TEXT="defaultstyle.floating" BORDER_COLOR="#cccccc">
+<edge STYLE="hide_edge"/>
+<cloud COLOR="#f0f0f0" SHAPE="ROUND_RECT"/>
+</stylenode>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.user-defined" POSITION="right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="styles.topic" COLOR="#18898b" STYLE="fork">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.subtopic" COLOR="#cc3300" STYLE="fork">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.subsubtopic" COLOR="#669900">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.important">
+<icon BUILTIN="yes"/>
+</stylenode>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.AutomaticLayout" POSITION="right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level.root" COLOR="#ffffff" BACKGROUND_COLOR="#009999" STYLE="bubble" SHAPE_HORIZONTAL_MARGIN="7.0 pt" TEXT_ALIGN="CENTER" BORDER_WIDTH="3.0 px">
+<font SIZE="18"/>
+<hook NAME="NodeConditionalStyles">
+    <conditional_style ACTIVE="true" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" LAST="false"/>
+</hook>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,1" COLOR="#009999" BACKGROUND_COLOR="#ffffff" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="CENTER">
+<font SIZE="16"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,2" COLOR="#ffffff" BACKGROUND_COLOR="#ff9900" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="DEFAULT">
+<font SIZE="14"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,3" COLOR="#ffffff" BACKGROUND_COLOR="#3399ff" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="DEFAULT">
+<font SIZE="12"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,4" COLOR="#ffffff" BACKGROUND_COLOR="#ff6666" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="DEFAULT">
+<font SIZE="10"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,5" COLOR="#ffffff" BACKGROUND_COLOR="#666600" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="DEFAULT"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,6" COLOR="#ff9900" STYLE="bubble" SHAPE_VERTICAL_MARGIN="0.0 pt"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,7" COLOR="#009999" STYLE="bubble" SHAPE_VERTICAL_MARGIN="0.0 pt"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,8"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,9"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,10"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,11"/>
+</stylenode>
+</stylenode>
+</map_styles>
+</hook>
+<hook NAME="AutomaticEdgeColor" COUNTER="34" RULE="ON_BRANCH_CREATION"/>
+<node TEXT="1. 현행 시스템 분석하기" LOCALIZED_STYLE_REF="AutomaticLayout.level,4" FOLDED="true" POSITION="left" ID="ID_576679729" CREATED="1592516240792" MODIFIED="1592516465725" HGAP_QUANTITY="12.500000044703482 pt" VSHIFT_QUANTITY="-2.9999999105930355 pt">
+<edge COLOR="#dd7c7c"/>
+<node TEXT="1-1. 현행 시스템 파악" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_200209850" CREATED="1592515743674" MODIFIED="1592516440783">
+<node TEXT="!! 9페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_180442809" CREATED="1592495031219" MODIFIED="1592516501474">
+<node TEXT="현행 시스템 파악 절차" ID="ID_223460271" CREATED="1592495184530" MODIFIED="1592495206155">
+<node TEXT="Step 1) 현행 시스템의 구성/기능/인터페이스 파악" ID="ID_541131434" CREATED="1592495209158" MODIFIED="1592495427568">
+<node TEXT="시스템 구성 현황 파악" ID="ID_111470695" CREATED="1592495430565" MODIFIED="1592495473962"/>
+<node TEXT="시스템 기능 파악" ID="ID_547655425" CREATED="1592495431568" MODIFIED="1592495478100"/>
+<node TEXT="시스템 인터페이스 현황 파악" ID="ID_562600811" CREATED="1592495432489" MODIFIED="1592495487335"/>
+</node>
+<node TEXT="Step 2) 현행 시스템의 아키텍처 및 소프트웨어 구성 파악" ID="ID_1447786332" CREATED="1592495209754" MODIFIED="1592495442765">
+<node TEXT="아키텍처 파악" ID="ID_862805990" CREATED="1592495458904" MODIFIED="1592495511697"/>
+<node TEXT="소프트웨어 구성 파악" ID="ID_803022340" CREATED="1592495460117" MODIFIED="1592495519060"/>
+</node>
+<node TEXT="Step 3) 현행 시스템의 하드웨어 및 네트워크 구성 파악" ID="ID_1942387463" CREATED="1592495210355" MODIFIED="1592495456349">
+<node TEXT="시스템 하드웨어 현황 파악" ID="ID_1435690" CREATED="1592495460837" MODIFIED="1592495539211"/>
+<node TEXT="네트워크 구성 파악" ID="ID_328891207" CREATED="1592495461534" MODIFIED="1592495543509"/>
+</node>
+</node>
+</node>
+<node TEXT="!! 12페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_1053641273" CREATED="1592440334282" MODIFIED="1592516508671">
+<node TEXT="현행 시스템 아키텍처 구성도" ID="ID_591636856" CREATED="1592456466983" MODIFIED="1592456479814">
+<node TEXT="현행 시스템 아키텍쳐 구성도의 정의" ID="ID_1834943556" CREATED="1592456613189" MODIFIED="1592456623480">
+<node TEXT="기간 업무를 수행하기 위하여 계층별로 &quot;어떠한 기술 요소들을 사용하고 있는지&quot; 최상위 수준에서 &quot;그림으로 표현한 것&quot;이다." ID="ID_426667944" CREATED="1592461314492" MODIFIED="1592461362458"/>
+</node>
+<node TEXT="현행 시스템 아키텍처 구성도 작성 시 고려 사항" ID="ID_807218398" CREATED="1592456487561" MODIFIED="1592456606930" HGAP_QUANTITY="16.249999932944775 pt" VSHIFT_QUANTITY="7.499999776482589 pt">
+<node TEXT="단위 업무 시스템별로 아키텍처가 다른 경우에는 가장 핵심이 되는 기간 업무 처리 시스템을 기준으로 한다." ID="ID_1487940006" CREATED="1592461334535" MODIFIED="1592461336785"/>
+</node>
+</node>
+</node>
+<node TEXT="/14페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_901752086" CREATED="1592496875558" MODIFIED="1592515797066">
+<node TEXT="하드웨어 구성도의 정의" ID="ID_280903258" CREATED="1592496896939" MODIFIED="1592496980863">
+<node TEXT="단위 업무 시스템들이 1) 어디에 위치하고 있는 서버에서 운용되고 있는지 2) 서버의 주요 사양과 수량, 이중화가 적용되어 있는지 여부를 명시한 것이다." ID="ID_239687695" CREATED="1592496911534" MODIFIED="1592496980862" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="8.249999754130847 pt"/>
+</node>
+</node>
+<node TEXT="!! 18페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_1585672780" CREATED="1592495580981" MODIFIED="1592516516865">
+<node TEXT="네트워크 구성도" ID="ID_1216641554" CREATED="1592495731670" MODIFIED="1592495848697">
+<node TEXT="네트워크 구성도의 정의" ID="ID_281928352" CREATED="1592495739839" MODIFIED="1592495848696" HGAP_QUANTITY="19.999999821186073 pt" VSHIFT_QUANTITY="59.24999823421245 pt">
+<node TEXT="업무 처리 시스템들이 어떠한 네트워크 구성을 가지고 있는지 그림으로 표현한 것이다." ID="ID_1134091633" CREATED="1592495820404" MODIFIED="1592495842529" HGAP_QUANTITY="19.999999821186073 pt" VSHIFT_QUANTITY="-20.999999374151248 pt"/>
+</node>
+<node TEXT="네트워크 구성도의 예시" ID="ID_1140035973" CREATED="1592495752204" MODIFIED="1592495762537">
+<node TEXT="" ID="ID_225679184" CREATED="1592495764973" MODIFIED="1592495781425">
+<hook URI="6월/네트워크%20구성도%20예시.png" SIZE="0.53202665" NAME="ExternalObject"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="2-1. 개발 기술 환경 정의" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_486628357" CREATED="1592515805471" MODIFIED="1592516440784" HGAP_QUANTITY="14.74999997764826 pt" VSHIFT_QUANTITY="2.249999932944778 pt">
+<node TEXT="!! 21~22페이지/?25~26페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_831094643" CREATED="1592440353939" MODIFIED="1592518256996">
+<node TEXT="!! 21~22페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_1385413657" CREATED="1592517972910" MODIFIED="1592518256996" HGAP_QUANTITY="17.749999888241295 pt" VSHIFT_QUANTITY="29.2499991282821 pt">
+<node TEXT="운영체제의 정의" ID="ID_110727709" CREATED="1592495924035" MODIFIED="1592495931857">
+<node TEXT="소프트웨어이다" ID="ID_1947058538" CREATED="1592495980458" MODIFIED="1592496012177"/>
+<node TEXT="하드웨어와 소프트웨어 리소스를 관리한다" ID="ID_314783022" CREATED="1592495988795" MODIFIED="1592496008997"/>
+<node TEXT="컴퓨터 프로그램을 위한 공통 서비스를 제공한다" ID="ID_1606188981" CREATED="1592495990884" MODIFIED="1592496025017"/>
+</node>
+<node TEXT="운영체제 종류 및 특징" ID="ID_1276930474" CREATED="1592456652233" MODIFIED="1592456659125">
+<node TEXT="Windows" FOLDED="true" ID="ID_1019659316" CREATED="1592456660747" MODIFIED="1592456861904">
+<node TEXT="저작자" ID="ID_1136760422" CREATED="1592456715640" MODIFIED="1592457217962" HGAP_QUANTITY="16.249999932944775 pt" VSHIFT_QUANTITY="-1.4999999552965175 pt">
+<node TEXT="Microsoft" ID="ID_879161442" CREATED="1592456747537" MODIFIED="1592457217962" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="-3.7499998882412946 pt"/>
+</node>
+<node TEXT="비용 및 라이선스" ID="ID_1962451337" CREATED="1592456874301" MODIFIED="1592457219546">
+<node TEXT="유상" ID="ID_59529125" CREATED="1592456883568" MODIFIED="1592457370296" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="-4.499999865889553 pt"/>
+<node TEXT="다양한 라이선스 정책" ID="ID_1062551108" CREATED="1592457372162" MODIFIED="1592457374797"/>
+</node>
+<node TEXT="주요 용도" ID="ID_7068182" CREATED="1592457245473" MODIFIED="1592496046054">
+<node TEXT="중소규모 서버" ID="ID_1743727551" CREATED="1592457260171" MODIFIED="1592496046053" HGAP_QUANTITY="16.999999910593033 pt" VSHIFT_QUANTITY="2.2499999329447773 pt"/>
+<node TEXT="개인용 PC / Tablet PC" ID="ID_123935426" CREATED="1592457334837" MODIFIED="1592457353399"/>
+<node TEXT="임베디드 시스템" ID="ID_982713597" CREATED="1592457355756" MODIFIED="1592457357496"/>
+</node>
+</node>
+<node TEXT="UNIX" FOLDED="true" ID="ID_267086506" CREATED="1592456672112" MODIFIED="1592456681542">
+<node TEXT="저작자" ID="ID_650389160" CREATED="1592456727505" MODIFIED="1592456730963">
+<node TEXT="IBM(AIX)" ID="ID_421466035" CREATED="1592456758262" MODIFIED="1592456764769"/>
+<node TEXT="HP(HP-UX)" ID="ID_184898425" CREATED="1592456767319" MODIFIED="1592456791285"/>
+<node TEXT="SUN(Solaris)" ID="ID_352173873" CREATED="1592456793757" MODIFIED="1592456809212"/>
+</node>
+<node TEXT="비용 및 라이선스" ID="ID_1607053594" CREATED="1592456898825" MODIFIED="1592457221875">
+<node TEXT="유상" ID="ID_600137585" CREATED="1592456904481" MODIFIED="1592457381715" VSHIFT_QUANTITY="-5.249999843537812 pt"/>
+<node TEXT="다양한 라이선스 정책" ID="ID_1091341896" CREATED="1592457385857" MODIFIED="1592457388367"/>
+</node>
+<node TEXT="주요 용도" ID="ID_108815159" CREATED="1592457252626" MODIFIED="1592457257292">
+<node TEXT="대용량 처리" ID="ID_1664347863" CREATED="1592457262619" MODIFIED="1592457452519"/>
+<node TEXT="안정성이 요구되는 서버" ID="ID_1752144989" CREATED="1592457454019" MODIFIED="1592457463519"/>
+<node TEXT="Server" ID="ID_437839230" CREATED="1592457464849" MODIFIED="1592457469530"/>
+<node TEXT="NAS" ID="ID_1450955635" CREATED="1592457476532" MODIFIED="1592457480450"/>
+<node TEXT="Workstation" ID="ID_1297383921" CREATED="1592457482121" MODIFIED="1592457487411"/>
+</node>
+</node>
+<node TEXT="Linux" FOLDED="true" ID="ID_600821535" CREATED="1592456683694" MODIFIED="1592457224499">
+<node TEXT="저작자" ID="ID_510868937" CREATED="1592456732650" MODIFIED="1592457226114" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="-2.2499999329447764 pt">
+<node TEXT="Linus Torvalds" ID="ID_1237912046" CREATED="1592456822095" MODIFIED="1592457226113" HGAP_QUANTITY="13.250000022351742 pt" VSHIFT_QUANTITY="-3.7499998882412946 pt"/>
+</node>
+<node TEXT="비용 및 라이선스" ID="ID_1494392622" CREATED="1592456939735" MODIFIED="1592457229048">
+<node TEXT="무료, GNU GPLv2" ID="ID_1358357808" CREATED="1592456922735" MODIFIED="1592457229047" VSHIFT_QUANTITY="-4.499999865889553 pt"/>
+</node>
+<node TEXT="주요 용도" ID="ID_925329367" CREATED="1592457265140" MODIFIED="1592461624985">
+<node TEXT="중대규모 서버" ID="ID_1060142005" CREATED="1592457268531" MODIFIED="1592461624985" HGAP_QUANTITY="15.499999955296518 pt" VSHIFT_QUANTITY="-5.249999843537812 pt"/>
+</node>
+</node>
+<node TEXT="iOS" FOLDED="true" ID="ID_1222994768" CREATED="1592456691905" MODIFIED="1592456694191">
+<node TEXT="저작자" ID="ID_563878025" CREATED="1592456736332" MODIFIED="1592457230818">
+<node TEXT="Apple" ID="ID_1855609947" CREATED="1592456845008" MODIFIED="1592457230818" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="-3.7499998882412946 pt"/>
+</node>
+<node TEXT="비용 및 라이선스" ID="ID_643828871" CREATED="1592457126552" MODIFIED="1592457232189">
+<node TEXT="하드웨어에 번들(Bundle)" ID="ID_665207094" CREATED="1592457135419" MODIFIED="1592457232189" VSHIFT_QUANTITY="-3.7499998882412946 pt"/>
+</node>
+<node TEXT="주요 용도" ID="ID_1305339074" CREATED="1592457270815" MODIFIED="1592457273857">
+<node TEXT="스마트폰" ID="ID_917454540" CREATED="1592457274727" MODIFIED="1592457524331"/>
+<node TEXT="태블릿 PC" ID="ID_778961530" CREATED="1592457532371" MODIFIED="1592457592899"/>
+<node TEXT="Music 플레이어 등" ID="ID_507863448" CREATED="1592457547069" MODIFIED="1592457556629"/>
+</node>
+</node>
+<node TEXT="Android" FOLDED="true" ID="ID_1660202181" CREATED="1592456697460" MODIFIED="1592456700707">
+<node TEXT="저작자" ID="ID_858425007" CREATED="1592456740279" MODIFIED="1592457234645">
+<node TEXT="Google" ID="ID_947824015" CREATED="1592456849075" MODIFIED="1592457234645" HGAP_QUANTITY="13.250000022351742 pt" VSHIFT_QUANTITY="-5.249999843537812 pt"/>
+</node>
+<node TEXT="비용 및 라이선스" ID="ID_1357121044" CREATED="1592457173285" MODIFIED="1592457236386">
+<node TEXT="무료, Apache 2.0, GNU GPLv2" ID="ID_1299389083" CREATED="1592457189182" MODIFIED="1592457236386" VSHIFT_QUANTITY="-3.7499998882412946 pt"/>
+</node>
+<node TEXT="주요 용도" ID="ID_1290964009" CREATED="1592457276836" MODIFIED="1592457280392">
+<node TEXT="스마트폰" ID="ID_1987875350" CREATED="1592457280963" MODIFIED="1592457573631"/>
+<node TEXT="태블릿 PC" ID="ID_119328241" CREATED="1592457575253" MODIFIED="1592457595099"/>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="?25~26페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_365165242" CREATED="1592455869773" MODIFIED="1592518034671" HGAP_QUANTITY="18.499999865889553 pt" VSHIFT_QUANTITY="-29.999999105930357 pt">
+<node TEXT="운영체제 관련 요구사항 식별을 위해 고려해야 할 사항" FOLDED="true" ID="ID_920594797" CREATED="1592457646606" MODIFIED="1592465169207">
+<node TEXT="(가) 일반적으로 Linux 기반 시스템이 하드웨어 및 소프트웨어 소유 &quot;비용이 가장 적게 소요&quot;된다." ID="ID_577655420" CREATED="1592457679492" MODIFIED="1592496222182"/>
+<node TEXT="(나) &quot;유지 및 관리 비용 측면에서는 Windows&quot; 기반 시스템이 강점을 가진다." ID="ID_1057422512" CREATED="1592457681116" MODIFIED="1592496235627"/>
+<node TEXT="(다) 안정적이고 신뢰할 수 있으며 &quot;대용량 처리를 위해서는 UNIX&quot; 기반 시스템이 선호되고 있다." ID="ID_1605440830" CREATED="1592457682558" MODIFIED="1592496247026"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      UNIX는 문제가 생기면 바로 와서 처리해준다.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="(라) 32bit 운영체제는 4GB 메모리까지 액세스 가능(사용자 메모리는 2GB)하지만, &quot;64bit 운영체제에서는 4GB 이상의 메모리에 엑세스 가능&quot;하며 구체적인 한계는 운영체제의 종류 및 버전에 따라 다양하다." ID="ID_780748926" CREATED="1592457683565" MODIFIED="1592496265239"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      운영체제 bit에 따라 돌아갈 수 있는 램에는 한계가 있다.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="(마) CPU 방식이 시스크(CISC)냐 리스크(RISC)냐에 따라 설치할 수 있는 운영체제가 달라진다." ID="ID_884037537" CREATED="1592457684547" MODIFIED="1592463591954">
+<node TEXT="(마-1) 시스크(CISC)" ID="ID_1840493728" CREATED="1592462421707" MODIFIED="1592463591954" HGAP_QUANTITY="12.500000044703484 pt" VSHIFT_QUANTITY="16.499999508261695 pt">
+<node TEXT="&quot;시스크(CISC) 설계방식이 적용된 인텔 x86 아키텍처 기반&quot; 칩을 사용하는 하드웨어가 설치할 수 있는 운영체제" ID="ID_815626786" CREATED="1592462751863" MODIFIED="1592496154143" HGAP_QUANTITY="16.249999932944775 pt" VSHIFT_QUANTITY="-17.99999946355821 pt">
+<node TEXT="Windows" ID="ID_635058292" CREATED="1592462790600" MODIFIED="1592496154143" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="7.499999776482589 pt"/>
+<node TEXT="Linux" ID="ID_772597921" CREATED="1592462797481" MODIFIED="1592462807555"/>
+</node>
+</node>
+<node TEXT="(마-2) 리스크(RISC)" ID="ID_704375465" CREATED="1592462422970" MODIFIED="1592463476448" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="2.9999999105930355 pt">
+<node TEXT="&quot;리스크(RISC) 설계방식이 적용된&quot; 칩을 사용하는 하드웨어가 설치할 수 있는 운영체제" ID="ID_936753698" CREATED="1592462527017" MODIFIED="1592463448350" HGAP_QUANTITY="16.999999910593036 pt" VSHIFT_QUANTITY="-15.749999530613437 pt">
+<node TEXT="UNIX" ID="ID_1772369136" CREATED="1592463308124" MODIFIED="1592463448349" HGAP_QUANTITY="14.0 pt" VSHIFT_QUANTITY="0.0 pt"/>
+</node>
+</node>
+</node>
+<node TEXT="(바) &quot;HP와 Intel이 협력해서 만든 IA-64&quot; 칩은 &quot;여러 운영체제를 지원한다.&quot;" ID="ID_1894125241" CREATED="1592457685478" MODIFIED="1592463573975"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      IA : 아이테니엄 아키텍쳐
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="(사) &quot;리스크(RISC) 설계 방식이 적용된 암(ARM)&quot; 칩" ID="ID_1302665647" CREATED="1592465109072" MODIFIED="1592465516369"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      - ARM 칩은 거의 모든 스마트폰이나 태블릿에 들어있다.
+    </p>
+    <p>
+      - ARM : 동명의&nbsp;칩을 설계하는 회사 이름이기도 함
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="(사-1) 주 사용처" ID="ID_849766037" CREATED="1592465242600" MODIFIED="1592465281750">
+<node TEXT="스마트폰" ID="ID_1471956866" CREATED="1592465379263" MODIFIED="1592465390465"/>
+<node TEXT="태블릿" ID="ID_756776467" CREATED="1592465392417" MODIFIED="1592465399024"/>
+</node>
+<node TEXT="(사-2) 지원하는 운영체제" ID="ID_1388754907" CREATED="1592465254001" MODIFIED="1592465273213">
+<node TEXT="iOS" ID="ID_575219772" CREATED="1592465405482" MODIFIED="1592465414334"/>
+<node TEXT="Android" ID="ID_1323305614" CREATED="1592465418350" MODIFIED="1592465421181"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="!! 27페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_1844994711" CREATED="1592496283808" MODIFIED="1592516594662">
+<node TEXT="DBMS의 정의" ID="ID_313868763" CREATED="1592496326595" MODIFIED="1592496487718">
+<node TEXT="사용자, 다른 애플리케이션, 데이터베이스와 상호 작용하여 &quot;데이터를 저장하고 분석하기 위한&quot; 컴퓨터 &quot;소프트웨어 애플리케이션&quot;" ID="ID_609948746" CREATED="1592496344636" MODIFIED="1592496443254" HGAP_QUANTITY="16.249999932944775 pt" VSHIFT_QUANTITY="-23.249999307096026 pt"/>
+<node TEXT="데이터베이스 생성, 조회, 변경 등의 관리가 주요 기능이다." ID="ID_413570848" CREATED="1592496423787" MODIFIED="1592496487718" HGAP_QUANTITY="16.99999991059304 pt" VSHIFT_QUANTITY="0.7499999776482589 pt"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      create, select, update ...
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+</node>
+<node TEXT="!! 30페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_176700581" CREATED="1592496537548" MODIFIED="1592516598044">
+<node TEXT="오픈 소스의 정의" ID="ID_1693542736" CREATED="1592496573875" MODIFIED="1592496618820" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="-7.499999776482589 pt"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Open Source
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="소스 코드를 공개해 &quot;누구나&quot; 특별한 제한 없이&#xa;그 코드를 보고 &quot;사용&quot;할 수 있는 &quot;오픈 소스&#xa;라이선스&quot;를 만족하는 &quot;소프트웨어&quot;" ID="ID_1651759193" CREATED="1592496621090" MODIFIED="1592496766819"/>
+</node>
+</node>
+<node TEXT="/32페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_47694239" CREATED="1592455880862" MODIFIED="1592515844363">
+<node TEXT="온라인 트랜잭션 처리(OLTP)를 위한 기초 &quot;자료 조사&quot; 항목" ID="ID_108422586" CREATED="1592457711390" MODIFIED="1592467358939"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      OLTP : OnLine Transaction Processing
+    </p>
+    <p>
+      트랜잭션(Transaction) :
+    </p>
+    <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;서버에서 &quot;호출된(한 번 주고받은)&quot; 수.
+    </p>
+    <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;사전적 뜻은 &quot;거래&quot;
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="시스템 구축 형태" ID="ID_1942927779" CREATED="1592457736782" MODIFIED="1592466243324">
+<node TEXT="단독 시스템(Single System)" ID="ID_636337437" CREATED="1592466567177" MODIFIED="1592466631972"/>
+<node TEXT="고가용성 시스템(HA System)" ID="ID_232276317" CREATED="1592466568029" MODIFIED="1592466636660"/>
+<node TEXT="병렬 구성 여부" ID="ID_1870938147" CREATED="1592466568630" MODIFIED="1592466642203"/>
+</node>
+<node TEXT="사용자 수" ID="ID_1614789027" CREATED="1592457737644" MODIFIED="1592466669951">
+<node TEXT="전체 사용자 수" ID="ID_1666918888" CREATED="1592466571585" MODIFIED="1592466654591"/>
+<node TEXT="동시 사용자 비율" ID="ID_371508272" CREATED="1592466572538" MODIFIED="1592466666801"/>
+<node TEXT="동시 사용자당 평균 질의 수(1일)" ID="ID_1672152668" CREATED="1592466573119" MODIFIED="1592466671403"/>
+<node TEXT="가동 시간 중 *피크타임의 시간" ID="ID_992786461" CREATED="1592466573625" MODIFIED="1592466693082"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      *기동시간 중 피크타임의 시간은 중요하다.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="연간 사용자 증가율" ID="ID_630908566" CREATED="1592466574170" MODIFIED="1592466685332"/>
+</node>
+<node TEXT="트랜잭션 수" ID="ID_743832506" CREATED="1592457738515" MODIFIED="1592466817996">
+<node TEXT="연간 트랜잭션 수" ID="ID_528725149" CREATED="1592466581700" MODIFIED="1592466714229"/>
+<node TEXT="1일 평균 트랜잭션 수" ID="ID_1154525180" CREATED="1592466582266" MODIFIED="1592466716551"/>
+<node TEXT="피크타임 트랜잭션 수" ID="ID_1301382658" CREATED="1592466582786" MODIFIED="1592466721660"/>
+<node TEXT="예상 연간 트랜잭션 증가율" ID="ID_905417190" CREATED="1592466586017" MODIFIED="1592466726558"/>
+</node>
+<node TEXT="온라인 업무" ID="ID_909493668" CREATED="1592466226577" MODIFIED="1592466974680"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      &quot;실시간으로&quot; 처리하는 업무
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="&quot;검색, 갱신, 삽입, 삭제&quot; 별 레코드 크기 및 전체 건수" ID="ID_937693484" CREATED="1592466589273" MODIFIED="1592466960273"/>
+</node>
+<node TEXT="배치 업무(배치 작업)" ID="ID_1542129183" CREATED="1592466227348" MODIFIED="1592467143374"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      &quot;주기적으로&quot; &quot;모아서&quot; 처리하는 작업.
+    </p>
+    <p>
+      ex) 하루동안 발생한 여러 통계치 데이터를 수집
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="온라인 업무에 대한 배치 업무 비중" ID="ID_1883215873" CREATED="1592466592936" MODIFIED="1592466991484"/>
+<node TEXT="배치 업무 구분" ID="ID_1586681929" CREATED="1592466593608" MODIFIED="1592466997267"/>
+<node TEXT="대량 배치 기준으로 데이터 건수 및 길이" ID="ID_1381448549" CREATED="1592466594057" MODIFIED="1592466998703"/>
+</node>
+<node TEXT="데이터베이스" ID="ID_90553065" CREATED="1592466228037" MODIFIED="1592466446577">
+<node TEXT="데이터 크기" ID="ID_475471514" CREATED="1592466598020" MODIFIED="1592467208497">
+<node TEXT="초기, 1년차, 2년차, 3년차 및 이후 데이터 증가율" ID="ID_402948128" CREATED="1592467200726" MODIFIED="1592467208497" VSHIFT_QUANTITY="-4.499999865889553 pt"/>
+</node>
+<node TEXT="데이터 중 이미지, 사운드, 텍스트 파일의 비율" ID="ID_1126908603" CREATED="1592466602913" MODIFIED="1592467217606"/>
+<node TEXT="인덱스 테이블의 초기 크기 및 3년 내 크기" ID="ID_1898387761" CREATED="1592466603586" MODIFIED="1592467224861"/>
+<node TEXT="가장 큰 테이블의 레코드 건수" ID="ID_1238739422" CREATED="1592466604090" MODIFIED="1592467232457"/>
+<node TEXT="데이터베이스 크기" ID="ID_1548964750" CREATED="1592466604567" MODIFIED="1592467240737"/>
+</node>
+<node TEXT="데이터 백업" ID="ID_748580723" CREATED="1592466228736" MODIFIED="1592466450965">
+<node TEXT="데이터 백업" ID="ID_1512438065" CREATED="1592466609451" MODIFIED="1592467262287"/>
+<node TEXT="데이터 백업 서버의 운영 여부" ID="ID_810804585" CREATED="1592466610132" MODIFIED="1592467268584"/>
+<node TEXT="백업 장치의 접속 패턴" ID="ID_1172158974" CREATED="1592466610773" MODIFIED="1592467294473"/>
+<node TEXT="백업 데이터의 양" ID="ID_1637985070" CREATED="1592466611349" MODIFIED="1592467299165"/>
+</node>
+<node TEXT="운영 시간" ID="ID_1428991297" CREATED="1592466229402" MODIFIED="1592467306911">
+<node TEXT="운영 시간 7x24 여부" ID="ID_935513806" CREATED="1592466612397" MODIFIED="1592467306911" VSHIFT_QUANTITY="-3.7499998882412946 pt"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="2. 요구사항 확인하기" LOCALIZED_STYLE_REF="AutomaticLayout.level,4" FOLDED="true" POSITION="left" ID="ID_1127921310" CREATED="1592516289774" MODIFIED="1592516417964">
+<edge COLOR="#7c7cdd"/>
+<node TEXT="2-1. 요구사항 정의" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_1387529961" CREATED="1592515856017" MODIFIED="1592516440784" HGAP_QUANTITY="11.750000067055224 pt" VSHIFT_QUANTITY="4.499999865889553 pt">
+<node TEXT="!! 33~34페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_165420066" CREATED="1592455894987" MODIFIED="1592516612585">
+<node TEXT="개발 기술 &quot;환경 결정&quot;을 위한 &quot;고려 사항&quot;" ID="ID_21091214" CREATED="1592458267918" MODIFIED="1592467517470">
+<node TEXT="운영체제" FOLDED="true" ID="ID_1165153031" CREATED="1592458282300" MODIFIED="1592458419593">
+<node TEXT="UNIX" ID="ID_288553485" CREATED="1592467380746" MODIFIED="1592467552647">
+<node TEXT="시스템 구축 예산이 적은 경우에는 UNIX를 도입하기 어렵다." ID="ID_1858947528" CREATED="1592467567273" MODIFIED="1592467660813"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ex) 2천만원 이하
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="UNIX는 안정적이고 대량의 처리가 가능하고&#xa;기술 지원이 용이하나 &quot;비용이 많이 소요된다.&quot;" ID="ID_268695232" CREATED="1592467606717" MODIFIED="1592467641024"/>
+</node>
+<node TEXT="Linux" ID="ID_5973343" CREATED="1592467381377" MODIFIED="1592467556344">
+<node TEXT="Linux는 비용이 저렴하나 유지 관리를 위한 기술 인력을&#xa;보유하거나 별도의 계약을 체결해야 한다." ID="ID_932336957" CREATED="1592467668543" MODIFIED="1592467681848"/>
+</node>
+<node TEXT="Windows" ID="ID_738618813" CREATED="1592467381984" MODIFIED="1592467559214">
+<node TEXT="Windows는 유지 관리 &quot;기술 인력 확보가 용이&quot;하고&#xa;Unix에 비해 상대적으로 비용이 저렴하나,&#xa;대부분의 대용량 처리 서버에 설치할 수 없다." ID="ID_1611803385" CREATED="1592467703406" MODIFIED="1592467743361"/>
+</node>
+</node>
+<node TEXT="DBMS" FOLDED="true" ID="ID_435133356" CREATED="1592458283006" MODIFIED="1592458424080">
+<node TEXT="&quot;상용 DBMS&quot;의 경우 안정적이며 확장성이 뛰어나고&#xa;기술 자원을 받기 용이하나 비용이 많이 소요된다." ID="ID_211708106" CREATED="1592467390528" MODIFIED="1592467933593"/>
+<node TEXT="&quot;오픈 소스 DBMS&quot;의 경우 비용이 저렴하나,&#xa;관련된 기술력을 자체적으로 확보할 필요가 있다." ID="ID_510525863" CREATED="1592467892053" MODIFIED="1592467953806"/>
+<node TEXT="많이 사용되는 DBMS(상용 or 오픈소스 모두)를 선택하면&#xa;관련 기술 인력 및 기술 자료를 확보하기 용이하고&#xa;문제 해결이 용이하다." ID="ID_174114866" CREATED="1592467892545" MODIFIED="1592468014599"/>
+</node>
+<node TEXT="웹 애플리케이션 서버(WAS)" FOLDED="true" ID="ID_571405660" CREATED="1592458283642" MODIFIED="1592458456572"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Web Application Server
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="표준 규격을 준수하는 WAS의 경우 &quot;개발용과 운영용을&#xa;구분하여 사용&quot;할 수 있다." ID="ID_581145613" CREATED="1592467405255" MODIFIED="1592468145638">
+<node TEXT="개발용은 가볍고 빠른 &quot;오픈 소스 WAS&quot;를 선택할 수 있다." ID="ID_579906154" CREATED="1592468120867" MODIFIED="1592468134351"/>
+</node>
+<node TEXT="&quot;상용 WAS&quot;의 경우에는 안정적이며, 대량 처리가 검증되어&#xa;있고 기술지원을 받기가 용이하다." ID="ID_435467488" CREATED="1592467405827" MODIFIED="1592468096070"/>
+<node TEXT="&quot;오픈 소스 WAS&quot;의 경우 일반적으로 널리 사용하는 WAS를 선택하는 것이 바람직하다." ID="ID_764802095" CREATED="1592467406251" MODIFIED="1592468079025"/>
+</node>
+</node>
+</node>
+<node TEXT="!! 36페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_1803376986" CREATED="1592455904409" MODIFIED="1592516615774">
+<node TEXT="요구 공학" ID="ID_539608792" CREATED="1592458299366" MODIFIED="1592459433989">
+<node TEXT="요구 공학 개요" ID="ID_1839623854" CREATED="1592458305397" MODIFIED="1592458547741">
+<node TEXT="요구사항을 정의하고, 문서화하고, 관리하는 프로세스" ID="ID_810678159" CREATED="1592458530360" MODIFIED="1592458547741" HGAP_QUANTITY="15.499999955296516 pt" VSHIFT_QUANTITY="-3.7499998882412946 pt"/>
+</node>
+<node TEXT="요구사항 개발 프로세스" ID="ID_642753536" CREATED="1592458323326" MODIFIED="1592458332859">
+<node TEXT="Step 1) 도출" ID="ID_1692345662" CREATED="1592458477694" MODIFIED="1592460732744">
+<node TEXT="요구사항 소스" ID="ID_1162510688" CREATED="1592458559003" MODIFIED="1592458562906"/>
+<node TEXT="도출 기법" ID="ID_224349139" CREATED="1592458565696" MODIFIED="1592458569635"/>
+</node>
+<node TEXT="Step 2) 분석" ID="ID_668866300" CREATED="1592458478525" MODIFIED="1592460738445">
+<node TEXT="요구사항 분류" ID="ID_470245682" CREATED="1592458576535" MODIFIED="1592458579602"/>
+<node TEXT="개념 모델링" ID="ID_928993019" CREATED="1592458581094" MODIFIED="1592458585077"/>
+<node TEXT="요구사항 협상" ID="ID_1390015113" CREATED="1592458601772" MODIFIED="1592458605280"/>
+</node>
+<node TEXT="Step 3) 명세" ID="ID_718428066" CREATED="1592458479192" MODIFIED="1592497128953"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      요구사항 문서화
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="시스템 정의서" ID="ID_25663648" CREATED="1592458609922" MODIFIED="1592458613630"/>
+<node TEXT="시스템 요구사항 명세서" ID="ID_1148129343" CREATED="1592458619407" MODIFIED="1592458625722"/>
+<node TEXT="소프트웨어 요구사항 명세서" ID="ID_219957174" CREATED="1592458628971" MODIFIED="1592458635840"/>
+</node>
+<node TEXT="Step 4) 확인" ID="ID_1336663069" CREATED="1592458491273" MODIFIED="1592497169817"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      문서화한 요구사항 확인
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="검토" ID="ID_825749517" CREATED="1592458645462" MODIFIED="1592458647899"/>
+<node TEXT="프로토타이핑" ID="ID_1710092083" CREATED="1592458649063" MODIFIED="1592494928848">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#000000" WIDTH="2" TRANSPARENCY="200" FONT_SIZE="10" FONT_FAMILY="Malgun Gothic" DESTINATION="ID_1682087568" STARTINCLINATION="558;-127;" ENDINCLINATION="95;-608;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+</node>
+<node TEXT="모델 검증" ID="ID_1468882912" CREATED="1592458663756" MODIFIED="1592458667189"/>
+<node TEXT="인수 테스트" ID="ID_1763406818" CREATED="1592458669356" MODIFIED="1592458671771"/>
+</node>
+</node>
+<node TEXT="Q. 요구 분석 사항에 대해 각 설명에 해당하지 않는 것은?" ID="ID_1037250554" CREATED="1592458363132" MODIFIED="1592458398418"/>
+</node>
+</node>
+<node TEXT="!!!!★ 50페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_1682087568" CREATED="1592455916687" MODIFIED="1592516737453"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      단답형 문제
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="프로토타이핑" ID="ID_430149524" CREATED="1592458693779" MODIFIED="1592518110416"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      Prototyping
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="요약" ID="ID_365140332" CREATED="1592458755844" MODIFIED="1592518110415" HGAP_QUANTITY="16.249999932944775 pt" VSHIFT_QUANTITY="14.999999552965178 pt">
+<node TEXT="개발에 필요한 부분 중 내가 예상한 &apos;기능&apos;이 실제로&#xa;동작하는지 코드로 &apos;그 부분만 미리&apos; 짜고 실험해보는 것." ID="ID_474089941" CREATED="1592468324682" MODIFIED="1592468543032" HGAP_QUANTITY="14.0 pt" VSHIFT_QUANTITY="-17.99999946355821 pt"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      요새 기업들은 프로토타이핑 방식을 많이 쓴다.
+    </p>
+    <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;문제가 될 수도 있는 사항을 미리 발견해서
+    </p>
+    <p>
+      &nbsp;&nbsp;&nbsp;&nbsp;미리 피드백을 받을 수 있기 때문이다.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node TEXT="(가) 새로운 요구사항을 도출하기 위한 수단이다." ID="ID_554136862" CREATED="1592458772776" MODIFIED="1592468715400">
+<node TEXT="(가-1) 소프트웨어 요구사항에 대해 &quot;소프트웨어 엔지니어가&#xa;해석한 것&quot;을 &quot;확인하기 위한 수단&quot;으로 많이 사용된다" ID="ID_308271452" CREATED="1592468639169" MODIFIED="1592468740892" HGAP_QUANTITY="13.250000022351742 pt" VSHIFT_QUANTITY="-14.999999552965178 pt"/>
+</node>
+<node TEXT="(나) 프로토 타이핑의 장점" ID="ID_858585432" CREATED="1592468755686" MODIFIED="1592468766417">
+<node TEXT="(나-1) 분석가의 가정을 파악하고 잘못된 경우 &quot;유용한&#xa;피드백을 제공한다&quot;" ID="ID_408845431" CREATED="1592468780306" MODIFIED="1592497301294"/>
+<node TEXT="(나-2) 프로토타입으로 사용자 인터페이스의 동적인 행위를&#xa;볼 때, &quot;문서나 그래픽 모델보다 더 이해하기 쉽다.&quot;" ID="ID_983968223" CREATED="1592468797737" MODIFIED="1592497311421"/>
+<node TEXT="(나-3) 요구사항의 &quot;가변성이 프로토타이핑 이후에 급격히&#xa;감소&quot;하는 장점이 있다." ID="ID_1803954765" CREATED="1592468818627" MODIFIED="1592497327016"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      앱 제작에 들어갔을 때 요구사항을 바꿀&nbsp;일이 줄어든다는 뜻이다.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+<node TEXT="(다) 프로토타이핑의 단점" ID="ID_587981844" CREATED="1592469157015" MODIFIED="1592469164347">
+<node TEXT="(다-1) 사용자의 관심이 &quot;핵심 기능에서 멀어지고&quot;&#xa;프로토타입의 &quot;디자인이나 품질 문제로 집중될 수 있다&quot;" ID="ID_1654615675" CREATED="1592469170178" MODIFIED="1592497288417"/>
+<node TEXT="(다-2) 프로토타입 &quot;수행 비용이 발생한다&quot;" ID="ID_892082050" CREATED="1592469173408" MODIFIED="1592497281648"/>
+</node>
+<node TEXT="(라) 잘못된 요구사항을 만족시키기 위하여 &quot;자원을 낭비하는 것을 방지할 수 있다&quot;는 점에서 프로토타이핑을 긍정적으로 검토할 수 있다." ID="ID_163987955" CREATED="1592468313398" MODIFIED="1592518107404" HGAP_QUANTITY="15.499999955296518 pt" VSHIFT_QUANTITY="-4.499999865889553 pt"/>
+</node>
+</node>
+<node TEXT="!! 54페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_1217855812" CREATED="1592498461065" MODIFIED="1592516622973">
+<node TEXT="유스케이스 명세서(요구사항 정의서)" ID="ID_1744567714" CREATED="1592498473647" MODIFIED="1592498625532">
+<node TEXT="시스템이 어떻게 동작(액션)해야하는지를 기술한 문서" ID="ID_1412735093" CREATED="1592498584519" MODIFIED="1592499186373" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="-9.749999709427366 pt"/>
+<node TEXT="구체적이고 명확하게 기술해야 한다" ID="ID_701213921" CREATED="1592498664221" MODIFIED="1592498680376"/>
+<node TEXT="유스케이스 명세서 예시" ID="ID_1872766284" CREATED="1592498686290" MODIFIED="1592498692852">
+<node TEXT="" ID="ID_426230138" CREATED="1592498695044" MODIFIED="1592499157809">
+<hook URI="6월/유스케이스%20명세서%20예시.png" SIZE="0.33978933" NAME="ExternalObject"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="2-2. 요구사항의 시스템화 타당성 분석" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_873837881" CREATED="1592515943612" MODIFIED="1592516440784" HGAP_QUANTITY="12.500000044703482 pt" VSHIFT_QUANTITY="-5.249999843537812 pt">
+<node TEXT="?59페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_740489579" CREATED="1592499246619" MODIFIED="1592515989068">
+<node TEXT="요구사항의 기술적 타당성 검토 4단계" ID="ID_1841013618" CREATED="1592499287460" MODIFIED="1592499312349">
+<node TEXT="Step 1) 성능 및 용량 산정의 적정성" FOLDED="true" ID="ID_686317991" CREATED="1592499341321" MODIFIED="1592499419036">
+<node TEXT="목표 시스템 용량이 산정되면, 과거 유사 프로젝트 경험치를 적용하여 1) 필요시 재조정한 후, 성능 관련 비기능 요구사항과 비교하여 2) 적정성 여부를 판단한다." ID="ID_1841336740" CREATED="1592499476631" MODIFIED="1592499571728"/>
+</node>
+<node TEXT="Step 2) 시스템 간 상호 운용성" FOLDED="true" ID="ID_915135088" CREATED="1592499342308" MODIFIED="1592499623643">
+<node TEXT="상호 운용성" ID="ID_532536356" CREATED="1592499584143" MODIFIED="1592499627469" HGAP_QUANTITY="15.499999955296518 pt" VSHIFT_QUANTITY="-6.74999979883433 pt">
+<node TEXT="다른 목적을 지닌 2개 이상 시스템들이 상호 간 정보 및 서비스를 교환하면서 &quot;효과적으로 운용될 수 있는 시스템의 능력&quot;" ID="ID_1062796885" CREATED="1592499597200" MODIFIED="1592499659519" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="-15.749999530613437 pt"/>
+</node>
+<node TEXT="요구사항 중에서 목표 시스템이 조직 내외 타 시스템과 연동을 요구하는 경우, &quot;상호 운용이 가능한지 여부를 판단해야 한다.&quot;" ID="ID_1065853561" CREATED="1592499675488" MODIFIED="1592499718753"/>
+</node>
+<node TEXT="Step 3) IT 시장 성숙도 및 트렌드 부합성" FOLDED="true" ID="ID_1680616412" CREATED="1592499343094" MODIFIED="1592499773294">
+<node TEXT="시장 성숙도가 낮거나, 발전 방향에 부합되지 않는 기술들은 향후 더 이상 사용되지 않을 가능성이 높아 시스템의 유지 보수가 어려운 상황이 발생할 수 있다." ID="ID_1441232004" CREATED="1592499737920" MODIFIED="1592499773293" VSHIFT_QUANTITY="5.999999821186071 pt"/>
+</node>
+<node TEXT="Step 4) 기술적 위험 분석" FOLDED="true" ID="ID_1523718046" CREATED="1592499343785" MODIFIED="1592499396955">
+<node TEXT="복잡성" FOLDED="true" ID="ID_812121562" CREATED="1592499796206" MODIFIED="1592499801439">
+<node TEXT="기술의 안정성, 시장성, 개방성을 저해하는 모든 요소" ID="ID_619058931" CREATED="1592499811518" MODIFIED="1592499820831"/>
+<node TEXT="하드웨어, 소프트웨어, 솔루션의 적용이 아키텍처와 불일치" ID="ID_292834409" CREATED="1592499825537" MODIFIED="1592499836366"/>
+</node>
+<node TEXT="검증 여부" FOLDED="true" ID="ID_633873856" CREATED="1592499796832" MODIFIED="1592499804413">
+<node TEXT="적용 기술에 대한 조직 내 무경험" ID="ID_1098081644" CREATED="1592499843868" MODIFIED="1592499850949"/>
+<node TEXT="외부 지원 불가능" ID="ID_1330584097" CREATED="1592499853832" MODIFIED="1592499857079"/>
+</node>
+<node TEXT="의존성" FOLDED="true" ID="ID_1528579432" CREATED="1592499797393" MODIFIED="1592499807131">
+<node TEXT="특허 및 라이선스에 따른 문제" ID="ID_149285700" CREATED="1592499863619" MODIFIED="1592499872321"/>
+<node TEXT="특정 업체 기술에 대한 의존" ID="ID_531578797" CREATED="1592499875890" MODIFIED="1592499883113"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="3. 분석모델 확인하기" LOCALIZED_STYLE_REF="AutomaticLayout.level,4" FOLDED="true" POSITION="right" ID="ID_215227128" CREATED="1592516348585" MODIFIED="1592516891754">
+<edge COLOR="#00dddd"/>
+<node TEXT="3-1. 분석모델 검증" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" FOLDED="true" ID="ID_1305450407" CREATED="1592516006386" MODIFIED="1592516440784">
+<node TEXT="!! 64페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_549471105" CREATED="1592455926519" MODIFIED="1592518171917">
+<node TEXT="분석모델 검증 절차" ID="ID_499978882" CREATED="1592499937544" MODIFIED="1592518171917">
+<node TEXT="!! Step 1) 유스케이스 모델 검증 - 점검 대상" FOLDED="true" ID="ID_736970692" CREATED="1592499951583" MODIFIED="1592516993166" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="4.499999865889553 pt">
+<node TEXT="액터" ID="ID_852144016" CREATED="1592458824252" MODIFIED="1592458852392">
+<node TEXT="기능 구현에 관계되는 액터가 모두 도출되었는가?" ID="ID_1934917916" CREATED="1592500135972" MODIFIED="1592500194833"/>
+<node TEXT="액터 목록에서 액터명이 역할 중심으로 명명되었는가?" ID="ID_768590791" CREATED="1592500136617" MODIFIED="1592500202489"/>
+<node TEXT="요구사항 정의서, 요구사항 기술서에 외부/내부 액터가&#xa;모두 도출되었는가?" ID="ID_438059669" CREATED="1592500137194" MODIFIED="1592500245459"/>
+<node TEXT="액터 목록과 액터 명세서에 기록된 액터가 타당한지 확인" ID="ID_519501876" CREATED="1592500137825" MODIFIED="1592500227024"/>
+</node>
+<node TEXT="유스케이스" ID="ID_490389337" CREATED="1592458824933" MODIFIED="1592500553312">
+<node TEXT="요구기능 구현에 필요한 유스케이스가 모두 도출되었는가?" ID="ID_1276836098" CREATED="1592500138661" MODIFIED="1592500258018"/>
+<node TEXT="도출된 유스케이스를 논리적으로 연결하여 누락된 기능을 파악" ID="ID_1178036915" CREATED="1592500139277" MODIFIED="1592500263281"/>
+<node TEXT="도출된 유스케이스가 유스케이스 목록과 유스케이스 명세서에 반영되었는지 확인" ID="ID_353163900" CREATED="1592500139788" MODIFIED="1592500269317"/>
+<node TEXT="도출된 유스케이스의 논리적인 합이 과업 범위와 일치하는지&#xa;비교" ID="ID_1622170287" CREATED="1592500140219" MODIFIED="1592500553311"/>
+<node TEXT="도출된 유스케이스들이 논리적으로 그룹화되었는지 확인&#xa;(그룹화하는 액터 기준, 연관 관계 기준, 동시성 기준이 가능)" ID="ID_235809708" CREATED="1592500148329" MODIFIED="1592500336992"/>
+<node TEXT="유스케이스 기능 범위가 다른 유스케이스 기능 범위와&#xa;중복되는지 확인" ID="ID_629167709" CREATED="1592500149019" MODIFIED="1592500358451"/>
+</node>
+<node TEXT="유스케이스 명세서" ID="ID_649033336" CREATED="1592458825634" MODIFIED="1592458860433">
+<node TEXT="유스케이스 명세서 형식에 중요 항목이 누락되지 않았는지&#xa;확인 (사전 및 사후 조건, 주요 흐름, 서브 흐름, 예외 흐름 등)" ID="ID_253002693" CREATED="1592500160094" MODIFIED="1592517122346"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      - 사전 및 사후 조건 예시 : 클릭 전, 클릭 후 액션
+    </p>
+    <p>
+      - 예외 흐름 : 예외 상황이 나왔을 때 어떻게 처리를 할 것인가
+    </p>
+    <p>
+      기획자는 위 두개를 특히 잘 검증해야 한다.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="유스케이스의 주요 이벤트 흐름이 모두 도출되고 논리적으로&#xa;타당한지 확인" ID="ID_1095187956" CREATED="1592500160894" MODIFIED="1592500454824"/>
+<node TEXT="유스케이스를 구현하기 위하여 필요한 입출력 항목이 모두&#xa;도출되었는지 확인" ID="ID_373447851" CREATED="1592500161450" MODIFIED="1592500466062"/>
+</node>
+</node>
+<node TEXT="Step 2) 개념수준 분석 클래스 검증" ID="ID_1511057175" CREATED="1592499992364" MODIFIED="1592500015394">
+<node TEXT="클래스 도출" ID="ID_1011933552" CREATED="1592500566077" MODIFIED="1592500574862"/>
+<node TEXT="클래스 명과 속성" ID="ID_457586467" CREATED="1592500567172" MODIFIED="1592500579214"/>
+<node TEXT="클래스들 간 관계" ID="ID_1734993341" CREATED="1592500567814" MODIFIED="1592500583073"/>
+</node>
+<node TEXT="Step 3) 분석 클래스 검증" ID="ID_339073054" CREATED="1592499992884" MODIFIED="1592500060703" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="-10.499999687075624 pt">
+<node TEXT="스테레오 타입" ID="ID_1528917723" CREATED="1592500568841" MODIFIED="1592500586526"/>
+<node TEXT="경계 및 제어 클래스 도출" ID="ID_1116120582" CREATED="1592500569627" MODIFIED="1592500591685"/>
+<node TEXT="관계 및 상세화 정도" ID="ID_1663783209" CREATED="1592500570207" MODIFIED="1592500596858"/>
+</node>
+</node>
+</node>
+<node TEXT="?65페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_761319182" CREATED="1592500764002" MODIFIED="1592518191237">
+<node TEXT="개념 수준의 분석 클래스 검증" ID="ID_1430695010" CREATED="1592458899163" MODIFIED="1592518191237" HGAP_QUANTITY="12.500000044703482 pt" VSHIFT_QUANTITY="-4.499999865889553 pt">
+<node TEXT="개요" ID="ID_1010348569" CREATED="1592500816673" MODIFIED="1592500819294">
+<node TEXT="개념 수준의 주요 분석 클래스를 적절히 도출하였는지,&#xa;관련 정보가 명확한지 점검해야 한다." ID="ID_209596951" CREATED="1592500821506" MODIFIED="1592500831129"/>
+</node>
+<node TEXT="주요 점검 항목" FOLDED="true" ID="ID_1477745691" CREATED="1592458914712" MODIFIED="1592500788226" HGAP_QUANTITY="13.250000022351742 pt" VSHIFT_QUANTITY="-5.999999821186071 pt">
+<node TEXT="개별 유스케이스 단위로 작성하지 않고 시스템 전체를 대상&#xa;으로 작성하였는가?" ID="ID_157381041" CREATED="1592459363646" MODIFIED="1592500909821"/>
+<node TEXT="중요도가 높은 요구사항 또는 유스케이스에 필요한&#xa;엔터티 클래스가 도출되었는가?" ID="ID_60117814" CREATED="1592459364299" MODIFIED="1592500918276"/>
+<node TEXT="도출된 클래스 이름과 설명이 이해관계자 간에&#xa;이견이 발생하지 않도록 명확한가?" ID="ID_1056740777" CREATED="1592459364913" MODIFIED="1592500944457"/>
+<node TEXT="클래스의 속성은 도출하였는가?&#xa;도출된 속성의 이름과 설명이 정확한가?" ID="ID_700209967" CREATED="1592459365494" MODIFIED="1592500957264"/>
+<node TEXT="클래스들 간에 순환적 관계가 불필요하게 정의되어 있는가?" ID="ID_685625325" CREATED="1592459366055" MODIFIED="1592500882119"/>
+<node TEXT="클래스 간의 관계에서 다중성이 정의되었는가?" ID="ID_1546305213" CREATED="1592459366686" MODIFIED="1592500900001"/>
+</node>
+</node>
+</node>
+<node TEXT="!!!! 66페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_1694869068" CREATED="1592455958406" MODIFIED="1592516675292">
+<node TEXT="클래스 간 다중성 예시" ID="ID_43471959" CREATED="1592459447929" MODIFIED="1592459454998">
+<node TEXT="  -------          -------&#xa;[고객]  -------  [주문]  &lt;- 클래스 이름&#xa;  ------- 1    0..*-------&#xa;[+이름]         [+일시]  &lt;- 속성(멤버변수)&#xa;[+성별]         [+일련번호]&#xa;{+주소]         [+수량]&#xa;                  [+가격]&#xa;  -------          -------&#xa;                            &lt;- 연산(메소드)&#xa;  -------          -------      매개변수(파라미터)" ID="ID_1947518508" CREATED="1592459471282" MODIFIED="1592460001782"/>
+<node TEXT="고객 1명당 주문은 몇 개를 받을 수 있는가를&#xa;클래스 다이어그램으로 표현한 예시" ID="ID_1081860473" CREATED="1592501472821" MODIFIED="1592501501933"/>
+</node>
+<node TEXT="클래스 간 다중성 표기법" ID="ID_1494276013" CREATED="1592459461358" MODIFIED="1592459466899">
+<node TEXT="+" ID="ID_727263392" CREATED="1592459481268" MODIFIED="1592459969104">
+<node TEXT="public" ID="ID_1968927099" CREATED="1592459897001" MODIFIED="1592459969104" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="-2.2499999329447764 pt"/>
+</node>
+<node TEXT="0..1" ID="ID_1402933629" CREATED="1592459481986" MODIFIED="1592459494814">
+<node TEXT="0 또는 1개의 인스턴스" ID="ID_1066921795" CREATED="1592459907305" MODIFIED="1592459914455"/>
+<node TEXT="n..m은 n에서부터 m까지의 범위를 의미한다." ID="ID_1691355167" CREATED="1592459916392" MODIFIED="1592459926576"/>
+</node>
+<node TEXT="0..* 또는 *" ID="ID_1898234423" CREATED="1592459482586" MODIFIED="1592459972774">
+<node TEXT="0을 포함한 무한개의 인스턴스" ID="ID_1705523698" CREATED="1592459931534" MODIFIED="1592459972774" VSHIFT_QUANTITY="-2.9999999105930355 pt"/>
+</node>
+<node TEXT="1" OBJECT="java.lang.Long|1" ID="ID_675971230" CREATED="1592459483167" MODIFIED="1592459974653">
+<node TEXT="1개의 인스턴스" ID="ID_225020487" CREATED="1592459948009" MODIFIED="1592459974653" VSHIFT_QUANTITY="-3.7499998882412946 pt"/>
+</node>
+<node TEXT="1..*" ID="ID_455069144" CREATED="1592459483779" MODIFIED="1592459976172">
+<node TEXT="1개 이상의 인스턴스" ID="ID_531939942" CREATED="1592459958118" MODIFIED="1592459976171" HGAP_QUANTITY="13.250000022351742 pt" VSHIFT_QUANTITY="-3.7499998882412946 pt"/>
+</node>
+</node>
+</node>
+<node TEXT="!! 67~69페이지/?71페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_1932281010" CREATED="1592455946620" MODIFIED="1592517807052">
+<node TEXT="?67페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_626020733" CREATED="1592501206263" MODIFIED="1592518667251">
+<node TEXT="분석 클래스 검증" FOLDED="true" ID="ID_1978621689" CREATED="1592458922671" MODIFIED="1592518667250">
+<node TEXT="유스케이스마다 &quot;분석 클래스&quot;가 적절히 도출되었고, 제어 클래스의 도출 등이 &quot;충분하고 상세하게 도출되어&quot; 클래스의 역할, 클래스 간의 관계, 메시지 흐름 등을 확인할 수 있는지 검토한다." ID="ID_799608964" CREATED="1592501704094" MODIFIED="1592501859160"/>
+<node TEXT="유스케이스 실현에 필요한 분석 클래스 도출 확인" ID="ID_371263013" CREATED="1592458948138" MODIFIED="1592458958051">
+<node TEXT="하나의 유스케이스를 실현하기 위하여 3개 이상의 클래스가 역할 기준으로 도출되어야 한다." ID="ID_1916733058" CREATED="1592501765089" MODIFIED="1592501776953"/>
+<node TEXT="유스케이스 별로 실현에 필요한 클래스가 추적 가능해야 클래스 누락 여부를 확인할 수 있다." ID="ID_1173005819" CREATED="1592459343669" MODIFIED="1592501789824"/>
+<node TEXT="유스케이스 별로 도출된 분석 클래스들이 역할 기준으로 경계(Boundary), 엔터티(Entity), 제어(Control) 클래스가 도출되어 스테레오 타입으로 표시되었는지 확인한다." ID="ID_511502013" CREATED="1592459344591" MODIFIED="1592501810432"/>
+</node>
+</node>
+</node>
+<node TEXT="!!!!★ 68~69페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_552269193" CREATED="1592501898306" MODIFIED="1592518216988"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      단답형 가능성 높음
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="분석 클래스의 스테레오 타입" ID="ID_213064157" CREATED="1592458964470" MODIFIED="1592459039846"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      ★분석 클래스 유형★
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="경계&lt;&lt;Boundary&gt;&gt;" FOLDED="true" ID="ID_925013604" CREATED="1592459043962" MODIFIED="1592459387853">
+<node TEXT="[모양] 오른쪽으로 쓰러진 오" ID="ID_1134182523" CREATED="1592459155256" MODIFIED="1592459387852" HGAP_QUANTITY="12.500000044703484 pt" VSHIFT_QUANTITY="-6.749999798834329 pt"/>
+<node TEXT="시스템 외부 액터(=유저)와의 &quot;상호작용&quot;을 담당하는 클래스" ID="ID_242938181" CREATED="1592502025830" MODIFIED="1592502051437">
+<node TEXT="연결된 액터마다 1개의 경계 클래스가 존재하는지 확인한다." ID="ID_1099677889" CREATED="1592502045199" MODIFIED="1592502051436" HGAP_QUANTITY="11.750000067055224 pt" VSHIFT_QUANTITY="-5.249999843537812 pt"/>
+</node>
+<node TEXT="ex) 액티비티 클래스" ID="ID_1342354838" CREATED="1592502061499" MODIFIED="1592502080612"/>
+</node>
+<node TEXT="엔터티&lt;&lt;Entity&gt;&gt;" FOLDED="true" ID="ID_1259365203" CREATED="1592459045283" MODIFIED="1592459383527">
+<node TEXT="[모양] 바닥에 붙은 원" ID="ID_619345833" CREATED="1592459199847" MODIFIED="1592459383526" HGAP_QUANTITY="13.250000022351742 pt" VSHIFT_QUANTITY="-4.499999865889553 pt"/>
+<node TEXT="시스템이 유지해야 하는 &quot;정보&quot;를 관리하는 기능을&#xa;전담하는 클래스" ID="ID_588469621" CREATED="1592502094131" MODIFIED="1592502102127"/>
+<node TEXT="ex) ContactManager - Contact 클래스 :&#xa;    정보의 저장/사용/접근권한을 관리" ID="ID_1542474467" CREATED="1592502144099" MODIFIED="1592502162595"/>
+</node>
+<node TEXT="제어&lt;&lt;Control&gt;&gt;" FOLDED="true" ID="ID_122861670" CREATED="1592459046020" MODIFIED="1592459384638">
+<node TEXT="[모양] 상단 라인에 &lt;가 붙어있는 원" ID="ID_1307326039" CREATED="1592459223797" MODIFIED="1592459384638" HGAP_QUANTITY="11.750000067055224 pt" VSHIFT_QUANTITY="-5.999999821186071 pt"/>
+<node TEXT="시스템이 제공하는 기능의 로직 및 &quot;제어(액션, 행동)&quot;를&#xa;담당하는 클래스" ID="ID_106801380" CREATED="1592502202938" MODIFIED="1592502209549"/>
+<node TEXT="유스케이스당 일반적으로 1개의 제어 클래스가 존재한다." ID="ID_272831621" CREATED="1592502227050" MODIFIED="1592502229016"/>
+<node TEXT="ex) ContactManager - DataHandler 클래스" ID="ID_1441922364" CREATED="1592502248849" MODIFIED="1592502250999"/>
+</node>
+</node>
+<node TEXT="!! 분석 클래스 다이어그램 예시" FOLDED="true" ID="ID_1926796980" CREATED="1592517691259" MODIFIED="1592518216987" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="-17.249999485909953 pt">
+<node TEXT="(69페이지) 분석 클래스 다이어그램 예시1" ID="ID_940676466" CREATED="1592460975802" MODIFIED="1592517772337" VSHIFT_QUANTITY="7.499999776482589 pt">
+<hook URI="6월/분석%20클래스%20다이어그램%20예시2.png" SIZE="0.3541807" NAME="ExternalObject"/>
+<node TEXT="(73페이지) 분석 클래스 다이어그램 예시2" ID="ID_1992945297" CREATED="1592460986691" MODIFIED="1592517426209" HGAP_QUANTITY="13.250000022351742 pt" VSHIFT_QUANTITY="0.7499999776482573 pt">
+<hook URI="6월/분석%20클래스%20다이어그램%20예시.png" SIZE="0.33965608" NAME="ExternalObject"/>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="?★ 71페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_103888317" CREATED="1592502634902" MODIFIED="1592518777768">
+<node TEXT="경계 및 제어 클래스 도출 및 상세화 정도 확인(상세 검토 사항)" ID="ID_399762299" CREATED="1592460182743" MODIFIED="1592518777767">
+<node TEXT="개요" ID="ID_136946683" CREATED="1592503101340" MODIFIED="1592503130396">
+<node TEXT="유스케이스 실현에 필요한 분석 클래스들이 도출되었는지 확인하기 위하여, &quot;유스케이스 단위&quot;로 &quot;분석 클래스를 확인&quot;한다" ID="ID_1063764975" CREATED="1592503118884" MODIFIED="1592503184846"/>
+</node>
+<node TEXT="경계&lt;&lt;Boundary&gt;&gt;" FOLDED="true" ID="ID_308852572" CREATED="1592460217020" MODIFIED="1592518230048">
+<node TEXT="유스케이스와 연결된 &quot;액터&quot;가 있고, 액터의 유형이 시스템 또는 장비인 경우,&#xa;    1) 해당 액터를 위한 경계 클래스가 도출되었는지 확인하고,&#xa;    2) 유스케이스의 이벤트 흐름을 참조하여 관련 기능을 처리하기 위한 연산이 도출되었는지 확인한다." ID="ID_1818873914" CREATED="1592460261612" MODIFIED="1592503360494"/>
+<node TEXT="유스케이스 명세서의 이벤트 흐름을 확인하여, &quot;유스케이스에서 필요한 UI를 위한 경계 클래스가 도출되었는지&quot; 확인한다." ID="ID_747037736" CREATED="1592460262558" MODIFIED="1592518230047"/>
+<node TEXT="UI를 위한 경계 클래스인 경우, 1) &quot;사용자에게 제공할 항목이 속성으로 도출되었는지&quot; 확인하고, 2) 화면, 보고서 상의 데이터 타입, 길이가 경계 클래스 속성 정의와 일치하는지 확인한다." ID="ID_1200720941" CREATED="1592460263237" MODIFIED="1592503486931"/>
+</node>
+<node TEXT="제어&lt;&lt;Control&gt;&gt;" FOLDED="true" ID="ID_292498729" CREATED="1592460218557" MODIFIED="1592503291775">
+<node TEXT="&quot;유스케이스 별로 제어 클래스가 1개 이상&quot; 도출되었는지 확인한다." ID="ID_1257998583" CREATED="1592460266646" MODIFIED="1592503508445"/>
+<node TEXT="★&quot;제어 클래스의 연산에 대응하는 엔터티 클래스&quot;가 있는지 확인한다." ID="ID_215211996" CREATED="1592460267337" MODIFIED="1592503517721"/>
+<node TEXT="유스케이스 명세서에 기술된 &quot;이벤트 흐름을 처리하기 위한 연산이 제어 클래스에 정의되어 있는지&quot; 확인한다." ID="ID_181063957" CREATED="1592460267894" MODIFIED="1592503562880"/>
+</node>
+</node>
+</node>
+<node TEXT="Q. 분석 클래스 검증에 해당하지 않는 것은?" ID="ID_299612933" CREATED="1592459309684" MODIFIED="1592459321830"/>
+</node>
+</node>
+<node TEXT="3-2. 분석모델의 시스템화 타당성 분석" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" FOLDED="true" ID="ID_298065764" CREATED="1592516056743" MODIFIED="1593237386588" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="-15.749999530613437 pt">
+<node TEXT="!!!! 77페이지" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_1321433868" CREATED="1592456003950" MODIFIED="1593237386588">
+<node TEXT="분석 모델의 기술적 타당성 검증 절차" FOLDED="true" ID="ID_1487877190" CREATED="1592460303890" MODIFIED="1592518267374">
+<node TEXT="개요" ID="ID_8729599" CREATED="1592508501322" MODIFIED="1592508525079">
+<node TEXT="요구사항 확인 과정 전체에 문제점이 없는지 검증하는 과정" ID="ID_1237763553" CREATED="1592508508478" MODIFIED="1592508525079" HGAP_QUANTITY="18.499999865889553 pt" VSHIFT_QUANTITY="-5.249999843537812 pt"/>
+</node>
+<node TEXT="Step 1) 성능 및 용량 산정 적정성" FOLDED="true" ID="ID_1380703789" CREATED="1592460340627" MODIFIED="1592529390947">
+<node TEXT="요구사항을 만족시키기 위한 분석모델에 따라 시스템을 구현할 때 요구되는 시스템의 자원을 식별한다." ID="ID_1087982164" CREATED="1592460520329" MODIFIED="1592507967040"/>
+<node TEXT="분석 클래스에서 불필요하고 지나치게 많은 속성들을 포함시키게 되면 객체 생성시 시스템의 메모리 자원을 많이 요구하게 되며, 이로 인해 JVM에서 과도한 가비지 컬렉션이 발생하여 전체 시스팀의 성능 저하가 빈번히 발생한다." ID="ID_251519716" CREATED="1592460521053" MODIFIED="1592529390945"/>
+</node>
+<node TEXT="Step 2) 시스템 간 상호 운용성" FOLDED="true" ID="ID_891617619" CREATED="1592460341204" MODIFIED="1592518467722"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      타 업체와 서비스 연동시에 중요
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="분석모델을 이용하여 보다 구체적으로 시스템간 상호 정보 및 서비스를 교환 가능한지 검토한다." ID="ID_1254903706" CREATED="1592460532143" MODIFIED="1592508030525"/>
+<node TEXT="분석모델에서 정의한 구체적인 정보의 존재 여부, 생성 가능성, 교환 방식 지원 등에 대해서 확인한다" ID="ID_1407145187" CREATED="1592460532920" MODIFIED="1592518467717" HGAP_QUANTITY="16.999999910593036 pt" VSHIFT_QUANTITY="-12.7499996200204 pt"/>
+</node>
+<node TEXT="Step 3) IT시장 성숙도 및 트렌드 부합성" FOLDED="true" ID="ID_767005994" CREATED="1592460341815" MODIFIED="1592460661615">
+<node TEXT="분석모델이 과거의 문제를 해결하고 많이 사용되는 트렌드에 부합하는지 확인한다." ID="ID_1334335339" CREATED="1592460537108" MODIFIED="1592508129340"/>
+<node TEXT="예를 들어, 시스템에서 중요하고 빈번하게 사용되는 클래스를 Spring의 프로토타입 빈(Prototype Bean)으로 사용할 것을 가정하고 분석모델이 작성되지 않았는지 검토한다." ID="ID_1369093417" CREATED="1592460537930" MODIFIED="1592508146483"/>
+</node>
+<node TEXT="Step 4) 기술적 위험 분석" FOLDED="true" ID="ID_1523612418" CREATED="1592460342370" MODIFIED="1592460667570">
+<node TEXT="분석모델이 시스템의 기술 구조, 프레임워크, 사용되는 하드웨어 및 소프트웨어와 부합하는지 확인한다" ID="ID_79714437" CREATED="1592460544317" MODIFIED="1592508191192"/>
+<node TEXT="분석모델이 검증되지 않은 기술의 사용을 가정으로 하고 있어 추가적인 비용 발생 가능성이 있는지 확인한다." ID="ID_1763796113" CREATED="1592460545067" MODIFIED="1592518612318"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      사람들이 잘 쓰지 않는 최신 언어(및 오래된 언어)는 사용 및 보수가
+    </p>
+    <p>
+      힘들다.
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="분석모델을 구현하기 위하여 특정 업체 기술, 특허, 라이선스에 의존해야 하는지 확인한다." ID="ID_1978969534" CREATED="1592460545729" MODIFIED="1592508250359"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+</node>
+</map>

@@ -1,0 +1,336 @@
+﻿
+
+// 오명운 강사님 : blockenters@gmail.com (강의 관련 문의)
+
+
+// 수업 관련 자료(Github)
+https://github.com/blockenters/android
+
+
+// 라이브러리, API, SDK, 프레임워크에 대해서 (제일 잘 설명된 것)
+https://cerulean85.tistory.com/322
+
+
+// API, SDK란?
+https://kin.naver.com/qna/detail.nhn?d1id=1&dirId=10401&docId=251852870&qb=U0RLIEFQSQ==&enc=utf8&section=kin&rank=2&search_sort=0&spq=0
+
+
+// 라이브러리Library의 정의
+https://terms.naver.com/entry.nhn?cid=42341&docId=754277&categoryId=42341
+
+
+// 함수, 라이브러리, 프레임워크, SDK의 뜻
+https://blog.naver.com/jktk1/221257528731
+
+
+// SDK의 뜻
+https://kin.naver.com/qna/detail.nhn?d1id=1&dirId=1040101&docId=72588436&qb=c2RrIOudvOydtOu4jOufrOumrA==&enc=utf8&section=kin&rank=1&search_sort=0&spq=0
+
+
+// 모듈의 정의
+https://terms.naver.com/entry.nhn?cid=42344&docId=829718&categoryId=42344
+
+
+// public, void, main, class
+https://blog.naver.com/leeee_sh/221828912167
+
+
+// main 메소드, print(), println()
+https://blog.naver.com/private1023/221891794783
+
+
+// 소프트웨어 어휘다지기 - 중등 (목차)
+https://terms.naver.com/list.nhn?cid=59941&categoryId=59941&so=st4.asc
+
+
+// 메소드, 접근제어자
+https://blog.naver.com/alcmskfl17/221734060161
+
+
+// float 데이터 타입 변수의 변수값에 f를 붙이는 이유
+https://kin.naver.com/qna/detail.nhn?d1id=1&dirId=1040101&docId=67536568&qb=ZmxvYXQgZg==&enc=utf8&section=kin&rank=4&search_sort=0&spq=0
+
+
+// 데이터 타입의 정의 (설명 잘됨)
+https://blog.naver.com/eternal_rest/221926921596
+
+
+// 데이터 타입의 정의2 (위키백과)
+https://ko.wikipedia.org/wiki/%EC%9E%90%EB%A3%8C%ED%98%95
+
+
+// break; continue;
+https://blog.naver.com/best__khs/221809510001
+
+
+// while, do-while
+https://blog.naver.com/hann726/221652140297
+
+
+// AND게이트
+https://terms.naver.com/entry.nhn?docId=2835921&cid=40942&categoryId=32830
+
+
+// OR게이트
+https://terms.naver.com/entry.nhn?docId=3326660&cid=40942&categoryId=32830
+
+
+// Overload, Override
+https://pinkbboy.tistory.com/3
+
+
+// 자바(Java) 상속 및 다형성 (설명잘됨)
+https://blog.naver.com/pjok1122/221500534106
+
+
+// Heap, Stack
+https://blog.naver.com/heartflow89/220954420688
+
+
+// 업캐스팅, 다운캐스팅(예시가 재밌음)
+https://madplay.github.io/post/java-upcasting-and-downcasting
+
+
+// Math.random()
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+
+
+// ZonedDateTime 사용법
+https://www.daleseo.com/java8-zoned-date-time/
+
+
+// LocalDateTime, ZonedDateTime 차이와 사용법 (더 세세함)
+https://yangbox.tistory.com/24
+
+
+// final, finaly, finalize
+https://gmlwjd9405.github.io/2018/08/06/java-final.html
+
+
+// field(필드) 선언 : 변수 선언, 클래스를 인스턴스화, 참조변수
+https://programmers.co.kr/learn/courses/5/lessons/140
+
+
+// 클래스, 객체, 인스턴스의 개념 (설명 괜찮음)
+https://gmlwjd9405.github.io/2018/09/17/class-object-instance.html
+
+
+// 필드와 변수 : 필드, 전역변수, 멤버변수, 지역변수
+https://wakestand.tistory.com/80
+
+
+// 업캐스팅, 다운캐스팅 (이해하기 괜찮았음)
+https://lktprogrammer.tistory.com/43
+
+
+// 프리미티브 타입(Primitive type), 레퍼런스 타입(Reference type)
+https://jinbroing.tistory.com/3
+
+
+// 원시 변수와 레퍼런스 (설명 잘된 듯)
+https://over153cm.tistory.com/entry/JAVA-%EC%9B%90%EC%8B%9C%EB%B3%80%EC%88%98%EC%99%80-%EB%A0%88%ED%8D%BC%EB%9F%B0%EC%8A%A4
+
+
+// super() 설명 (잘 되어있음)
+http://tcpschool.com/java/java_inheritance_super
+
+
+
+// 컬렉션(Collection) 설명 잘되어있음.
+https://gangnam-americano.tistory.com/41
+
+
+// 집합 기호 설명(그냥 알고싶어서)
+https://terms.naver.com/entry.nhn?docId=2073651&cid=47324&categoryId=47324
+
+
+// 데이터 용어의 정의(오픈사전)
+https://ko.dict.naver.com/#/userEntry/koko/c4ce2ac3d5dc0ecd5c0c2dfb9ad50d15
+
+
+// Iterator 설명
+https://sas-study.tistory.com/82
+
+
+// 원시 타입
+https://blog.naver.com/itisik/221739098282
+
+
+// ssh, sshd 설치 ★
+https://blog.miyam.net/56
+
+
+// 증감연산자
+http://tcpschool.com/java/java_operator_incAndDec
+
+
+// 모듈의 뜻
+https://blog.shovelman.dev/647
+
+
+// 서버와 일반 컴퓨터의 차이점
+http://library.gabia.com/contents/infrahosting/794
+
+
+// SSH란?
+https://baked-corn.tistory.com/52
+
+
+// compareTo
+https://m.blog.naver.com/PostView.nhn?blogId=cheesedrive&logNo=220148513502&proxyReferer=https:%2F%2Fwww.google.com%2F
+
+
+// 파일 전송 프로토콜의 종류(SSH + a)
+https://blog.naver.com/sjc02183/221727841638
+
+
+// SSH 설치와 사용법 (ssh를 사용하는 이유 등을 잘 설명)
+http://programmingskills.net/archives/315
+
+
+// CentOS 8 한글입력설정 (잘됨)
+https://velog.io/@___devstudy0w0/CentOS-8-%ED%95%9C%EA%B8%80-%EC%9E%85%EB%A0%A5-%EC%84%A4%EC%A0%95
+
+
+// 터미널 rm 커맨드 활용하기
+https://macinjune.com/all-posts/mac/terminal/mac-terminal-rm-command%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-%ED%8C%8C%EC%9D%BC-%EC%82%AD%EC%A0%9C%ED%95%98%EA%B8%B0/
+
+
+// 터미널 파일 소유자 변경 방법
+https://codechacha.com/ko/linux-chown/
+
+
+// 리눅스 터미널에서 zip 만들기 + a
+https://araikuma.tistory.com/120
+
+
+// 크론탭 활용하기(일반유저)
+https://jdm.kr/blog/2
+
+
+// Port의 정의(비교적 쉽게 알려줌)
+https://run-it.tistory.com/19
+
+
+// group by 설명
+https://runtoyourdream.tistory.com/83
+
+
+// windowgrid
+http://windowgrid.net/
+화면에 원하는 갯수로 격자 설정해서 창을 격자에 맞춰주는 프로그램입니다.
+
+
+// windowgrid 사용법 (한글)
+https://apost.kr/587
+
+
+// notepad++ change default icon (Eng)
+https://superuser.com/questions/144125/use-windows-default-icon-with-notepad
+
+
+// Removing Dots from starting of lines on NotePad++ (Eng)
+https://stackoverflow.com/questions/15559719/removing-dots-from-starting-of-lines-on-notepad
+
+
+// MySQL 계정 생성 및 권한 관리 (GRANT)
+https://extbrain.tistory.com/44
+
+
+// 리눅스(CentOS7) 서버 방화벽 설정하기
+https://ux.stories.pe.kr/162
+
+
+// 쿼리 작성할때 키워드 대소문자 중요한가요?
+http://www.gurubee.net/article/61534
+
+
+// 대소문자 구분없이 LIKE로 SELECT하기
+https://m.blog.naver.com/PostView.nhn?blogId=dg110&logNo=10179379359&proxyReferer=https:%2F%2Fwww.google.com%2F
+
+
+// datetime과 timestamp의 차이
+https://mysqldba.tistory.com/268
+
+
+// mysql 기능 : ON UPDATE CURRENT_TIMESTAMP
+https://zorba91.tistory.com/206
+
+
+// MySQL의 date, time, date_time, time_stamp의 입력형식
+https://wwwi.tistory.com/82
+
+
+// 2020년이 336일이었다닝..
+http://www.mhns.co.kr/news/articleView.html?idxno=380202
+
+
+// terminal 명령어 설명(우분투)
+https://blog.naver.com/angkeloss/220066523079
+
+
+// terminal yum 명령어 사용 방법(한글)
+https://access.redhat.com/ko/solutions/82093
+
+
+// 리눅스 echo 명령어 활용하기
+https://m.blog.naver.com/v_lovepooh_v/20149737669
+
+
+// group by와 having - having은 group by의 where(조건)과 같다
+https://wkdtjsgur100.github.io/groupby-having/
+
+
+// group by에서 주의할 점
+http://jason-heo.github.io/mysql/2014/03/05/char13-mysql-group-by-usage.html
+
+
+// join 해부 ㄹㅇ해부;
+http://rapapa.net/?p=311
+
+
+// 집계함수와 group query 사용법
+https://galid1.tistory.com/609
+
+
+// ★★★where like 활용법
+https://webisfree.com/2014-01-28/[mysql]-%ED%95%84%EB%93%9C%EC%97%90%EC%84%9C-%ED%8A%B9%EC%A0%95%EB%AC%B8%EC%9E%90-%ED%8F%AC%ED%95%A8-%EB%98%90%EB%8A%94-%EC%A0%9C%EC%99%B8%ED%95%9C-db-%EA%B2%80%EC%83%89-like-not
+
+
+// AndroidManifest.xml 매니페스트 파일 설정하기
+https://webcoding.tistory.com/entry/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EC%8A%A4%ED%8A%9C%EB%94%94%EC%98%A4-AndroidManifestxml-%EB%A7%A4%EB%8B%88%ED%8E%98%EC%8A%A4%ED%8A%B8-%ED%8C%8C%EC%9D%BC-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0
+
+
+// ★★★★★ 안드로이드 프로젝트 구조 이해하기 (설명 굿)
+https://codeasy.tistory.com/6
+
+
+// 안드로이드 액션바(ActionBar)와 앱바(App Bar)
+// 활용법도 잘 소개되어있음.
+https://recipes4dev.tistory.com/141
+
+
+// 레이아웃 설명(잘됨)
+https://mattlee.tistory.com/74
+
+
+// ★★★RelativeLayout 설명 & 활용하기
+https://lktprogrammer.tistory.com/133
+
+
+// Layout과 LinearLayout의 설명과 활용
+https://zion830.tistory.com/13
+
+
+// MediaPlayer 설명과 활용
+// 작은 미디어부터 파일 불러오기, 서버에서 불러오기까지
+https://kkangsnote.tistory.com/50
+
+
+// EditText에서 숫자를 가져오려면 어떻게 하나요?
+https://www.androidpub.com/84603
+
+
+// [안드로이드 Intent] startActivity(), startActivityForResult()를 통한 페이지 넘어가기
+https://mailmail.tistory.com/15
+
