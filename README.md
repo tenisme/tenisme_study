@@ -5,9 +5,9 @@
 ### 폴더 설명
 
 - __MySQL_sql__
-  - nodejs 관련
+  - __nodejs 관련__
     - ★node.js 관련 .sql★
-  - 초반 수업
+  - __초반 수업__
     - 초반 수업 중 DBMS 실습/시험 .sql 모음
 
 - __android_java__
