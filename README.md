@@ -1,18 +1,23 @@
-## tenisme_study
+## #tenisme_study
 
-이 폴더에 push된 private key(ex. google key)값은 모두 사용할 수 없는 값으로 변경되어있습니다.
+이 폴더에 push된 private key(ex. google api key)값은 모두 사용할 수 없는 값으로 변경되어있습니다.
 
-#### 폴더 설명
+### 폴더 설명
+
+- __MySQL_sql__
+  - DBMS 실습/시험 .sql 파일 모음
 
 - __android_java__
-  - _초반 수업때 배운 자바 코드들 모음_
+  - 초반 수업때 배운 .java 모음
 
 - __android_project__
-  - _실습 & 시험 프로젝트 모음_
+  - 실습 & 시험 프로젝트 모음
   - __folder_type__
-    - _upload Directory type of projects_
+    - 디렉토리 타입 프로젝트 업로드
   - __zip_type__
-    - _upload zip type of projects_
+    - .zip 타입 프로젝트 업로드
 
-- __mariaDB_sql__
-  - _DBMS 실습/시험 sql 파일 모음_
+### node.js 관련 레파지토리
+
+- [tenisme_server](https://github.com/tenisme/tenisme_server)
+- [node-mysql](https://github.com/tenisme/node-mysql)
