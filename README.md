@@ -5,10 +5,11 @@
 ### 폴더 설명
 
 - __MySQL_sql__
+  - 실습 & 시험 .sql 모음
   - __nodejs 관련__
     - ★node.js 관련 .sql★
   - __초반 수업__
-    - 초반 수업 중 DBMS 실습/시험 .sql 모음
+    - 초반 수업 중 MySQL 실습/시험 .sql 모음
 
 - __android_java__
   - 초반 수업때 배운 .java 모음
