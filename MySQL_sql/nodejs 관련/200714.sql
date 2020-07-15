@@ -165,10 +165,12 @@ order by s.title;
 -- employee 테이블 설계
 create table employee (
 	id int not null auto_increment primary key,
-    employee_name varchar(100),
-    employee_age int,
-    employee_salary int
+    name varchar(100),
+    salary int,
+    age int
 );
 
+use insta;
 use my_test;
 select * from employee;
+drop table employee;

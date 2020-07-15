@@ -19477,14 +19477,14 @@ npm 에서 postman-request 검색
 
 // postman-request 기본 사용 포맷(json으로 가져오기)
 request.get({url : 'http주소', json : true}, function (error, response, body) {
-  console.log('error:', error)
-  console.log(response.statusCode)
-  console.log(body)
+	if(error != null){console.log('error: '+error)}
+    console.log('status code: '+response.statusCode)
+    console.log('status: '+body.status)
 }) // 안드로이드의 volley 라이브러리 사용과 같음.
 
 ==================  Node 실습 6 - 네트워크 데이터와 DB
 
---------------------------------------  실습 목적
+-----  ★★★★★★★★★★★실습 목적(에 작업 방법 추가함)
 
 1. 새폴더명 employee
 	안에 app.js 만듦
@@ -19494,12 +19494,16 @@ request.get({url : 'http주소', json : true}, function (error, response, body) 
 	vsc 터미널에서 작업 - npm i postman-request
 4. 데이터베이스 테이블 설계
 	워크벤치에서 작업 - create table();
+	mysql 모듈 설치 : vsc 터미널에서 작업 - npm i mysql
 5. JSON 처리
 	vsc의 app.js에서 작업 - postman-request 모듈을 사용해서 api 링크를 json으로 가져옴
 6. Node 에서 DB 접속 처리
 	vsc의 app.js에서 작업 - 기존에 만들었던 mysql_connection.js 파일을 가져와서 DB에 접속(aws DB서버에 일반유저로 접속함)
 7. Node 에서 데이터 저장
-	?????이거 하는중.ㅜㅜ
+	7-1. 인터넷 접속을 위해 postman-request 모듈을 추가
+	7-2. api에서 json으로 파싱한 다음
+	7-3. 쿼리문에 하나씩 데이터를 추가하고 그 쿼리를 쿼리함수에 담는 for문을 돌린다.
+	7-4. i가 끝에 도달하면 connection.end()하는 if문을 for문 안에 추가한다.
 
 -----------------------  Node - 네트워크 데이터와 DB
 
@@ -19513,5 +19517,202 @@ request.get({url : 'http주소', json : true}, function (error, response, body) 
 	위의 값으로 구성된 employee 테이블을 만들어서, 데이터를 DB에 저장하시오.
 
 ---------------------------------------------
+
+=======================  200715 수요일 수업 내용 메모
+
+nodejs로 웹서버 실행시키는 거 할 거임.
+
+mvf 패턴?
+
+===============  Node 실습 6 - 네트워크 데이터와 DB 해설
+
+나중에 postman-request를 쓸 때 자신의 api 서버를 가져오는 건지(만드는 건지?) 남으 api를 가져오는 건지(request) 구분을 명확하게 해서 상수를 만들어야 한다.
+
+---------------------------------------------
+
+자바스크립트니까 json으로 처리하기~
+	ex) {url : baseUrl+path, json : true}
+
+request.get({url : baseUrl+path, json : true}, function (error, response, body){ 내용 })
+	에서
+    // response에는 http 통신을 통해 들어온 전체 데이터를 다 받는다
+    // body에는 json 몸통만 들어온다(이걸 쓴다)
+
+insert문을 여러번 쓰면 IO가 커져서 좋지 않다고 한다. 여러 데이터를 추가할 때는 insert문은 한 줄만 써주고 for문을 돌리자.
+
+-------------------  ★nodejs 문자열 처리 방법(new!)★
+
+// 문자열 처리 방법 1 (기존 방법)
+// let insert_query = 'insert into employee values (default, "'+name+'", '+salary+', '+age+')'
+
+// ★문자열 처리 방법 2 (새로운 방법) - 이게 더 좋음!★
+	// `` <- 이걸 사용한다
+		// `는 역슬래시 안 넣고 엔터 쳐도 하나의 문장으로 인식한다
+	// ${} <- 이것도 사용한다
+let insert_query = `insert into employee values (default, "${name}", ${salary}, ${age})`
+	
+connection.query(insert_query, [], function(error, results, fields){
+	
+	if(error != null){console.log('error: '+error)}
+	console.log(results)
+
+})
+
+` 의 명칭 : Backquote, backtick, grave accent
+${}의 명칭 : 잘몰겠. 그냥 샵중괄호라고 하자.
+
+---------------------------------------------
+
+반복되는 패턴이 무엇인지 바뀌는 지점이 어디인지 찾는 연습을 해보자.
+
+==================================  SQL 활용 이론
+
+이번주 금요일 시험은 필기시험임
+
+한 컬럼에 프라이머리 키를 만들면 DBMS는 이 컬럼을 자동으로 "인덱스"로 만들어놓는다.
+
+==========================  실습 : geocode 가져오기
+
+네트워크 통신해서 geocode 가져오는 거 할 것임
+
+geocoding 폴더 만듦
+
+★실습 목적(에 작업 방법 추가함) 3번까지 진행함
+
+구글에서 mapbox 검색 - mapbox.com 으로 들어가기
+
+mapbox 가입/로그인
+	Access tokens !
+		이거랑 api 키 만드는 거 나중에 할 거임. 지금은 아님.
+
+documentation 에서 사용 방법 열람 가능
+	geocoding 검색 - API / search service 클릭하면 정보 열람 가능
+		일반 주소를 위도/경도로 바꿔주는 것이 geocoding의 기능이다.
+		get 방식이다.
+		URL-encoded UTF-8
+		파라미터설명
+			limit - 갯수 제한. 디폴트는 5개, 최대 10개
+	기본 주소
+		https://api.mapbox.com
+	기본 path
+		1) 지역이름으로 가져오기
+		/geocoding/v5/{endpoint}/{search_text}.json
+		{search_text}.json
+			지역 적으면 됨 ex)서울, 화곡역
+			별다른 파라미터 없이 한글 그냥 적어도 검색됨
+		2) 경도, 위도로 가져오기
+		/geocoding/v5/{endpoint}/{longitude},{latitude}.json
+		{endpoint}
+			mapbox.places or mapbox.places-permanent
+		{longitude},{latitude}.json
+			경도(lng), 위도(lat) 순서임
+
+문제 : 한글이 들어간 주소가 nodejs에서는 실행되지 않음
+
+한글은 유니코드. utf-8로 바꿔줘야 함.
+
+해결책 :
+	encodeURI() 함수 사용
+		유니코드 > UTF-8
+		한글값 검색시 주소를 여기에서 한 번 걸러서 사용하면 된다
+
+참고 : 
+	decodeURI()
+		UTF-8 > 유니코드
+
+=====  실습 : youtube api로 정보 가져와서 DB 서버에 저장하기
+
+실습 : 유튜브에서 내가 좋아하는 정보를 검색해 디비에 저장하기
+
+폴더 : node-mysql\youtube
+작업 한 번에 실행되는 쿼리 함수(.query())가 많으면 좋지 않다.
+	커넥션을 연속으로 하는 것보다는 최대한 줄이는 게 좋다.
+	즉 for루프 코드 안에 .query()를 넣지 않는 게 좋다.
+
+if(error != null){
+	console.log('error: '+error)
+	// 에러 뜨면 리턴 넣어줘야 함. 아직 리턴 방법 모름.
+}
+
+&order=date << 날짜순 정렬
+
+=============================  웹서버 만들기 할 거임
+
+a.k.a 서버 개발, api 개발, api 만들기
+
+먼저 환경설정을 해줘야 함. 서버(api) 개발을 위해서는 테스트 환경이 필요함.
+	테스트 환경으로 제일 좋은 것 : POSTman
+		서버 개발을 위한 플랫폼
+		api 테스트를 하기 위해 이걸 씀.
+	구글에 검색하기.
+	Download Postman App 클릭 - 다운로드
+	설치함 - google 연동 로그인함
+
+상단 +버튼 눌러서 google api 호출하기
+	get 선택하고 https://google.com 치고 send 클릭
+		http 프로토콜 호출 방식(RestAPI)을 쓰기 위해 사용할 4가지
+			get / post / put / delete
+	중간 탭에서 params, headers, body를 많이 쓸 거임.
+
+http 통신 프로토콜은 헤더와 바디로 구성되어있다.
+	바디는 내용이 오고, 헤더는 http 통신 프로토콜의 헤더값이다.
+		헤더 셋팅은 나중에 필요한 부분만 배울 것.
+		나중에 헤더 보는 걸로 시험본단다.
+
+비주얼 스튜디오 추가 셋팅
+	깃헙에 뭐뭐 설치해야 하는지 올려놓으셨댔음.
+vsc 와서 왼쪽에 extensions(네모 네개)버튼 클릭
+1. bracket pair colorizer 검색 > install 버튼 클릭
+	코드를 보기 쉽게 만들어준다.
+2. ★dotenv 검색 > 설치
+	dotenv : db정보 엔드포인트, 유저이름, 비밀번호, db이름을 코드에 그냥 써놓으면 안됨!!! 그 파일을 모아놓을 수 있게 해주고 문법 하이라이팅해주는 것???
+3. expressSnippet 검색 > 설치
+	expressSnippet : 웹서버랑 통신할 수 있도록 nodejs로 express 서버를 쓴다고..? 자동완성...?
+4. JavaScript (ES6) code snippets 검색 > 설치
+5. Prettier - Code formatter 검색 > 설치
+	Prettier : json 코드를 예쁘게 보이게 해줌.
+
+vsc > 셋팅 > format on save 검색 > 체크박스 체크표시
+
+=======================================  새 실습
+
+server-ex 폴더 만듦
+
+파일 추가 server.js
+
+npm init -y
+	노드 프로젝트는 항상 시작을 이렇게.
+
+서버를 내리지 않고 정보 변경할 수 있도록 만들기
+	1) 패키지 설치
+		nodejs express 구글 검색(정보 검색)
+		Express - Node.js 웹 애플리케이션 프레임워크 클릭
+			웹 애플리케이션 프레임워크란?
+				웹 앱을 만들 수 있는 프레임워크.
+		npm에서 express 검색해서 설치
+			vsc > 터미널 > npm i express
+		npm에서 dotenv 검색해서 설치
+			vsc > 터미널 > npm i dotenv
+		npm에서 nodemon 검색
+			nodemon : 서버 파일 변경하면 서버를 껐다 켜지 않아도 (서버를 내리지 않아도) 코드를 변경하면 파일 변경한 걸 자동으로 알아서 바꿀 수 있도록 해주는 모듈.
+			설치 방법
+				1. npm install --save-dev nodemon
+					한 번 해서 에러나면 같은 문장 함 더 치면 설치됨
+				2. node server.js 실행시켜서 서버 다시 실행시키기
+	2) 환경 설정 - 200716 목요일에 이어서
+		
+
+======================================  기타 메모
+
+nodejs로 DB 서버에 insert하는 새로운 3가지 방법
+	a.k.a insert 쿼리(문자열) 처리 방법
+	\node-mysql\employee\app.js에 있음
+
+
+
+
+
+
+
 
 ~여기부터~
