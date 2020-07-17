@@ -19700,13 +19700,478 @@ npm init -y
 					한 번 해서 에러나면 같은 문장 함 더 치면 설치됨
 				2. node server.js 실행시켜서 서버 다시 실행시키기
 	2) 환경 설정 - 200716 목요일에 이어서
-		
+		[[1]]
 
 ======================================  기타 메모
 
 nodejs로 DB 서버에 insert하는 새로운 3가지 방법
 	a.k.a insert 쿼리(문자열) 처리 방법
 	\node-mysql\employee\app.js에 있음
+
+=======================  200716 목요일 수업 내용 메모
+
+깃허브에 nodejs책.pdf 올려놓으셨음. 다운로드할 수 있음. 이거 보고 공부하라고 올려놓으심.
+
+프로그래밍은 배우는 순서가 있다.
+
+========================  <Node.js 교과서> 조현영 지음
+
+깃헙 https://github.com/gilbutITbook/006982
+
+서버는 한번만 개발하면 클라이언트는 여러개 만들 수 있다.
+
+웹(브라우저) 프론트엔드 개발자는 html css js를 배운다.
+
+웹브라우저에서만 실행할 수 있었던 것을 컴퓨터, 서버에서 실행할 수 있게 해준 것이 nodejs
+
+노드는 상당히 빠르다.
+
+이벤트 기반(event-driven) : 이벤트가 있을 때 뭘 하겠다.
+
+-------------------
+
+js-test에 파일 하나 만들어서 test.js 책 23페이지 실습함
+
+function first() {
+  // 함수의 정의
+  second();
+  console.log("첫번째");
+}
+function second() {
+  third();
+  console.log("두번째");
+}
+function third() {
+  console.log("세번째");
+}
+first(); // 함수의 호출
+
+의 실행 결과
+	세번째
+	두번째
+	첫번째
+
+--------------------
+
+// ★non-blocking I/O 의 예시★ - test2.js
+
+function run() {
+  console.log("3초 후 실행");
+}
+console.log("시작");
+setTimeout(run, 3000); // 3000밀리세컨 - 3초
+console.log("끝");
+
+실행 결과
+	시작
+	끝
+	3초 후 실행
+
+---------------------
+
+2.1.6 프로미스 실습 - test3.js
+일단은 이런 게 있다고 알아만 두기.
+
+---------------------
+
+async/await 실습 - 79페이지 - test4.js
+
+---------------------
+
+test5.js
+
+url 파싱하기
+
+const url = require("url");
+const queryString = require("querystring");
+
+const parsedUrl = url.parse(
+  "https://www.gilbut.co.kr/?page=3&limit=10&category=nodejs&category=javascript"
+); // url의 쿼리 부분(? 뒤) 문자열만 가져오는 함수
+const query = queryString.parse(parsedUrl.query);
+console.log("queryString.parse():", query);
+console.log("queryString.stringify():", queryString.stringify(query)); // json에 stringify를 하면 json을 문자열로 보여준다.
+
+실행결과
+queryString.parse(): [Object: null prototype] {
+  page: '3',
+  limit: '10',
+  category: [ 'nodejs', 'javascript' ]
+}
+queryString.stringify(): page=3&limit=10&category=nodejs&category=javascript
+
+---------------------------------------
+
+package.json에서 아래 문장을 지우고 새로 씀
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+이렇게 새로 씀
+  "scripts": {
+    "start": "NODE_ENV=production node server", // 상용 (production)서버는 이렇게 실행해라.
+    "dev": "nodemon server" // 개발(자)모드. 개발 서버는 이렇게 실행시켜라. 명령어를 적어준 것과 같음.
+  },
+  node server / nodemon server
+
+"author": "" // 제작자 이름 적으면 됨.
+
+저장.
+
+config 폴더 만듦
+이 폴더 안에 config.env 파일 만듦
+이 내용 입력함
+---------------------------------
+	// 환경에 대한 정보를 여기다 추가할 것임
+	NODE_ENV = development; // 개발(developnemt) 모드라는 뜻
+	PORT = 5000;
+---------------------------------
+여기에 나중에 접속 경로를 추가할 것임.
+
+server.js로 감 - [[1]]과 연결됨
+아래를 적음
+-------------------------------------
+// express : 웹 서버를 동작시키는 프레임워크
+const express = require("express");
+const dotenv = require("dotenv"); // config.js를 가져올 수 있게 해주는 모듈
+
+// 환경 설정 파일의 내용을 로딩한다.
+dotenv.config({ path: "./config/config.env" }); // config.js 파일을 여기에 불러옴
+
+// 웹서버 프레임워크인 익스프레스를 가져온다.
+const app = express();
+
+// 환경설정 파일인 config.env 파일에 있는 내용을 불러오는 방법.
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+});
+
+--------------------------------------
+
+입력하고 저장하고 터미널에 명령어 npm run dev 입력
+	(웹서버 실행 명령어임)
+	npm run dev
+		npm run : 실행하라
+		dev : package.json 의 scripts의 "dev" 키값을 실행해라
+			"dev" : nodemon server라고 적혀있으므로
+			npm run dev = npm run nodemon server와 같다
+
+여기서 에러나면 설정해줘야됨.
+	깃허브 "API Server 개발 환경 셋팅" 참고
+	dotenv 는 환경설정 파일을 놓을 수 있는 패키지다.
+	# 윈도우즈에서 nodemon 실패하면, 다음처럼.하라.
+	https://docs.google.com/presentation/d/1ogZK7WJYohnJVx5puxnM_Q78uGQ2GItgxgLs6BYD49Y/edit#slide=id.g8bff158ef0_0_103
+	1) windows powershell을 관리자 권한으로 실행함.
+	2) Set-ExecutionPolicy Unrestricted 실행 - Y 치고 엔터
+	3) 터미널에서 npm i -D nodemon 쳐서 설치
+
+구래도 안됨.. 구글에 win10 nodejs nodemon Error: listen EACCES: permission denied 검색해봄
+
+해결함 .env 숫자 옆에 ;이 붙어있어서 안 됐었던 것임.
+
+npm run start 해봄. 안 되는 게 정상임.
+	"start": "NODE_ENV=production node server"에서 node 앞을 지워줘야 하는데 아직 안 지울 거임. 나중에 수정한다고 하셨음.
+
+깃헙에 쓸데없는 파일을 올리지 말아라, 하는 방법.
+	해당 폴더에 파일 만들기 .gitignore
+		"여기 적힌 디렉토리/파일은 깃헙에 올리지 말라"는 뜻이다.
+	파일에 적은 내용 예시
+		node_modules/
+		config/config.env
+		기존에 올렸었으면 이그노어 해서 푸시해도 안 없어짐 주의.
+
+postman 실행함
+localhost:5000 적고 send
+
+server.js에서 다시 편집
+-----------------------------
+// 각 경로별로 데이터를 가져올 수 있도록 router를 셋팅한다.
+app.get("/", (req, res) => {
+  res.send("Hello from express");
+});
+------------------------------
+"/" 여기에는 path를 적는다.
+	.com 뒤가 path다.
+req,res : request(받는다), response(보낸다)의 줄임말
+
+이제 json으로 "보낼" 것임. > api 서버 만들기가 됨. 여기가 body 부분임.
+-----------------------------
+// 각 경로별로 데이터를 가져올 수 있도록 router를 셋팅한다.
+app.get("/", (req, res) => {
+	res.status(200).json({ name: "홍길동", age: 24 });
+});
+------------------------------
+
+401코드 : 로그인 안 하고 사용하려고 할 때 이 에러코드를 보냄.
+	http 상태 코드를 어떻게 셋팅하는가. res.status(여기).json();에 리퀘스트 코드를 적으면 그 코드를 보낸다.(그 코드 상태가 된다)
+
+localhost:5000에 path를 붙여준다.
+	ex) localhost:5000/api/v1/bootcamps
+
+// "클라이언트가 get으로 요청한다"
+app.get("/api/v1/bootcamps/:id", (req, res) => {})
+	:id 변경되어서 오는 값을 받는다고 쓸 때는 변수 id앞에 :를 적어주면 된다.
+	그리고 이 변수는 {}안에서 "req.params.변수"로 호출할 수 있다.
+
+========================  ★★★nodejs 서버 연결 정리
+
+0. 환경설정
+	0-0. 필요한 npm 설치
+		npm init
+		npm i -D nodemon
+		
+		npm i express
+		npm i dotenv
+		옵션 npm : npm i mysql
+		아래처럼 합쳐서 써도 됨
+			npm i express dotenv mysql
+		
+	0-1. pakage.json 파일 수정
+		  "scripts": {
+				"start": "node server",
+				"dev": "nodemon server"
+		  },
+	0-2. config 폴더/ ~.env 환경설정 파일 만들기.
+	0-3. routes 폴더/ ~.js 라우터 파일 만들기.
+1. 패키지.json 셋팅
+	"scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  }
+2. config.env 설정
+	NODE_ENV = development
+	PORT = 5000
+3. 라우터 파일을 기본 셋팅한다
+	const express = require("express");
+	const router = express.Router();
+	// 여기서 라우터 연결
+	module.exports = router;
+3. server.js에서 express(웹프레임워크)와 dotenv를 불러온다.
+	const express = require("express");
+	const dotenv = require("dotenv");
+4. 직접 만든 라우터 파일을 가져온다.
+	const memos = require("./routes/memos.js");
+	4-1. 웹서버 "프레임워크"인 익스프레스를 express()로 가져와 app에 저장한다.
+		const app = express();
+5. dotenv로 .env파일을 불러온다
+	dotenv.config({ path: "./config/config.env" });
+6. 라우터 연결 : "사용할 url의 path"와 "라우터 파일"을 아래의 함수로 연결한다.
+	app.use("url의 path", 라우터변수)
+7. 환경설정 파일인 config.env 파일에 있는 내용 중 PORT를 불러와 저장한다.
+	const PORT = process.env.PORT || 5000;
+	// || 뒤에는 config.env에 저장한 포트 숫자를 똑같이 적는다.
+6. express로 listen()함수를 만들어서 포트를 입력해서 서버를 구동시킨다.
+	app.listen(PORT, () => {
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+  });
+7. 라우터 파일을 작성하기 위한 controllers 파일을 작성한다.
+	7-1. controllers 폴더 생성, 라우터 파일명과 같은 .js 생성
+		이 파일 안에, 연결된 프로토콜이 할 행동들을 함수로 적어서 exports 처리한다.
+		[작성 양식(예시)]
+			// @desc    해당 아이디의 정보 조회
+			// @route   GET /api/v1/memos/:id
+			// @access  Public
+			exports.getMemo = (req, res, next) => {
+			  res.status(200).json({
+				success: true,
+				msg: `Show bootcamp ${req.params.id}번`,
+			  });
+			};
+8. 라우터 파일에서 controllers의 함수를 불러온다.
+	[작성 양식 예시]
+		const {
+		  getBootcamps,
+		  getBootcamp,
+		  createBootcamp,
+		  updateBootcamp,
+		  deleteBootcamp,
+		} = require("../controllers/bootcamps.js");
+9. 각 경로별로 데이터를 가져올 수 있도록 router를 셋팅한다.
+	[작성 양식 예시]
+		router.route("/").get(getMemos).post(createMemo);
+		router
+		  .route("/:id")
+		  .get(getMemo)
+		  .put(updateMemo)
+		  .delete(deleteMemo);
+10. 연결해서 잘 접속되는지 postman으로 테스트한다.
+	npm run dev
+
+=============================================
+
+보통 폴더를 만들어서 라우터(함수)들을 분리해놓는다.
+routes 폴더 만듦 > bootcamps.js 만듦
+
+라우터의 액션들을 빼서 컨트롤러에 담아놓는다.
+	컨트롤러 폴더 > 부트캠프.js 파일 만듦
+
+next 파라미터는 미들 웨어랑 관련이 있다.
+아래 내용 이해 잘 안 가니까 어케 검색해보고 뭐.. 해보기
+--------------------------------------------
+// next 파라미터 실습
+// 5.5. 로그 찍는 로거 함수를 만든다.
+const logger = (req, res, next) => {
+  req.hello = "Hello World";
+  console.log("미들웨어 실행됨.");
+  next();
+};
+// 미들웨어 연결 : 로거 함수를 express에 연결.
+//   express().use(logger)의 위치는 아래의 라우터 연결 전이어야 한다.
+app.use(logger);
+
+// 6. 라우터 연결 : "사용할 url의 path"와 "라우터 파일"을 app.use("url의 path", 라우터변수)으로 연결한다. 이걸 여러개 쓸 수 있다.
+app.use("/api/v1/bootcamps", bootcamps);
+--------------------------------------------
+
+================================  깃헙 node 실습 7
+
+화면 보고 서버를 구성한다. 안드 앱 만드는 게 아니다.
+
+★웹브라우저는 get방식만 호출할 수 있음.
+
+===================================  시험에 대해서
+
+시험범위 깃헙에 올려놓으셨음.
+	DDL / DML / DCL
+	데이터 사전 테이블이 뭔지.
+	뭐가 메타데이터인가. 무엇을 메타데이터라고 하는가.
+	인덱스에 대해서.
+	뷰
+	서브쿼리를 딱 보고 해석해서 서브쿼리를 다른 dml문으로 바꿀 줄 알아야 함.
+
+------------------- 시험범위 깃헙 메모 복붙
+DDL : 테이블의 컬럼 변경
+
+DML : 테이블에 데이터 인서트, 데이터 삭제, 데이터 업데이트 , 셀렉트
+
+DCL : 유저 생성과 삭제 ,  권한 설정과 삭제,  트랜잭션 처리
+
+데이터 사전 테이블
+
+메타데이터
+
+인덱스
+
+뷰 
+
+서브 쿼리
+--------------------
+13문제정도 나옴.
+
+=======================  200717 금요일 수업 내용 메모
+
+================================  깃헙 node 실습 7
+
+nodemon
+	개발할 때 사용하는 npm
+	저장하면 바로 반영되는 장점.
+
+/:id/:title/:content
+	/ 뒤는 path.
+
+WHATWG와 노드의 주소 체계 예시로 용어 설명
+	http://localhost:5000/3/hello/nice_to_meet?color=0&
+	http:// => 프로토콜
+	localhost => 호스트네임 '~.com'까지
+	:5000 => "포트번호". 원래는 :80포트를 쓴다. :80포트를 쓰면 포트 번호를 생략해서 쓴다.(암묵적으로 생략하면 :80이라고 알면 됨)
+		개발 서버는 포트번호를 명시한다.
+	/3~ => pathname(패스네임)
+	?color=0& => "쿼리스트링(서치)"
+		이 용어를 알아야 서버 개발을 할 수 있다.
+	이게 GET방식 처리.
+
+★★★POST방식은 어떻게 데이터를 전달하고 처리하는가.
+	post나 put 방식은 데이터를 path 방식으로 받지(req) 않는다.
+	post 데이터 전달은 body에 붙인다.
+
+error하면 그냥 return하지 말고 에러메세지 데이터를 또 보내줘야 한다.
+
+res.status().json() => 클라이언트에 "보내는(res)" 것.
+
+파라미터가 뭘 받는지 모르겠으면 consol.log()로 찍어보면 된다.
+
+---
+
+.gitignore 파일 만들어주기
+
+// 라우터 : 해당 주소가 오면 그 주소에 맞는 함수를 실행하시오.
+	가 app.get() // 클라이언트에서 get방식으로 보내면(req) 이렇게 응답해라.
+	ex) app.get("/api", (req, res) => {
+		  res.status(200).json({ title: "API 서버 개발" });
+		});
+res.send()
+	클라이언트에 보낸다(send).
+
+클라이언트가 url로 요청(리퀘스트req) > 서버가 데이터를 응답에다가 보내라(res). 이 때 json으로 res하는 것이 api이다.
+	클라이언트 ex) 웹브라우저, Postman
+	서버 예시 : express 서버??
+
+postman으로 예시
+	send 버튼 클릭 : "요청(req)"
+
+get, post, 등등 : 프로토콜.
+	개발자는 데이터를 받아올 때 body{}안은 데이터 노출이 안 딘다
+
+---
+
+post인 경우 path로 데이터를 받아서 보내지 않고, 
+	{ "title" : "제목", "comment" : "내용" }처럼 json으로 보낸다.
+		위 json을 body라고 하고, post는 json으로 "받는다(req)."
+	get은 path 뒤에 '?파라미터'로 설계한다.(바디에 담을 수 없다)
+		일반적으로 get은 "쿼리스트링"으로 처리한다.
+	post나 put은 바디로 처리한다(바디에 담아서 보낸다).
+	(클라이언트 입장에서) 데이터 저장/변경 : post
+	(클라이언트 입장에서) 데이터 받기 : get
+	
+json 작성시 문자열은 큰따옴표로 둘러줘야 한다. 특히 키값은 꼭 따옴표를 둘러주자.
+
+req : 요청
+res : 응답
+	
+// JSON.stringify(req) : req는 json 형식이므로 이 json을 "문자열"로 찍으라고 해주는 함수이다.
+
+postman
+	post 프로토콜에서 테스트용 바디 작성
+		.post는 body가 있어야 한다.
+	body > raw에서 json 바디 작성
+		{"title": "새 메모", "comment" : "내용"}
+	header 에서 작성
+		key : Content-Type > value : application/json 입력
+		하고 다시 send하면 돌아올 때 터미널에 json과 application/json이 표시된다.
+		
+postman에서 collections 만들기
+	프로젝트 api 하나당 한 폴더씩 만든다.
+	+ 클릭 > 폴더명 입력 > create
+	여기에 파일별로 프로토콜 타입과 url 주소를 미리 셋팅해서 저장해놓고 편하게 찾아서 쓸 수 있다.
+	폴더 우클릭 > Add request 클릭 > api 주소 이름(별칭) 입력 > create > 우측에서 프로토콜 타입과 api 입력 후 테스트해보고 Save로 저장하면 앞으로 이렇게 셋팅된 상태에서 api를 테스트해볼 수 있다.
+
+---  콜백 펑션에서 바디 불러오기 예시
+let title = req.body.title;
+let content = req.body.content;
+
+function 함수 = (파라미터) => { 행동 } : 애로우 펑션이라고 함.
+
+======================================  기타 메모
+
+인터페이스(api) 구현 어떻게 설계하는지 다음주에 배움.
+
+시험 관련 규정
+	능력단위 평가와 수료는 별개다.
+	수료는 80퍼 이상 출석이면 그냥 수료.
+	단, 기업체에서 능력단위 평가 성적표를 요구할 수 있음.
+	능력단위 평가는 의무사항이지만 시험을 안 본다고 수료가 안 되거나 제적이 되거나 하진 않음.
+		시험을 안 봐도 되지만 "안 봤다고 기록이 된다"는 점.
+		또 "평가 포기서"도 제출해야 한다.
+	★수료증 나갈 때 성적 현황 요청하면 떼줌.
+
+
+
+
+
+
+
 
 
 
