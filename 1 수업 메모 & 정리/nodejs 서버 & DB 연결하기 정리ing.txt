@@ -1,0 +1,92 @@
+nodejs 서버 & DB 연결하기 정리
+
+1. 폴더(프로젝트) 생성 -> server.js 파일 생성
+2. 터미널에서 아래 작업 순서대로 실행
+	npm init
+	npm i -D nodemon
+	npm i express dotenv morgan
+	npm i --save mysql2
+3. pakage.json 내용 변경
+	"scripts": {
+	"start": "node server",
+	"dev": "nodemon server"
+	},
+4. config 폴더 생성 -> config.env 생성
+	// 환경에 대한 정보를 여기다 추가할 것임
+	NODE_ENV = development;
+	PORT = 5000;
+5. server.js에서 require하기
+	const express = require('express')
+	const dotenv = require('dotenv')
+	5.1. config.env 파일 연결하기
+		dotenv.config({path:'상대경로/config.env'})
+	5.2. express() 축약 및 config.env 파일에서 PORT 가져오기
+		const app = express();
+		const PORT = process.env.PORT || 포트번호;
+			·포트번호 : config.env 파일에 적혀있는 포트번호 그대로 작성
+			·배포용 서버는 80, 테스트용 서버는 3000~?까지
+6. app.listen()으로 포트 연결하기(접속 코드 쓰기)
+	- 접속 성공시 함수 실행
+	app.listen(PORT, () => {
+	  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+	})
+7. postman에서 컬렉션/리퀘스트 만들어서 테스트 준비하기
+	리퀘스트 저장 잘하기~
+8. 연결 잘 되었는지 테스트 - npm run dev
+9.  .gitignore 파일 만들어서 깃헙 셋팅하기
+	node_modules/
+	config/
+10. server.js에서 라우터(경로) 추가하기
+	- 라우트 파일 만들기 전, 경로로 접속이 잘 되는지 테스트하는 용도
+	[[예시]]
+	// 모든 데이터 가져오기
+	app.get("/api/v1/contacts", (req,res) => {
+	res.status(200).json({ result: "ok" })}
+	// 데이터 추가
+	app.post("/api/v1/contacts", (req,res) => {
+	res.status(200).json({ result: "ok" })}
+	// 데이터 수정 - id값은 바디로 받는다
+	app.put("/api/v1/contacts", (req,res) => {
+	res.status(200).json({ result: "ok" })}
+	// 데이터 삭제 - id값은 바디로 받는다
+	app.delete("/api/v1/contacts", (req,res) => {
+	res.status(200).json({ result: "ok" })}
+11. 포스트맨에서 테스트
+12. 라우터(router) 폴더 생성 -> api이름.js 파일 생성
+	12.1. api이름.js에서 express와 router 가져오기
+		const express = require("express");
+		const router = express.Router();
+	12.2. '10.'을 api이름.js에 붙여넣기
+		12.2.1. app을 router로 바꾸기
+		12.2.2. 주소 수정하기
+			"/기본주소"를 "/"만 남기거나 필요에 맞게 알맞게 수정
+		12.2.3. router exports하기
+			module.exports = router;
+13. server.js로 가서 라우터 파일 가져오고 연결하기
+	[[예시]]
+	const contact = require("./router/contact.js");
+	app.use("/api/v1/contacts", contact);
+14. 컨트롤러(controllers) 폴더 생성 -> 위 라우터 파일 이름과 같은 이름의 .js 생성
+15. DB 클라이언트(워크벤치)에서 필요한 테이블을 생성
+	15.1 해당 테이블로 select, insert 등등을 테스트
+16. 컨트롤러 파일에서 각 기능별로 필요한 함수 작성하기
+	- 함수가 잘 실행되는지(잘 접속되는지) 일단 테스트용으로 간단하게 적는다
+	[[예시]]
+	// @desc    모든 주소록 가져오기
+	// @route   GET /api/v1/contacts
+	exports.getContacts = async (req, res, next) => {
+	  res.status(200).json({success : true})
+	};
+17. 동명의 라우터 파일에서 exports 위의 router.get()~을 다 지운 다음 컨트롤러 파일을 가져옴
+	[[예시]]
+	const {getContacts, createContact, updateContact, deleteContact} = require("../controllers/contact.js")
+	17.1. 경로(라우트)와 컨트롤러 파일의 함수를 연결한다.
+		[[예시]]
+		router.route("/")
+		.get(getContacts)
+		.post(createContact)
+		.put(updateContact)
+		.delete(deleteContact);
+18. 각 기능(함수)과 api 주소가 연결이 잘 되었는지 포스트맨으로 테스트 - npm run dev
+	18.1. 포스트맨에서 리퀘스트 api 페이지들 만들면서 접속 테스트 및 저장하기
+19. 
