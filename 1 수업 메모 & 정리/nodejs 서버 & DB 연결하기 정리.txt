@@ -66,10 +66,17 @@ nodejs 서버 & DB 연결하기 정리
 	[[예시]]
 	const contact = require("./router/contact.js");
 	app.use("/api/v1/contacts", contact);
-14. 컨트롤러(controllers) 폴더 생성 -> 위 라우터 파일 이름과 같은 이름의 .js 생성
-15. DB 클라이언트(워크벤치)에서 필요한 테이블을 생성
-	15.1 해당 테이블로 select, insert 등등을 테스트
-16. 컨트롤러 파일에서 각 기능별로 필요한 함수 작성하기
+14. 접속 로그 미들웨어 모듈인 morgan을 server.js에 입력
+	14.1. server.js에서 require('morgan')
+	14.2. 본격적으로 api를 실행하는 app.use() 위에 로그 먼저 찍어주도록 미들웨어 달아주기
+		[[예시]]
+		app.use(morgan("dev"));
+15. req의 바디값을 파싱할 수 있도록 server.js에 코드 추가하기
+	app.use(express.json());
+16. 컨트롤러(controllers) 폴더 생성 -> 위 라우터 파일 이름과 같은 이름의 .js 생성
+17. DB 클라이언트(워크벤치)에서 필요한 테이블을 생성
+	16.1 해당 테이블로 select, insert 등등을 테스트
+18. 컨트롤러 파일에서 각 기능별로 필요한 함수 작성하기
 	- 함수가 잘 실행되는지(잘 접속되는지) 일단 테스트용으로 간단하게 적는다
 	[[예시]]
 	// @desc    모든 주소록 가져오기
@@ -77,7 +84,7 @@ nodejs 서버 & DB 연결하기 정리
 	exports.getContacts = async (req, res, next) => {
 	  res.status(200).json({success : true})
 	};
-17. 동명의 라우터 파일에서 exports 위의 router.get()~을 다 지운 다음 컨트롤러 파일을 가져옴
+19. 동명의 라우터 파일에서 exports 위의 router.get()~을 다 지운 다음 컨트롤러 파일을 가져옴
 	[[예시]]
 	const {getContacts, createContact, updateContact, deleteContact} = require("../controllers/contact.js")
 	17.1. 경로(라우트)와 컨트롤러 파일의 함수를 연결한다.
@@ -87,6 +94,24 @@ nodejs 서버 & DB 연결하기 정리
 		.post(createContact)
 		.put(updateContact)
 		.delete(deleteContact);
-18. 각 기능(함수)과 api 주소가 연결이 잘 되었는지 포스트맨으로 테스트 - npm run dev
+20. 각 기능(함수)과 api 주소가 연결이 잘 되었는지 포스트맨으로 테스트 - npm run dev
 	18.1. 포스트맨에서 리퀘스트 api 페이지들 만들면서 접속 테스트 및 저장하기
-19. 
+21. 서버에서 DB를 사용하기 위해 nodejs에서 셋팅하기
+	21.1. config 폴더에 db-config.json 파일 만들기(복붙)
+	21.2. db 폴더 만들고 mysql_connection.js 파일 만들기(복붙)
+	21.3. db 커넥션 파일을 controllers 파일에서 가져오기
+		const connection = require("../db/mysql_connection.js");
+22. 18.에서 작성한 함수들을 쿼리문을 이용해 상세 작성한다.
+	22.1. 바디값이 필요한 함수는 포스트맨의 body -> rows -> json 선택 후 바디값을 입력한다.
+		{"name" : "하이", "phone" : "010-1212-3434"}
+	22.2. req에서 파라미터별 값 가져오는 방법
+	- path(/:id), body({"id":5}), query string(?type=0)
+		[[예시]]
+		let id = req.params.id; // path에서 불러오기
+		let id = req.body.id; // 바디에서 불러오기
+		let id = req.query.id; // 쿼리스트링에서 불러오기
+		or 직접 만든 키에 값 추가하기
+			[[예시]]
+			req.user = rows[0] // req에 키 직접 만들기
+			id = req.user.id // 직접 만든 req값에서 id값 가져오기
+	22.3. mysql2를 사용하는 경우 async, await, try{}catch(e){}를 사용해 connection.query()를 검증하고 올바른 처리 및 예외 처리를한다.

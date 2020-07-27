@@ -20700,6 +20700,7 @@ app.use(a, b)의 핵심
 
 =================  200722~23 수~목요일 수업 내용 메모
 
+---  ★
 url : http:// ~.com
 header에는 token을 담아 보내고
 body에는 data를 담아 보낸다.
@@ -20707,6 +20708,7 @@ server의 역할
 	1. token validation // 토큰 밸리데이션. 인증 미들웨어. 오늘 할 거. 중간에 끼어들음 => 미들웨어임. 
 		클라이언트가 정보를 보낼 때 유효한 토큰인지 아닌지를 인증해야 한다.
 	2. route // 어제까지 한 거
+---
 
 미들웨어 폴더에 auth.js 파일 만듦
 
@@ -20953,6 +20955,88 @@ auth 미들웨어를 만들어서 인증 후 메모를 볼 수 있도록 만들�
 	이외에 monday.com, 잔디(국산)도 있음.
 
 =======================  200727 월요일 수업 내용 메모
+
+--------------------------------------  시험 해설
+
+페이징, 페이지네이션
+
+컨트롤러 전부 작성한 다음, 인덱스로 잡아야 할 컬럼이 무엇인지 잘 체크하고 워크벤치에서 인덱스를 설정해준다.
+	- 이게 서버 개발의 최종 마무리? 준비?이다.
+	- where, order by, group by 등.
+	- like "% %" 컬럼의 인덱스 잡기 : 인덱스 타입을 FULLTEXT로 설정해줘야 한다.
+	- index 설정시 인덱스 타입을 INDEX로 설정했을 때 인덱스 키의 기본 order를 셋팅해줄 수 있다.
+
+------------------------------  server-ex에서 실습
+
+로그아웃, 패스워드 분실 처리
+
+memo-server의 auth.js에서 join 쿼리문 참고하기 (server-ex에는 join 안 되어있음)
+
+401 : 인증 오류
+
+--------------------------------------  회원 탈퇴
+
+트랜잭션 사용해서 탈퇴 처리 - mysql
+	데이터의 무결성
+
+트랜잭션 사용을 위한 커넥션 정의
+	// try/catch 위(밖)에서
+	const conn = await connection.getConnection();
+트랜잭션 시작
+	try{
+		await conn.beginTransaction();}
+트랜잭션 저장(완료) - beginTransaction()과 같은 try 안에서
+	try{
+		...
+		await conn.commit();}
+트랜잭션 취소
+	catch(e){
+		await conn.rollback();}
+pool에 커넥션 반납
+	finally{
+		await conn.release();}
+
+-----------------------------------  이메일 날리기
+
+구글에 sendgrid 검색
+	30일에 4만개까지 무료, 이후 일 100개까지 무료
+
+회원가입함. 프리 어카운트 쓸 거임.
+iamchoma@gmail.com hwa~3
+
+초기 화면에서 첫번째 Start 누름 > Web API 클릭 > Node.js 선택 > 2) Create an API Key 에서 프로젝트 이름 작성(first-project) > api key 복붙 > 3번, 4번 실행 > 
+
+잘 안 돼서 mailtrap으로 바꿔서 재가입함. 구글 연동 로그인함.
+config.env에서 6가지를 셋팅하고(값들은 맨 아래 두개를 빼고 mailtrap에서 복붙함)
+	SMTP_HOST = smtp.mailtrap.io
+	SMTP_PORT = 2525
+	SMTP_USER = 
+	SMTP_PASSWD = 
+	FROM_EMAIL = iamchoma@gmail.com
+	FROM_NAME = tenisme
+utils 폴더에 sendemail.js 파일을 만듦
+	sendemail.js 참고
+controllers에서 sendEmail 함수를 셋팅함
+	미완성
+
+--------------------------------------  기타 메모
+
+UI구현 240시간 잡혀있는 시간이 프로젝트 하는 시간.
+
+통합 구현 - 안드랑 서버랑 합치는 거
+
+무조건 뭔가를 직접 만들어야 한다는 생각은 하지 말고, 라이브러리나 api 등등을 먼저 찾아보자.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
