@@ -21027,6 +21027,279 @@ UI구현 240시간 잡혀있는 시간이 프로젝트 하는 시간.
 
 무조건 뭔가를 직접 만들어야 한다는 생각은 하지 말고, 라이브러리나 api 등등을 먼저 찾아보자.
 
+=======================  200728 화요일 수업 내용 메모
+
+-------------------------------  이메일 보내기 해결
+
+mailtrap에서 무료 어카운트로 email 보내기는 더미 이메일 보내기만 가능하고, 도메인 등을 유료 결제해서 얻는 호스트 주소와 포트번호를 바꿔주면 실제로 이메일을 보낼 수 있다.
+
+----------------------  암호 분실 요청 / 암호 재설정 api
+
+필요한 라이브러리
+	npm i crypto-js
+	npm i bcrypt - 비밀번호 암호화
+	npm i mysql2 - DB와 연결
+간접적으로 필요한 라이브러리
+	npm i jsonwebtoken - 토큰 만들기/비교하기
+
+암호화 라이브러리 npm cryptojs
+	랜덤 코드를 만드는 기능
+		패스워드 변경 url을 보내기 위해 사용한다.
+
+sha256 : 암호화 방식
+
+설치 : npm i crypto-js
+
+require : const crypto = require("crypto");
+
+alter table : reset_passwd_token 컬럼 추가.
+	테이블 null값에 빈 문자열 추가하기 : '' 입력
+
+유저 테이블에 리셋 패스워드 토큰 저장.
+
+쿼리문을 nodejs에 많이 쓸수록 성능이 느려진다. 최대한 쓰지 않는다.
+
+★자바스크립트에서 문자열 비교 : 일치 ===, 불일치 !==
+
+---------------  movie-server에 users API 구현하기 실습
+
+회원가입, 로그인, 회원탈퇴, 비번 변경, 비번 분실, 비번 리셋 API 개발
+
+movie_user 테이블 만들기
+movie_token 테이블 만들기
+
+설치한 라이브러리
+	npm i bcrypt
+	npm i nodemailer
+	npm i crypto-js
+	npm i jsonwebtoken
+
+1. 회원가입 만들기
+2. 로그인 만들기
+3. 회원 탈퇴 만들기
+4. 비번 변경 만들기
+5. 비번 분실 만들기
+6. 비번 리셋 만들기
+
+-----------------  실습 2 : favorite_movie 테이블 만들기
+
++ 즐겨찾기 설정, 즐겨찾기 영화 가져오기, 즐겨찾기 삭제 api 개발
+
+-----------------------------------------  해설
+
+기능별로 라우터 파일을 분리해서 만드는 것이 좋다.
+과제는 favorite 관련 기능을 처리하는 api들을 만드는 것이므로, 이 기능들은 따로 라우터 파일로 빼놓는 것이 좋다.
+나중에 해놓자.
+
+--------------------------------------  기타 메모
+
+★즐겨찾기 여러개 저장하는 과정( 안드 <-api-> 서버 )
+
+안드 - 영화 목록들을 불러옴 (id가 포함됨)
+안드 - 체크박스 체크된 영화의 id들을 json 형식 body로 서버에 보냄
+서버 - 가져온 body에서 데이터들을 파싱한 다음 for루프를 돌면서 insert into를 실행함.
+서버 - 처리 완료 내용 res
+안드 - res 받아서 처리
+--- 끝
+
+서울 열린 데이터 광장
+
+sendbird : 안드 채팅 api 제공. 국산 :3
+
+8/5 시험은 유저 인증
+
+=======================  200729 수요일 수업 내용 메모
+
+-------------------------------  movie-server 해설
+
+res.~ 밑에는 return을 입력해준다.
+	특히 에러 res 밑에는 반드시 넣는다.
+	마지막 res에는 추가하지 않아도 된다.
+
+★select 이외의 쿼리문이 두개 이상인 경우 트랜잭션을 꼭 추가해준다.
+
+선행 : mysql2 설치
+
+// 트랜잭션 셋팅
+	const conn = await connection.getConnection();
+// 트랜잭션 시작
+	await conn.beginTransaction();
+	첫 쿼리문을 돌리기 전에 시작한다.
+// 트랜잭션 - 롤백
+    await conn.rollback();
+	롤백은 catch(e){} 안의 첫 줄에 꼭 입력해준다.
+// 트랜잭션 - 저장
+    await conn.commit();
+	모든 과정이 성공적으로 완료된 지점에서 커밋을 입력한다.
+// 트랜잭션 - (DB) 커넥션 반환
+	await conn.release();
+
+토큰을 쓰는 이유 : 보안
+	유저 아이디를 바디로 받으면 db가 엉망될 수 있음.
+	그래서 미들웨어를 만들어서 토큰 인증 기능을 추가해서 유저 정보를 토큰을 이용해 저장하고 그걸 써먹는 것.
+
+두 컬럼을 이은 값을 유니크하게 만들기
+	워크벤치 > 테이블 선택 > 알터 테이블 > 인덱스 > 인덱스 이름 설정 > Type - UNIQUE 선택 > 컬럼들을 선택 > Apply
+
+api 명세에서 @res를 @proferties라고 쓰기도 한다.
+
+문자열 숫자로 바꾸기 Number(문자열)
+
+api 작업 끝나고 인덱스 생성 잊지 말기
+
+★ 401 : 인증 안됐다.
+	권장 메세지 : 로그인 먼저 하세요
+
+-----------------  실습 : movie-server 댓글 api 개발하기
+
+로그인한 유저만 댓글을 달 수 있음.
+
+--  아래 4개 api 작성
+
+1. 해당 영화마다, 유저가 댓글을 달 수 있습니다. (아래는 필수)
+댓글 내용(100자) ,  별점 (1점 ~ 5점까지)
+
+2. 영화마다, 남들이 단 댓글을 모두 볼수 있습니다. (25개씩)
+	영화제목, 댓글 단 유저의 이메일, 댓글 내용, 별점, 댓글 단 날짜
+
+3. 내가 쓴 댓글은, 나만 수정할 수 있습니다.
+
+4. 내가 쓴 댓글은, 나만 삭제할 수 있습니다.
+
+----
+
+1. 테이블 생성
+2. api 작성(컨트롤러)
+	2.1. 컨트롤러 파일 신규 작성
+	2.2. api 명세+함수 이름 작성
+		2.2.1. 댓글 작성/저장 api
+		2.2.2. 댓글 수정 api
+		2.2.3. 댓글 삭제 api
+		2.2.4. 댓글 저장 api
+3. 라우트 연결
+	3.1. 라우트 파일 신규 작성
+	3.2. require express, auth
+	3.3. 컨트롤러 파일에서 함수 가져오기
+	3.4. const router = express.Router();
+	3.5. router.route("경로").메소드(함수);
+	3.6. module.exports = router;
+4. server.js에서 연결
+	4.1. const replies = require("./routes/replies.js");
+	4.2. app.use("/api/v1/replies", replies);
+5. 테스트+수정
+	5.1. 포스트맨에서 새 컬렉션 생성
+	5.2. 만든 함수들 리퀘스트 생성
+	5.3. 각 api별로 연결 테스트 후 리퀘스트 저장
+6. 컨트롤러에서 상세 함수 작성
+7. 테스트+수정
+8. 인덱스 잡기
+
+★get 쿼리스트링
+★post/put/delete 바디
+
+=======================  200730 목요일 수업 내용 메모
+
+-----------------  실습 : movie-server 댓글 api 개발하기
+
+테이블에 인덱스를 많이 걸어놓으면 성능이 느려질 수 있다.
+
+평균은 round() 함수 활용해서 쓰세욤
+
+select m.*, count(r.comments) as cnt_comments, 
+ifnull(round(avg(r.rating), 2), "unrated") as avg_rating 
+from movie as m 
+left join movie_reply as r 
+on m.id = r.movie_id ~
+	에서 카운트는 movie_reply 테이블(as r)로 하고, 카운트는 인덱스(r.reply_id) 혹은 구체적인 대상(r.comments)을 정해놓고 하면 된다.
+
+----------------  실습 : movie-server 좌석 예약 api 개발
+
+날짜별, 좌석별 예약할 수 있는 예약 API 구현
+
+오른쪽 처럼, 좌석을 예약 할 수 있도록 구현하시오.
+
+영화입력
+
+날짜와 시간(매시 정각)을 입력받습니다.
+	( 2020-07-31 14:00:00 )
+
+좌석 번호를 입력받습니다.
+
+다른사람이 예약을 했으면, 해당 자리는 예약을 받지 못합니다.
+
+---  테이블 작성
+
+테이블명 : 영화 예약
+필요한 컬럼 : id, 영화id, 영화 시작 시간, 좌석 번호, 예약한 유저의 id
+특이사항
+	1. 예약한 사람의 id가 있으면 (null이 아니면) 예약을 할 수 없음.
+	2, 시작 시간 30분 전에는 예약을 취소할 수 없음.
+
+---  만들어야 하는 api
+
+특정 영화, 특정 날짜의 좌석 정보 불러오기 not auth
+	GET
+	영화, 날짜, 좌석 정보
+	- 좌석 정보 : 예약한 유저의 id 정보가 있으면 '예약됨', 아니면 '예약 가능'으로 표시)
+	★ 기능구현 하고싶은 것
+		2. 예약 가능한 좌석을 카운트해서 보여주는 것.. 하지 말까 그냥
+좌석 예약하기 with auth
+	POST
+	로그인한 유저가 영화, 날짜(시간), 좌석 선택해서 예약
+예약 취소하기 with auth
+	DELETE
+	로그인한 유저가 예약한 좌석의 id를 삭제
+	select * from 테이블 where user_id = 0 and reserve_id = 0
+	특이사항에 유의.
+
++ 내 예약 정보 가져오기 만들자
++ 예약/취소 시간 입력받는 테이블 활용을 다른 데에다 해야 할 듯
+
+---------------------  movie-server 좌석 예약 api 해설
+
+like는 느린 연산. 풀 텍스트 서치.
+
+api 명세에서 배열이면 배열이라고 적어주자.
+ ex) // @res arrSelect[]
+
+reserving_user_id
+	// 인덱스 아이디는 _id 붙여주기
+
+상영시간 테이블 따로 만들면 좋음
+	이거 빼서 - start_time_manager
+		id
+		movie_id
+		screening_order
+		start_at
+	이렇게
+
+DATE_ADD(NOW(), INTERVAL 9 HOUR)
+	시간은 utc로 저장한다.
+	utc로 저장하면 위의 코드로 연산을 할 필요가 없다.
+	시간 처리는 클라이언트에서 한다.
+
+터미널에서 node 치면 에디터 창 띄울 수 있음.
+	거기서 자바스크립트 코드 칠 수 있음.
+	for문 돌려서 반복 id값도 만들 수 있음.
+	ex) PS C:\Users\ten_i\AndroidStudioProjects\node-mysql\movie-server> node
+	Welcome to Node.js v12.18.2.
+	Type ".help" for more information.
+	>
+	> for(let i = 0;i <= 100; i++){
+	... console.log(`s${i} tinyint default 0,`)
+	... }
+	s0 tinyint default 0,
+	s1 tinyint default 0,
+	s2 tinyint default 0,
+	s3 tinyint default 0,
+	s4 tinyint default 0,
+
+
+
+
+
+
+
 
 
 
