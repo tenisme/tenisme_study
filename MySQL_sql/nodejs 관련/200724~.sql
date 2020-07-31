@@ -1,13 +1,13 @@
 -- 200724
 use my_test;
 
--- create table movie (
--- 	id int not null auto_increment primary key,
---     title varchar(200),
---     genre varchar(100),
---     attendance int,
---     year date
--- );
+create table movie (
+	id int not null auto_increment primary key,
+    title varchar(200),
+    genre varchar(100),
+    attendance int,
+    year date
+);
 
 -- drop table movie;
 
@@ -150,80 +150,49 @@ limit 0, 25;
 
 # 실습 - 영화 예약 api 기능 만들기
 # reserve_movie 테이블 만들기
--- 아래 수정중임. 
-create table seats (
-	reserve_id int not null auto_increment primary key,
+
+create table start_at(
+	start_at_id int not null auto_increment primary key,
     movie_id int,
+    screening_no int,
+    start_at timestamp,
+    foreign key (movie_id) references movies(id)
+);
+create table theaters(
+	thearter_id int not null auto_increment primary key,
+    thearter_no int,
+    seat_no varchar(2)
+);
+create table reservations(
+	reserve_id int not null auto_increment primary key,
+    thearter_id int,
     start_at_id int,
-    seat_num_id int,
-    reservation boolean default false,
-    reserving_user_id int,
-    foreign key (movie_id) references movie(id) on delete cascade,
-    foreign key (reserving_user) references movie_user(user_id) on delete cascade
+    user_id int,
+    foreign key (thearter_id) references theaters(thearter_id),
+    foreign key (start_at_id) references start_at(start_at_id)
 );
-drop table reservation;
-truncate table reservation;
+drop table abc;
+# 영화 예약에 필요한 것
+# 영화 정보(영화 id, 영화 제목, ...)
+# 상영 시간 정보(상영 시간 id, 영화 id, 상영 순서, 상영 날짜/시간)
+# 상영관 정보(상영관 id, 상영관 넘버, 좌석 넘버)
+# 예약 정보(예약 id, 상영관 id, 상영 시간 id, 유저 id)
 
-insert into reservation (movie_id, screening_order, start_at, seat_num) values 
-(1, 3, "2020-07-30 17:00:00", 2);
--- (1, 1, "2020-07-30 12:45:00", 1),
--- (1, 1, "2020-07-30 12:45:00", 2),
--- (1, 1, "2020-07-30 12:45:00", 3),
--- (1, 1, "2020-07-30 12:45:00", 4),
--- (1, 1, "2020-07-30 12:45:00", 5),
--- (1, 1, "2020-07-30 12:45:00", 6),
--- (1, 1, "2020-07-30 12:45:00", 7),
--- (1, 1, "2020-07-30 12:45:00", 8),
--- (1, 1, "2020-07-30 12:45:00", 9),
--- (1, 1, "2020-07-30 12:45:00", 10),
--- (1, 2, "2020-07-30 15:20:00", 1),
--- (1, 2, "2020-07-30 15:20:00", 2),
--- (1, 2, "2020-07-30 15:20:00", 3),
--- (1, 2, "2020-07-30 15:20:00", 4),
--- (1, 2, "2020-07-30 15:20:00", 5),
--- (1, 2, "2020-07-30 15:20:00", 6),
--- (1, 2, "2020-07-30 15:20:00", 7),
--- (1, 2, "2020-07-30 15:20:00", 8),
--- (1, 2, "2020-07-30 15:20:00", 9),
--- (1, 2, "2020-07-30 15:20:00", 10);
+select seats_id, start_at, seat_no from movie_seats where movie_id = 1 and start_at = "2020-07-31 12:30:00" order by seats_id;
 
-create table manage_reservation (
-	manage_id int not null auto_increment primary key,
-    reserving_user_id int,
-    reserve_id int,
-    reserved_at datetime default now(),
-    canceled_at datetime,
-    foreign key (reserve_id) references reservation (reserve_id)
-);
-drop table manage_reservation;
-truncate table manage_reservation;
+alter table my_test.favorite_movie rename movie_test.favorites;
+alter table my_test.movie rename movie_test.movies;
+alter table my_test.movie_reply rename movie_test.replies;
+alter table my_test.movie_token rename movie_test.user_tokens;
+alter table my_test.movie_user rename movie_test.users;
 
-select screening_order, start_at, seat_num, 
-	case
-		when reservation = 0 then "예약 가능"
-        else "예약됨"
-	end as reservation
-from reservation where movie_id = 1
-order by screening_order, seat_num;
+use movie_test;
+select * from movies;
+select * from users;
+select * from user_tokens;
+select * from favorites;
+select * from replies;
+select * from start_at;
+select * from theaters;
+select * from reservations;
 
-update reservation set reservation = false, reserving_user = null
-where movie_id = 1 and screening_order = 3 and seat_num = 1;
-
-update reservation set reservation = false, reserving_user = null where reserve_id = 23;
-
-select start_at, DATE_ADD(NOW(), INTERVAL 9 HOUR) as now, 
-TIMESTAMPDIFF(MINUTE, DATE_ADD(NOW(), INTERVAL 9 HOUR), start_at) as time_diff, 
-if(TIMESTAMPDIFF(MINUTE, DATE_ADD(NOW(), INTERVAL 9 HOUR), start_at) > 30, true, false) as possible_cancel 
-from reservation;
-
-update manage_reservation set canceled_at = now() where reserving_user = 10 and reserve_id = 23;
-
-use my_test;
-
-select * from movie;
-select * from movie_user;
-select * from movie_token;
-select * from favorite_movie;
-select * from movie_reply;
-select * from reservation;
-select * from manage_reservation;

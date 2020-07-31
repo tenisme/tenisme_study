@@ -1,5 +1,5 @@
 # db 만들기
-create database my_test
+create database movie_test
 default character set utf8
 default collate utf8_general_ci;
 
@@ -13,10 +13,12 @@ create user 'node_user'@'%' identified by '0000000000';
 drop user 'node_user'@'%';
 
 # 유저 권한 설정
-grant all on my_test.* to 'node_user'@'%';
+grant all on movie_test.* to 'node_user'@'%';
 	# node_user라는 엔드 유저는 원격 접속('%')을 통해 my_test db에 접속해 모든 테이블(.*)에서 모든 작업(all)을 할 수 있음. "db를 새로 만들거나 할 수는 없음."
 	# db/테이블에서 실행 가능한 작업 권한 부여하기 : grant 가능한작업
 		# grant all => 모든 작업(CRUD) 가능
     # 접속 가능한 db 설정하기 : on 데이터베이스.테이블 '데이터베이스'의 '테이블'에 접속 가능.
 		# *은 모든 DB, .*은 모든 테이블을 의미함.
     # 권한을 줄 유저 설정하기 : to '유저아이디'@'접속가능경로'
+    
+alter table my_test.favorite_movie rename movie_test.favorites;
