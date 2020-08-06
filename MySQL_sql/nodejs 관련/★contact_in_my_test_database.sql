@@ -72,3 +72,4 @@ update contacts set name = "ㅎㅎ", phone = "010-1212-3434", comment = "업데�
 
 delete s.* from contact_share as s left join contacts as c on s.contact_id = c.contact_id where c.user_id = 5;
 
+delete from contacts where user_id = 1;

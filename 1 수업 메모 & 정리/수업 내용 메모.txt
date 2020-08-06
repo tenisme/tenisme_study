@@ -21547,10 +21547,8 @@ MAX_FILE_SIZE = 1000000 // 바이트단위(1000000 = 1메가)
 
 [1] 실습(예제) 내용
 1. 내 주소록의 연락처 중, 특정 연락처를, 상대방에게 공유가 가능하도록 테이블 설계
-2. 유저별로, 자신이 보유한 연락처는 자신이 생성, 수정, 삭제, 보기가 가능
-3. 특정 연락처를 공유 및 공유 해제 기능 - 내가 보유한 연락처를, 다른사람에게 공유
-
-
+2. 유저별로, 자신이 보유한 연락처는 자신이 생성, 수정, 삭제, 보기가 가능 
+3. 특정 연락처를 공유 및 공유 해제 기능 - 내가 가진 연락처 1개씩을, 다른사람에게 공유
 
 --------------------------------------  기타 메모
 
@@ -21564,9 +21562,464 @@ AWS 서버(깃헙)에 업로드하기 전에 .gitignore 경로 꼭 확인.
 
 [[TODO]] `query ${}` 형식을 전부 `query ?` [values] 형식으로 바꿀 것.
 
+=======================  200803 월요일 수업 내용 메모
+
+----------------  미리 설명 : 프로젝트(포트폴리오) 만들기
+
+채팅 앱은 SendBird 활용.
+
+음성 텍스트화 api - 구글에 SpeechToText api 있음.
+
+앱 화면 기획 먼저 만들기.
+	1. 프로토타입(기능) 설계.
+	2. 앱 화면 설계(기획).
+		oven or 파워포인트 활용.
+		어도비 dx? 이것까지 쓸 필요는 없댔음.
+		왼쪽에 화면, 오른쪽에 화면 구역별 설명.
+
+~8월 12일(수요일)까지
+	무슨 앱 개발할지 정하기.
+	무슨 앱 만들려고 이런 기능 만들려고 한다 앉아서 1분 발표
+
+ppt 발표 - 화면 기획 발표, 최종 시연 발표 2가지 할 것임.
+	이번달 20일쯤에 화면 기획 발표
+	이런 화면으로 나올 것이다를 설명.
+	9월 2n일에 다 만들면 시연 발표. 1분 발표.
+
+이후에 테스트, 디버깅 40? 36?시간 따로 있음.
+	완성도 높이는 시간.
+
+★"핵심" 기능만 정확하게 동작하면 됨.
+	기능 많을 필요 없음.
+	중요한 것
+		변수 작명 (유지 보수에 용이한가)
+		★에러 처리
+		테이블 설계 제대로 했는지
+			★limit(offset, limit) 잡는 거 중요★
+			인덱스, 유니크 처리 제대로 했는지
+		api 설계 제대로 했는지
+			클라이언트한테 제대로 메세지를 돌려줬는지
+		안드
+			라이브러리 제대로 쓸 줄 아는지 모르는지
+			클래스 설계 제대로 했는지
+				json에서 데이터 받으면 클래스에 꼭 저장해야 함.
+
+---------------  contact api 추가(연락처 공유 서비스) 해설
+
+owner_user_id
+shared_user_id
+contact_id
+
+다른 테이블의 id를 가져다 쓸 때는 "테이블명_id"의 형식으로 써줘야 어디 테이블을 가져다 쓴 건지 예측이 가능하다.
+
+★ npm install 명령
+	·pakage.json에서 "dependencies": {}를 복사해서 필요한 프로젝트의 pakage.json에 복붙해서 쓸 수 있다.
+	·node_modules은 서버가 어느 운영체제를 쓰느냐에 따라서 다르게 설치되므로 깃헙에 올리지 않는다. 대신 pakage.json에 설치한 라이브러리 목록이 들어있으므로 이 파일("dependencies": {})을 가지고 터미널에서 npm install 하고 엔터만 쳐주면 pakage.json 파일에 적혀있는 라이브러리들을 모두 자동으로 설치해준다.
+		·결론 : pakage.json 파일은 꼭 필요한 파일이다.
+		·아마존 aws에서는 npm install도 필요없고 클릭 몇번으로 알아서 다 된다.
+			·CI/CD : aws 자동화 어쩌고.
+
+------------------  실서버(aws)에 올리기 & 유지보수하기
+
+깃헙 - Nodejs CI/CD on AWS
+
+사전 준비  --------------------------------------
+
+server.js로 이동
+	dotenv.config()이 dotenv require 바로 밑에 있는지 확인
+db_config.env의 내용을 config.env로 이동
+	mysql_connection.js 파일을 수정 이동한 경로에 맞게 수정
+.gitignore 한 번 더 체크
+
+앞으로는 서버(프로젝트) 단위로 깃헙에 프로젝트를 푸시해야 함.
+	새 리파지토리 만들기 : contact-server
+		Private 설정
+	기존 프로젝트 서버 폴더(contact-server) 카피
+	새 리파지토리에 붙여넣기
+
+해당(깃헙) 리파지토리에서 파워쉘 열기
+	echo "# contact-server" >> README.md
+	git init
+	git add README.md
+	git add ./
+	git commit -m "first commit"
+	git remote add origin https://github.com/tenisme/contact-server.git
+	git push -u origin master
+
+CI / CD  ---------------------------------------
+
+실서버에 배포(deploy)가 되는 과정
+	배포 : 실서버에 코드를 올려서 실제로 동작(적용)시키는 것이다.
+	실서버 : 실제 사용자가 사용하는 서버
+
+CI : 소스코드를 계속 수정/개발 >> 아래의 1->2 과정
+CD : CI한 소스코드를 배포 >> 아래의 2->3 과정
+
+(1) 우리 컴(개발 서버-로컬호스트)으로 개발 작업
+(2) 깃허브에 올림(push)
+(3) 자동으로 aws의 EC2에 배포가 됨.
+
+이하 이걸 가능하게 해주는 과정  -----------------------
+
+aws로 이동해서 로그인
+	기존 EC2 삭제
+		DB가 저장된 곳은 RDS. DB 삭제하는 거 아님.
+		삭제할 EC2 우클릭 > 인스턴스 상태 > 종료 클릭 > terminated 상태가 되면 삭제된 것임.
+	★AWS Elastic Beanstalk으로 이동
+		코드를 업로드하기만 하면 Elastic Beanstalk는 지속적인 완전관리형 패치 및 보안 업데이트를 통해 용량 프로비저닝, 로드 밸런싱, 자동 조정부터 웹 애플리케이션 상태 모니터링에 이르는 배포 작업을 자동으로 처리합니다.
+	Create Application로 이동
+	애플리케이션 이름 입력 : contact-server
+	플랫폼 > node.js 선택 > nodejs 12 / 5.1.0
+	애플리케이션 코드 > 샘플 애플리케이션 선택
+	애플리케이션 생성 버튼 클릭
+	EC2(서버 컴퓨터) 가보면 새로 생성되어 있음.
+	CodePipeline으로 이동
+		하나 이상 생성하면 돈나감 주의.
+	파이프라인 생성
+		파이프라인 이름 : contact-server > next
+		소스 스테이지 추가 : GitHub 선택
+		연결하기 버튼 눌러서 계정 연결
+		브랜치는 master > 다음
+			여기서 연결하면 자동으로 실서버에 반영됨.
+	빌드 스테이지 추가는 건너뜀.
+	배포 스테이지 추가  - 자동 배포할 거 선택하기
+		AWS Elastic Beanstalk 선택
+		아까 입력한 애플리케이션 이름 선택
+		대응하는 환경 이름도 선택 > 다음
+	파이프라인 생성 버튼 누르면 생성됨.
+	깃헙용 리파지토리에서 npm run dev 해서 잘 돌아가는지 체크
+	
+---------------------------------------------
+
+1. 깃헙에 새 리파지토리 만든다.
+2. 로컬 컴퓨터에 새로 올릴 서버 폴더를 하나 만든다.
+3. 1번에서 만든 리파지토리 설명 부분을 2번 폴더 안에서 실행
+4. 각자 만든 서버 소스코드를 위의 폴더에 복사
+5. git push해서 깃허브에 소스코드를 올림
+
+server.js
+npm init
+pakage.json
+	"scripts": {
+		"start": "node server.js",
+		"dev": "nodemon server.js"
+	}
+npm i -D nodemon
+npm i express
+    "bcryptjs": "^2.4.3",
+    "chalk": "^4.1.0",
+    "crypto-js": "^4.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.9",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.27.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.1.0",
+    "nodemailer": "^6.4.11",
+    "path": "^0.12.7",
+    "postman-request": "^2.88.1-postman.23",
+    "validator": "^13.1.1"
+.gitignore
+server.js
+	const express = require("express");
+	const dotenv = require("dotenv");
+
+	const app = express();
+	app.use(express.json());
+
+	const PORT = process.env.PORT || 5700;
+
+	app.listen(PORT, () => {
+	  console.log("App Listening on port 5700");
+	});
+config/config.env
+	PORT=5700
+server.js
+	dotenv.config({ path: "./config/config.env" });
+npm run dev
+postman
+	localhost:5700
+push
+aws - codepipeline
+	새 파이프라인 생성
 
 
+--------------------------------------  기타 메모
 
+위치 기반 쿼리 가능하도록 테이블 설계하는 방법, 인덱스 잡고, 쿼리하는 방법 배울 것임.
+	현재 내 위치를 중심(특정 위치를 중심)으로 가장 가까운 장소를 정렬해서 보여줌.
+
+시험 - 둘 다 코드짜는 거(종이 테스트 없음)
+	포트폴리오
+		인증 짜는 거(인증 구현) 하나. 회원가입
+		★회원 가입 관련 라이브러리
+			validator (이메일) 검증
+			bcrypt 패스워드 암호화
+			jsonwebtoken 토큰 생성
+		- 회원가입 작성 과정
+		이메일, 패스워드가 있는지 체크
+		이메일, 패스워드 글자 수가 범위 이내인지 체크
+		정상적인 이메일인지 체크 - validator의 .isEmail() 사용
+		트랜잭션 셋팅
+			const conn = await connection.getConnection();
+			await conn.beginTransaction();
+		패스워드 암호화 - bcrypt의 .hash() 사용
+			const hashedPasswd = await bcrypt.hash(passwd, 8);
+		인서트 쿼리 작성 - users 테이블
+			insert : 이메일, 패스워드
+			insert의 result에서 insertId 빼오기
+				result.insertId
+				이걸로 토큰 만들 것임.
+		중간중간 롤백 끼워넣기 까먹지 말기.
+			await conn.rollback();
+				롤백해주고 리턴 까먹지 말기.
+		토큰 만들기 - jwt의 .sign() 사용
+			let token = jwt.sign({ user_id: user_id }, process.env.ACCESS_TOKEN_SECRET);
+		인서트 쿼리 작성 - tokens 테이블
+			insert : user_id, token
+			위에서 만든 token값을 tokens 테이블에 user_id와 함께 insert
+		트랜잭션 마무리
+			await conn.commit();
+			await conn.release();
+		★성공적으로 완료했을 시 클라이언트에게 ★반드시★ 토큰값을 돌려준다.
+			res.status(200).json({ success: true, token: token, result: "가입을 환영합니다" });
+		- 로그인 작성 과정
+		email(아이디), passwd를 body로 받음
+		유저가 입력한 id가 테이블에 존재하는지 확인(select)
+		select 이후 유저가 입력한 패스워드가 테이블에 존재하는 패스워드가 일치하는지 확인 - bcrypt의 .compare() 사용
+			일치하지 않으면 401로 리턴
+		유저 id로 토큰 생성
+		생성한 토큰을 tokens테이블에 user_id와 저장
+		★성공적으로 완료했을 시 클라이언트에게 ★반드시★ 토큰값을 돌려준다.
+			res.status(200).json({ success: true, result: isMatch, token: token, message: "환영합니다",
+			});
+		- 로그아웃 작성 과정
+		라우트에 연결할 때 auth가 선행되어야 함.
+		유저아이디, 토큰을 user에서 가져옴.
+		유저아이디와 토큰값이 일치하는 로우를 delete문으로 삭제
+	문제해결력
+		contact-server에 기능 추가(깃헙)처럼 나옴.
+
+인증이 서버에서 제일 중요함.
+
+프로비저닝 - 서버를 자동으로 만들어주는 것..?
+
+==============  200804~05 화요일~수요일 수업 내용 메모
+
+-----------------------  실습과제 : photo-sns-server
+
+## 다음 기능을 할 수 있는 사진 SNS 서비스 개발  -----------
+
+회원가입, 로그인, 로그아웃 기능
+사진 포스팅 기능 : 사진 1장, 내용을 포스팅 할 수 있음
+	사진 포스팅에 대한, CRUD 기능 있어야 함.
+친구 맺기 기능
+	친구로 맺어지면, 친구의 사진과 내용을 볼 수 있다. 
+친구들의 포스팅을 시간 순으로 가져오는 기능
+	최신 글부터 25개씩 가져오는 API
+
+1. 만들어야 하는 것
+	1.0. 만들어야하는 기능 정리
+		회원 관리 api
+			회원가입
+			로그인
+			(내 정보 조회)
+			로그아웃
+			(모든 기기에서 로그아웃)
+			(회원 탈퇴)
+			(패스워드 변경)
+			(패스워드 분실/리셋 요청)
+			(패스워드 초기화)
+		포스팅 관리 api
+			사진 포스팅(업로드)
+				사진, 코멘트, 태그 입력
+			업로드한 사진 조회 - 최신 글부터 25개
+				포스팅 id, 사진, 코멘트, 태그 조회
+			업로드한 사진 수정
+				사진, 코멘트, 태그 변경
+			포스팅 삭제
+				포스팅 id로 삭제. 포스팅_태그 테이블에서도 삭제
+		팔로우 관리 api
+			친구 맺기
+			(친구 맺기 취소)
+			친구의 포스팅 조회 - 최신 글부터 25개
+			(유저 차단)
+	1.1. 만들어야 하는 테이블/컬럼
+		회원(user) 테이블
+			user_id / 로그인 ID / email / 패스워드 / 가입일 / 리셋토큰
+		기기 테이블
+			device_id / 기기명
+		회원 토큰 테이블
+			token_id / user_id / device_id / 토큰 / 생성날짜
+		포스팅 테이블
+			posting_id / user_id / 공개 여부 / 사진파일명 / 코멘트 / 작성날짜 / 수정날짜
+				public_on 정책
+					0 : 전체 공개
+					1 : 팔로우 공개
+					2 : 비공개(나만 보기)
+		태그 테이블
+			tag_id / 태그 이름
+		포스팅_태그 테이블
+			posting_tag_id / posting_id / tag_id
+		친구 테이블
+			follow_id / following_user_id / follower_user_id
+2. 워크벤치에서 테이블 작성
+3. 기본 환경 설정 1 : 테스트
+	생성 : 깃헙
+		깃헙 새 리파지토리 : photo-sns-server
+	생성 : 비주얼 스튜디오 코드(VSC) : photo-sns-server 폴더
+		server.js
+		config/config.env
+			작성 : config.env
+				PORT = 5700
+	터미널 작업
+		npm init
+		npm i -D nodemon
+		npm i express
+	내용 수정 : pakage.json
+		"scripts": {
+			"dev": "nodemon server.js",
+			"start": "node server.js"
+		}
+	내용 작성 : server.js
+		const express = require("express");
+		const dotenv = require("dotenv");
+		dotenv.config({ path: "./config/config.env" });
+
+		const app = express();
+		app.use(express.json());
+
+		const PORT = process.env.PORT || 5700;
+
+		app.get("/", (req, res, next) => {
+		  res.json({ success: true });
+		});
+
+		app.listen(PORT, () => {
+		  console.log("App Listening on port 5700");
+		});
+	테스트 : postman
+		새 컬렉션 작성 : photo-sns-server api
+			컬렉션 내 폴더 작성 : user, posting, follow
+		새 컬렉션에서 접속 테스트하기
+4. 기본 환경 설정 2
+	생성 : photo-sns-server 폴더
+		폴더 생성
+			controllers, routes, middleware, db, utils
+	내용 추가 : config.env
+		ACCESS_TOKEN_SECRET = 아무말
+
+		MYSQL_HOST = AWS RDS 엔드포인트 링크 
+		MYSQL_USER = 접속 허용된 user 이름
+		DB_PASSWD = 위 유저의 접속 패스워드
+		DB_NAME = ★사용하려는 DB 이름 작성
+
+		SMTP_HOST = 아래로 쭉 걍 복붙
+		SMTP_PORT = 
+		SMTP_USER = 
+		SMTP_PASSWD = 
+		FROM_EMAIL = 
+		FROM_NAME = 
+	파일 복붙
+		utils 폴더 - sendemail.js
+		db 폴더 - mysql_connection.js
+		middleware 폴더 - auth.js
+	추가 라이브러리 설치
+		★npm install --save mysql2
+		npm i jsonwebtoken
+		npm i bcryptjs
+		npm i validator -- 여기까지 필수
+		npm i chalk
+		npm i nodemailer
+	auth.js 파일 수정
+		사용하려는 DB에 맞게 테이블명 수정
+	파일 생성 : controllsers, routes 폴더
+		각각의 폴더에 생성 : user.js, posting.js, follow.js
+	내용 작성 - 걍 복붙해서 잘 수정해도 됨
+		controllers의 각 파일에서 테스트용 함수 작성
+			1. 명세 작성
+				1.1. // @desc로 명세 먼저 작성
+				1.2. // @route로 메소드 및 경로 작성
+				1.3. // @req로 클라이언트한테 받을 req 목록 작성
+				1.4. // @res로 클라이언트한테 줄 res 목록 작성
+		routes에서 controllers에서 각 파일에서 만든 함수들 연결
+			[[ 라우트 기본 형태 ]]
+			const express = require(`express`);
+			const auth = require(`../middleware/auth.js`);
+			
+			const{} = require(`../controllers/posting.js`)
+			
+			const router = express.Router();
+			
+			router.route(`/`).post()
+			
+			module.exports = router;
+		server.js에서 routes 파일을 가져와서 연결
+	테스트 : postman
+		api(함수)별로 리퀘스트 추가 후 지정한 경로로 접속이 잘 되는지 테스트
+
+## 이미지 파일 불러오기 셋팅  ------------------------
+
+'사진 정보 가져오기' 검색하면 나옴.
+
+## 시간 비교 셋팅  --------------------------------
+
+`시간 관련 라이브러리` 검색하면 나옴.
+
+--------------------------------------  기타 메모
+
+git config --global core.autocrlf true
+
+파이프라인 - 변수 네임 스페이스
+	SourceVariables
+파이프라인 - 출력 아티팩트
+	SourceArtifact
+
+-----  Elastic Beanstalk url
+http://tenisme.ap-northeast-2.elasticbeanstalk.com/
+
+핵심기능 3개 먼저 만들고 그게 완벽하게 돌아가면 거기서 업그레이드해라.
+
+=======================  200806  목요일 수업 내용 메모
+
+node express 파일 삭제 검색하면 파일을 삭제할 수 있음.
+select 해서 삭제할 파일명 가져옴.
+이전에 다른 사람의 파일이면 리턴.
+DB에서는 삭제하고 사진 파일은 삭제 안하는 곳도 있음.
+공식적으로는 삭제하는 게 맞음.
+
+-----------------  ★aws에서 이미지 파일 불러오게 만들기
+
+깃헙이랑 연결된 프로젝트 폴더에 .ebextensions 폴더 만들기
+이 폴더 안에 static-files.config 파일 만들기
+파일 내용은 아래와 같이 적고 저장하기
+option_settings:
+    aws:elasticbeanstalk:environment:proxy:staticfiles:
+        /public: public
+커밋 앤 푸시
+
+------  위 과정 이후에 elastic beanstalk 링크로 사진 불러오기
+
+url/uploads/파일명.확장자
+
+--------------------------------------  기타 메모
+
+IDG 블로그 : 클라우드 기술 자격 인증
+구글 클라우드 플랫폼 클라우드 아키텍트 자격 인증
+영어 가능해야 함.
+디벨로퍼 어소시에이트 추천.
+학위는 덜 중요함. (학위 안 본다고 함. 신입도 바로 뽑는다고 함.)
+강사님이 깃헙에 링크 올려놓으심.
+aws 시험 20만,,
+
+CTO : 개발 총괄 이사
+
+★배열의 마지막 항목은 arr[arr.length - 1] 입니다.★
+
+[[ TODO ]] : mysql what is tinyint
+
+취향 컬러 : #9CC3BF
 
 
 

@@ -47,19 +47,19 @@ create table replies (
     foreign key (user_id) references users(user_id),
     foreign key (movie_id) references movies(id)
 );
-create table start_at(
+create table start_at (
 	start_at_id int not null auto_increment primary key,
     movie_id int,
     screening_no int,
     start_at timestamp,
     foreign key (movie_id) references movies(id)
 );
-create table theaters(
+create table theaters (
 	thearter_id int not null auto_increment primary key,
     thearter_no int,
     seat_no varchar(2)
 );
-create table reservations(
+create table reservations (
 	reserve_id int not null auto_increment primary key,
     thearter_id int,
     start_at_id int,
@@ -79,3 +79,5 @@ select * from replies;
 select * from start_at;
 select * from theaters;
 select * from reservations;
+
+select u.user_id, u.email, u.created_at, t.token from users as u join user_tokens as t on u.user_id = t.user_id where u.user_id = ? and t.token = ?; 
