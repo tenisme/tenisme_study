@@ -11,103 +11,55 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.tenisme.photosns.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class MainActivity extends AppCompatActivity {
-
-    RequestQueue requestQueue;
+public class Login extends AppCompatActivity {
 
     EditText edit_device;
     EditText edit_id;
-    EditText edit_email;
     EditText edit_passwd;
-    EditText edit_check_passwd;
-    Button btn_join;
     Button btn_login;
+    Button btn_join;
 
     int device;
     String id;
-    String email;
     String passwd;
-    String checkPasswd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        SharedPreferences sharedPreferences = getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
-        String token = sharedPreferences.getString("token", null);
-        if(token != null){
-            Intent i = new Intent(MainActivity.this, Welcome.class);
-            startActivity(i);
-            finish();
-            return;
-        }
-
-        requestQueue = Volley.newRequestQueue(MainActivity.this);
+        setContentView(R.layout.activity_login);
 
         edit_device = findViewById(R.id.edit_device);
         edit_id = findViewById(R.id.edit_id);
-        edit_email = findViewById(R.id.edit_email);
         edit_passwd = findViewById(R.id.edit_passwd);
-        edit_check_passwd = findViewById(R.id.edit_check_passwd);
-        btn_join = findViewById(R.id.btn_join);
         btn_login = findViewById(R.id.btn_login);
+        btn_join = findViewById(R.id.btn_join);
 
-        btn_join.setOnClickListener(new View.OnClickListener() {
+        btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 device = Integer.parseInt(edit_device.getText().toString().trim());
                 id = edit_id.getText().toString().trim();
-                email = edit_email.getText().toString().trim();
                 passwd = edit_passwd.getText().toString().trim();
-                checkPasswd = edit_check_passwd.getText().toString().trim();
 
-                // 에러 처리 더 필요함
-
-                if (id.length() > 20) {
-                    Toast.makeText(MainActivity.this, "아이디는 20자 이내로 적어주세요", Toast.LENGTH_SHORT).show();
+                if(passwd.isEmpty() || passwd.length() < 4 || passwd.length() > 12){
+                    Toast.makeText(Login.this,"패스워드는 4자 이상 12자 이하로 입력해주세요",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (email.contains("@") == false) {
-                    Toast.makeText(MainActivity.this, "이메일 형식이 올바르지 않습니다", Toast.LENGTH_SHORT).show();
-                    return;
-                } else if (email.length() > 100) {
-                    Toast.makeText(MainActivity.this, "이메일은 100자 이내로 적어주세요", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (passwd.length() < 4 || passwd.length() > 12) {
-                    Toast.makeText(MainActivity.this, "비밀번호는 4자리 이상 12자리 이하입니다", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (passwd.equalsIgnoreCase(checkPasswd) == false) {
-                    Toast.makeText(MainActivity.this, "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-               JSONObject object = new JSONObject();
+                JSONObject object = new JSONObject();
                 try {
-                    object.put("loginId", id);
-                    object.put("email", email);
+                    object.put("id_or_email", id);
                     object.put("passwd", passwd);
                     object.put("device_id", device);
                 } catch (JSONException e) {
@@ -116,9 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
 //                Log.i("Photo_sns", ""+object);
 
-                // 서버로 이메일과 비밀번호를 전송한다.
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,
-                        Utils.BASE_URL + "/api/v1/photo_sns/user", object,
+                        Utils.BASE_URL+"/api/v1/photo_sns/user/login", object,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
@@ -135,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
 
-                                Intent i = new Intent(MainActivity.this, Welcome.class);
+                                Intent i = new Intent(Login.this, Welcome.class);
                                 startActivity(i);
                                 finish();
                             }
@@ -163,18 +114,17 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-                requestQueue.add(request);
+                Volley.newRequestQueue(Login.this).add(request);
             }
         });
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
+        btn_join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, Login.class);
+                Intent i = new Intent(Login.this, MainActivity.class);
                 startActivity(i);
                 finish();
             }
         });
-
     }
 }
