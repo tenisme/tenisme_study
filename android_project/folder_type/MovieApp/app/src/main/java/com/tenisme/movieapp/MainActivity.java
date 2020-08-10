@@ -24,7 +24,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.tenisme.movieapp.adapter.RecyclerViewAdapter;
+import com.tenisme.movieapp.adapter.RecyclerViewAdapterMain;
 import com.tenisme.movieapp.model.Movie;
 import com.tenisme.movieapp.utils.Utils;
 
@@ -39,13 +39,12 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     RequestQueue requestQueue;
-    SharedPreferences sharedPreferences;
 
     Movie movie;
     ArrayList<Movie> movieArrayList = new ArrayList<>();
 
     RecyclerView recyclerView;
-    RecyclerViewAdapter recyclerViewAdapter;
+    RecyclerViewAdapterMain recyclerViewAdapterMain;
     int searchOn = 0;
     int endSearch;
 
@@ -54,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_by_year;
     Button btn_by_attnd;
 
-    int offset;
+    int offset = 0;
     int limit = 25;
     String search;
     int order = 1; // 1 = desc, 0 = asc
@@ -63,8 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     JSONArray itemArray;
 
     boolean success = false;
-    int cnt;
-    String token;
+    int cnt = 0;
+    String token = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +71,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         // 로그아웃을 위한 토큰 셋팅
-        sharedPreferences = getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
         token = sharedPreferences.getString("token", null);
 
         // 리사이클러뷰 셋팅
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerViewMain);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -269,18 +268,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (id == R.id.favorite) {
             Log.i("Movie_app", "버튼 클릭 : 즐겨찾기");
-            Intent i = new Intent(MainActivity.this, Favorite.class);
-            startActivity(i);
-            finish();
+            if(token == null){
+                Toast.makeText(MainActivity.this,"로그인이 되어있지 않습니다",Toast.LENGTH_SHORT).show();
+                return true;
+            }else{
+                Intent i = new Intent(MainActivity.this, Favorite.class);
+                startActivity(i);
+                finish();
+            }
             return true;
         }
 
         if(id == R.id.logout) {
             Log.i("Movie_app", "버튼 클릭 : 로그아웃");
             // 토큰이 없으면 리턴
-            Log.i("Movie_app", ""+token);
             if(token == null){
-                Toast.makeText(MainActivity.this,"오류 : 로그인이 되어있지 않습니다",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"로그인이 되어있지 않습니다",Toast.LENGTH_SHORT).show();
                 return true;
             }else{
                 query = "";
@@ -330,8 +333,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 e.printStackTrace();
                             }
                         }
-                        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, movieArrayList);
-                        recyclerView.setAdapter(recyclerViewAdapter);
+                        recyclerViewAdapterMain = new RecyclerViewAdapterMain(MainActivity.this, movieArrayList);
+                        recyclerView.setAdapter(recyclerViewAdapterMain);
 
                         offset = offset + cnt;
                     }
@@ -406,7 +409,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 e.printStackTrace();
                             }
                         }
-                        recyclerViewAdapter.notifyDataSetChanged();
+                        recyclerViewAdapterMain.notifyDataSetChanged();
                         Log.i("Movie_app", "offset : "+offset);
 
                         offset = offset + cnt;
@@ -450,10 +453,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             boolean success = response.getBoolean("success");
                             if(success){
                                 // 토큰 삭제
-                                SharedPreferences preferences =
+                                SharedPreferences sharedPreferences =
                                         getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
 
-                                SharedPreferences.Editor editor = preferences.edit();
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString("token", null);
 
                                 editor.apply();
@@ -489,10 +492,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-
-        if(recyclerViewAdapter != null){
-            recyclerViewAdapter.notifyDataSetChanged();
+        if(recyclerViewAdapterMain != null){
+            recyclerViewAdapterMain.notifyDataSetChanged();
         }
-
     }
 }
