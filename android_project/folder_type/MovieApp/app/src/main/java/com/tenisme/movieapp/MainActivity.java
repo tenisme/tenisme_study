@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -31,16 +32,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     RequestQueue requestQueue;
+    SharedPreferences sharedPreferences;
 
     Movie movie;
     ArrayList<Movie> movieArrayList = new ArrayList<>();
@@ -65,12 +64,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     boolean success = false;
     int cnt;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // 로그아웃을 위한 토큰 셋팅
+        sharedPreferences = getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
+        token = sharedPreferences.getString("token", null);
+
+        // 리사이클러뷰 셋팅
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
@@ -151,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (search.isEmpty()) {
                 Log.i("Movie_app", "검색어 미입력");
                 query = "?offset=" + offset + "&limit=" + limit;
-                request(Request.Method.GET, "/api/v1/movies", null);
+                getRequest(Request.Method.GET, "/api/v1/movies", null);
                 searchOn = 1;
                 return;
             }
@@ -159,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // 검색어 입력시 검색어에 해당되는 영화를 movie_id 순으로 가져옴
             Log.i("Movie_app", "검색어 입력 : " + search);
             query = "?offset=" + offset + "&limit=" + limit + "&keyword=" + search;
-            request(Request.Method.GET, "/api/v1/movies/search", null);
+            getRequest(Request.Method.GET, "/api/v1/movies/search", null);
             searchOn = 2;
         }
 
@@ -181,10 +186,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             query = "?offset=" + offset + "&limit=" + limit + "&order=" + order + "&keyword=" + search;
-            request(Request.Method.GET, "/api/v1/movies/year", null);
+            getRequest(Request.Method.GET, "/api/v1/movies/year", null);
             searchOn = 3;
 
-            // order 값을 변경하기 전에, addOnScrollListener 이 실행될 때 order 값 고정을 위한 셋팅
+            // order 값을 변경하기 전에, 추가 목록을 불러올 때 '변경된 order' 값을 불러오는 것을 막기 위한 셋팅
+            // addOrder 값은 목록을 추가로 불러오는 곳(스크롤)에서만 사용함.
             addOrder = order;
 
             // 버튼을 누를 때마다 asc, desc 순서 변환
@@ -213,10 +219,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             query = "?offset=" + offset + "&limit=" + limit + "&order=" + order + "&keyword=" + search;
-            request(Request.Method.GET, "/api/v1/movies/attnd", null);
+            getRequest(Request.Method.GET, "/api/v1/movies/attnd", null);
             searchOn = 4;
 
-            // order 값을 변경하기 전에, addOnScrollListener 이 실행될 때 order 값 고정을 위한 셋팅
+            // order 값을 변경하기 전에, 추가 목록을 불러올 때 '변경된 order' 값을 불러오는 것을 막기 위한 셋팅
+            // addOrder 값은 목록을 추가로 불러오는 곳(스크롤)에서만 사용함.
             addOrder = order;
 
             // 버튼을 누를 때마다 asc, desc 순서 변환
@@ -228,8 +235,64 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    // R.menu.menu_main.xml 파일을 엮어준다.
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    // 우측 상단 메뉴 버튼들을 누르면 무슨 액션을 할지 설정하는 곳
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // 버튼 아이템 빼내는 코드
+        int id = item.getItemId();
+
+        // noinspection SimplifiableIfStatement
+        // 바로 아래는 action_settings 아이디를 가진 버튼의 액션 설정
+        if (id == R.id.join_on) {
+            Log.i("Movie_app", "버튼 클릭 : 회원 가입");
+            Intent i = new Intent(MainActivity.this, SignUp.class);
+            startActivity(i);
+            finish();
+            return true;
+        }
+
+        if (id == R.id.login) {
+            Log.i("Movie_app", "버튼 클릭 : 로그인");
+            Intent i = new Intent(MainActivity.this, Login.class);
+            startActivity(i);
+            finish();
+            return true; // 버튼의 마지막에는 이걸 꼭 해줘야 함. 그래야 이 아래를 실행을 안 함.
+        }
+
+        if (id == R.id.favorite) {
+            Log.i("Movie_app", "버튼 클릭 : 즐겨찾기");
+            Intent i = new Intent(MainActivity.this, Favorite.class);
+            startActivity(i);
+            finish();
+            return true;
+        }
+
+        if(id == R.id.logout) {
+            Log.i("Movie_app", "버튼 클릭 : 로그아웃");
+            // 토큰이 없으면 리턴
+            Log.i("Movie_app", ""+token);
+            if(token == null){
+                Toast.makeText(MainActivity.this,"오류 : 로그인이 되어있지 않습니다",Toast.LENGTH_SHORT).show();
+                return true;
+            }else{
+                query = "";
+                logoutRequest(Request.Method.DELETE, "/api/v1/users/logout", null);
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     // Request.Method.GET = 0, POST = 1, PUT = 2, DELETE = 3, HEAD = 4
-    public void request(int method, final String api_url, JSONObject object) {
+    public void getRequest(int method, final String api_url, JSONObject object) {
         requestQueue = Volley.newRequestQueue(MainActivity.this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(method, Utils.BASE_URL + api_url + query, object,
                 new Response.Listener<JSONObject>() {
@@ -375,42 +438,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         requestQueue.add(jsonObjectRequest);
     }
 
-    // R.menu.menu_main.xml 파일을 엮어준다.
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    public void logoutRequest(int method, final String api_url, JSONObject object) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(method, Utils.BASE_URL + api_url + query, object,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        Log.i("Movie_app", Utils.BASE_URL + api_url + query);
+
+                        try {
+                            boolean success = response.getBoolean("success");
+                            if(success){
+                                // 토큰 삭제
+                                SharedPreferences preferences =
+                                        getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
+
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("token", null);
+
+                                editor.apply();
+
+                                Toast.makeText(MainActivity.this,"성공적으로 로그아웃되었습니다", Toast.LENGTH_LONG).show();
+                            }else{
+                                Toast.makeText(MainActivity.this,"로그아웃 실패", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this,"로그아웃 실패", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+        ){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "Bearer "+token);
+                return params;
+            }
+        };
+        Volley.newRequestQueue(MainActivity.this).add(jsonObjectRequest);
     }
 
-    // 우측 상단 메뉴 버튼들을 누르면 무슨 액션을 할지 설정하는 곳
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // 버튼 아이템 빼내는 코드
-        int id = item.getItemId();
+    protected void onResume() {
+        super.onResume();
 
-        // noinspection SimplifiableIfStatement
-        // 바로 아래는 action_settings 아이디를 가진 버튼의 액션 설정
-        if (id == R.id.join_on) {
-            Log.i("Movie_app", "버튼 클릭 : 회원 가입");
-            Intent i = new Intent(MainActivity.this, JoinOn.class);
-            startActivity(i);
-            return true;
-        } else if (id == R.id.login) {
-            Log.i("Movie_app", "버튼 클릭 : 로그인");
-            Intent i = new Intent(MainActivity.this, Login.class);
-            startActivity(i);
-            return true; // 버튼의 마지막에는 이걸 꼭 해줘야 함. 그래야 이 아래를 실행을 안 함.
-        } else if (id == R.id.favorite) {
-            Log.i("Movie_app", "버튼 클릭 : 즐겨찾기");
-            Intent i = new Intent(MainActivity.this, Favorite.class);
-            startActivity(i);
-            return true;
-        } else if(id == R.id.logout) {
-            Log.i("Movie_app", "버튼 클릭 : 로그아웃");
-            return true;
+        if(recyclerViewAdapter != null){
+            recyclerViewAdapter.notifyDataSetChanged();
         }
 
-        return super.onOptionsItemSelected(item);
     }
 }

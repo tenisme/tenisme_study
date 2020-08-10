@@ -57,7 +57,6 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
         if(v == btn_favorite){
             Log.i("Movie_app","버튼 클릭 : 즐겨찾기로 이동");
             Intent i = new Intent(Welcome.this, Favorite.class);
-            i.putExtra("token", token);
             startActivity(i);
             finish();
         }
@@ -65,11 +64,11 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
         // 버튼 클릭 : 로그아웃
         if(v == btn_logout){
             Log.i("Movie_app","버튼 클릭 : 로그아웃");
-            request(Request.Method.DELETE, "/api/v1/users/logout", null);
+            logoutRequest(Request.Method.DELETE, "/api/v1/users/logout", null);
         }
     }
 
-    public void request(int method, final String api_url, JSONObject object) {
+    public void logoutRequest(int method, final String api_url, JSONObject object) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(method, Utils.BASE_URL + api_url + query, object,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -79,20 +78,24 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
 
                         try {
                             boolean success = response.getBoolean("success");
-                            Log.i("Movie_app", "success : "+success);
-
                             if(success){
-                                // 기기의 SharedPreferences 에 저장된 토큰 삭제
+                                // 토큰 삭제
                                 SharedPreferences preferences =
                                         getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
+
                                 SharedPreferences.Editor editor = preferences.edit();
                                 editor.putString("token", null);
+
                                 editor.apply();
 
                                 Toast.makeText(Welcome.this,"성공적으로 로그아웃되었습니다", Toast.LENGTH_LONG).show();
+
+                                Intent i = new Intent(Welcome.this, MainActivity.class);
+                                startActivity(i);
                                 finish();
                             }else{
                                 Toast.makeText(Welcome.this,"로그아웃 실패", Toast.LENGTH_SHORT).show();
+                                return;
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -103,7 +106,7 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(Welcome.this,"로그아웃 실패", Toast.LENGTH_SHORT).show();
-                        Log.i("Movie_app", "ERROR : " + error.toString());
+                        return;
                     }
                 }
         ){
@@ -114,22 +117,15 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
                 return params;
             }
         };
-        jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
-            @Override
-            public int getCurrentTimeout() {
-                return 50000;
-            }
-
-            @Override
-            public int getCurrentRetryCount() {
-                return 50000;
-            }
-
-            @Override
-            public void retry(VolleyError error) throws VolleyError {
-
-            }
-        });
         Volley.newRequestQueue(Welcome.this).add(jsonObjectRequest);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent i = new Intent(Welcome.this, MainActivity.class);
+        startActivity(i);
+        finish();
     }
 }

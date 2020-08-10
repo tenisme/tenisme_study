@@ -70,12 +70,12 @@ public class Login extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                request(Request.Method.POST, "/api/v1/users/login", object);
+                loginRequest(Request.Method.POST, "/api/v1/users/login", object);
             }
         });
     }
 
-    public void request(int method, final String api_url, JSONObject object) {
+    public void loginRequest(int method, final String api_url, JSONObject object) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(method, Utils.BASE_URL + api_url + query, object,
                 new Response.Listener<JSONObject>() {
                     @Override

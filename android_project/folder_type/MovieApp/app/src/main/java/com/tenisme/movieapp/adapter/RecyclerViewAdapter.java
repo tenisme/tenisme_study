@@ -1,10 +1,7 @@
 package com.tenisme.movieapp.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
@@ -25,9 +21,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.tenisme.movieapp.JoinOn;
 import com.tenisme.movieapp.R;
-import com.tenisme.movieapp.Welcome;
 import com.tenisme.movieapp.model.Movie;
 import com.tenisme.movieapp.utils.Utils;
 

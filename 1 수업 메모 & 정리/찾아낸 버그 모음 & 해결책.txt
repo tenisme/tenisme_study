@@ -55,3 +55,9 @@ MySQL ERROR 1045 (28000) 오류
 		dotenv.config({ path: "./config/config.env" });
 		위처럼 환경설정 파일을 셋팅할 때 dotenv를 require한 곳의 바로 밑에 놓지 않아서 생긴 오류였음.
 
+http 코드 401 무한 호출 에러
+	[[ 원인(추정) ]]
+		엄한 데에다가 notifyDataSetChanged() 넣어놓고 실행하고 나서부터 관련 api가 마구 오류가 났음.
+	[[ 해결 ]]
+		잘 돌아가는 코드 다시 복붙 & 앱 삭제 후 재설치
+

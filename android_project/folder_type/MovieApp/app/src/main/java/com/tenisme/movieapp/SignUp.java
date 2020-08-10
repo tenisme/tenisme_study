@@ -12,20 +12,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.tenisme.movieapp.adapter.RecyclerViewAdapter;
-import com.tenisme.movieapp.model.Movie;
 import com.tenisme.movieapp.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class JoinOn extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
 
     EditText edit_id;
     EditText edit_email;
@@ -43,12 +40,12 @@ public class JoinOn extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_join_on);
+        setContentView(R.layout.activity_sign_up);
 
         SharedPreferences sharedPreferences = getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
         if(token != null){
-            Intent i = new Intent(JoinOn.this, Welcome.class);
+            Intent i = new Intent(SignUp.this, Welcome.class);
             startActivity(i);
             finish();
             return;
@@ -69,25 +66,25 @@ public class JoinOn extends AppCompatActivity {
                 checkPasswd = edit_check_passwd.getText().toString().trim();
 
                 if (id.length() > 20) {
-                    Toast.makeText(JoinOn.this, "아이디는 20자 이내로 적어주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this, "아이디는 20자 이내로 적어주세요", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (email.contains("@") == false) {
-                    Toast.makeText(JoinOn.this, "이메일 형식이 올바르지 않습니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this, "이메일 형식이 올바르지 않습니다", Toast.LENGTH_SHORT).show();
                     return;
                 } else if (email.length() > 100) {
-                    Toast.makeText(JoinOn.this, "이메일은 100자 이내로 적어주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this, "이메일은 100자 이내로 적어주세요", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (passwd.length() < 4 || passwd.length() > 12) {
-                    Toast.makeText(JoinOn.this, "비밀번호는 4자리 이상 12자리 이하입니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this, "비밀번호는 4자리 이상 12자리 이하입니다", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (passwd.equalsIgnoreCase(checkPasswd) == false) {
-                    Toast.makeText(JoinOn.this, "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this, "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -100,13 +97,13 @@ public class JoinOn extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                request(Request.Method.POST,"/api/v1/users",object);
+                signUpRequest(Request.Method.POST,"/api/v1/users",object);
 
             }
         });
     }
 
-    public void request(int method, final String api_url, JSONObject object) {
+    public void signUpRequest(int method, final String api_url, JSONObject object) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(method, Utils.BASE_URL + api_url + query, object,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -134,7 +131,7 @@ public class JoinOn extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        Intent i = new Intent(JoinOn.this, Welcome.class);
+                        Intent i = new Intent(SignUp.this, Welcome.class);
                         startActivity(i);
                         finish();
                     }
@@ -162,6 +159,6 @@ public class JoinOn extends AppCompatActivity {
 
             }
         });
-        Volley.newRequestQueue(JoinOn.this).add(jsonObjectRequest);
+        Volley.newRequestQueue(SignUp.this).add(jsonObjectRequest);
     }
 }
