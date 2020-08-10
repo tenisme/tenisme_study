@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/join_on"
+        android:title="회원가입"
+        android:orderInCategory="100"/>
+    <item
+        android:id="@+id/login"
+        android:title="로그인"
+        android:orderInCategory="200"/>
+    <item
+        android:id="@+id/favorite"
+        android:title="즐겨찾기"
+        android:orderInCategory="300"/>
+    <item
+        android:id="@+id/logout"
+        android:orderInCategory="400"
+        android:title="로그아웃" />
+</menu>

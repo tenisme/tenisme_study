@@ -73,7 +73,7 @@ create table reservations (
 use movie_test;
 select * from movies;
 select * from users;
-select * from user_tokens;
+select * from user_tokens order by id;
 select * from favorites;
 select * from replies;
 select * from start_at;
@@ -81,3 +81,11 @@ select * from theaters;
 select * from reservations;
 
 select u.user_id, u.email, u.created_at, t.token from users as u join user_tokens as t on u.user_id = t.user_id where u.user_id = ? and t.token = ?; 
+
+select m.id, ifnull(f.id, 0) as favorite_id, ifnull(u.user_id, 0) as user_id 
+from movies as m left join favorites as f on m.id = f.movie_id
+left join users as u on f.user_id = u.user_id 
+where m.id = 1 and u.user_id = 2
+order by m.id;
+
+select * from favorites where movie_id = 1 and user_id = 2;

@@ -1,0 +1,57 @@
+----------------------------------  찾아낸 버그 모음
+
+..bcrypt 사용이나 설치 ㄴㄴ함.
+	에러 코드
+		code: 'MODULE_NOT_FOUND',
+		Error: Cannot find module 'bcrypt'
+	[[ 원인 ]]
+		내 경우에는 진작에 pakage.json에 bcrypt가 아닌 bcryptjs만 설치되어 있었는데(정확히는 bcrypt가 있던 pakage-lock.json을 지우고 npm install로 bcryptjs를 다시 설치함), controllers 파일들 중에서 require를 "bcrypt"로 해놓은 파일이 있었음.
+	[[ 해결 방법 ]]
+		bcrypt로 되어있는 부분을 전부 bcryptjs로 변경한 다음 실행하면 위와 같은 오류가 발생하지 않음.
+
+PORT를 찾을 수 없음 오류
+	에러 코드
+		code ELIFECYCLE
+		/var/app/current/server.js:43
+		app.listen(PORT, console.log(`App listening on port 5100!`));
+		ReferenceError: PORT is not defined
+		at Object.<anonymous> (/var/app/current/server.js:43:12)
+	[[ 해결 방법 ]] (불확실. 기억 잘 안남)
+		server.js에서 주석처리 되어있던 PORT의 정의를 살림.
+	[[ 삽질 ]]
+		·위의 에러가 났을 때 server.js의 PORT 정의 부분을 지웠는데, 이렇게 하면 기본 PORT는 8080으로 잡힘. 근데 이 때도 연결이 되지 않고 에러가 남.
+		·엘라스틱 구성에서 PORT를 추가해도 에러가 났음. 이건 8080으로 추가해서 에러가 났을 수도 있음.
+
+502 Bad gateway & 111: Connection refused
+	111: Connection refused
+		111 연결 거부는 앱이 서버 / 포트 조합에서 실행되고 있지 않음을 의미 할 수 있습니다. 또한 앱 인스턴스 (또는로드 밸런서)의 보안 그룹에 nginx 인스턴스의 트래픽을 허용하는 인바운드 규칙 세트가 있는지 확인하십시오.
+	502 Bad gateway
+	BasicNetwork.performRequest: Unexpected response code 502 ~~~
+		application이 적절하게 기동되지 않거나 해서 ★nginx가 해석할 수 없는 메시지를 돌려받았을 경우 발생한다.★
+		★ 엘라스틱 빈스톡 파라미터 셋팅이 이상할 때도 나올 수 있다고 함.
+	해결 방법 (불확실. 기억 잘 안남)
+		아마 위의 PORT 오류가 사라지고 나서 이 오류도 사라졌던 것으로 기억함.
+
+같은 쿼리로 입력받았는데 워크벤치에서는 검색이 되고 url(GET 메소드)에서는 검색이 안됨.
+	검색 결과에서 400 등의 에러가 나서 안 나오는 게 아니라 success : true에 0개가 나옴. 로그 확인 결과 키워드 잘 입력됐음. 안드로이드에서도 키워드는 잘 받았고 최종 url도 예상했던 모양으로 나옴. 그런데 안드와 웹에서 결과가 0으로 나옴. 원인 찾기.
+	[[ 원인 ]]
+		서버에서 쿼리 안에 like "%?%"으로 적고 values에 [keyword]를 적었었는데 이러면 서버 명령을 처리하는 곳에서 이 ?가 검색어의 "?"인지 예약어의 ?인지 헷갈려서 처리가 이상하게 된 것 같음.
+	[[ 해결 방법 ]]
+		쿼리에 직접 "%${keyword}%"을 적어서 해결함.
+
+HTTP 404
+	HTTP 404 또는 찾을 수 없습니다 오류 메시지는 클라이언트가 서버와 통신할 수는 있지만 서버가 요청한 바를 찾을 수 없다는 것을 가리키는 HTTP 표준 응답 코드이다.
+	>> 강사님 해설 : api 주소가 잘못되어있을 확률이 높다.
+	[[ 현상 ]]
+		로그아웃 api 실행안됨. 404에러뜸.
+	[[ 원인 ]]
+		안드에는 메소드를 DELETE로 적어놓고 서버에서는 post로 처리함.
+	[[ 해결 ]]
+		서버 메소드를 delete로 수정함.
+
+MySQL ERROR 1045 (28000) 오류
+	access denied for user ''@'localhost' (using password no)
+	[[ 해결 방법 ]]
+		dotenv.config({ path: "./config/config.env" });
+		위처럼 환경설정 파일을 셋팅할 때 dotenv를 require한 곳의 바로 밑에 놓지 않아서 생긴 오류였음.
+

@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     double lat;
     double lng;
 
-    String nextPageToken = ""; // 이거 없으면 널포인트익셉션 에러남.
+    String nextPageToken = ""; // "" << 이거 없으면 널포인트익셉션 에러남.
     String pageToken = "";
 
     String name;

@@ -21977,7 +21977,7 @@ git config --global core.autocrlf true
 	SourceArtifact
 
 -----  Elastic Beanstalk url
-http://tenisme.ap-northeast-2.elasticbeanstalk.com/
+TenismeServer-env.eba-fqj4aimt.ap-northeast-2.elasticbeanstalk.com
 
 핵심기능 3개 먼저 만들고 그게 완벽하게 돌아가면 거기서 업그레이드해라.
 
@@ -22033,15 +22033,128 @@ CTO : 개발 총괄 이사
 	=> 로그아웃(API호출) 되어야 되고,
 	=> 로그인 액티비티를 띄우세요.
 
+---------------------------------  개발자 등록하기
+
+1. 앱 만들기 => signed apk
+2. 구글플레이 등록
+
+망고보드 동영상 템플릿
+
+--------------------  실습과제 : 깃헙 - 통합 구현 실습 1
+
+ImageView img_favorite;
+TextView txt_title;
+TextView txt_genre;
+TextView txt_attnd;
+TextView txt_year;
+
 --------------------------------------  기타 메모
 
+리사이클러뷰 페이지 넘기기
+	recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+                int totalCount = recyclerView.getAdapter().getItemCount();
+
+                if(lastPosition+1 == totalCount){
+                    // 아이템 추가! 입맛에 맞게 설정하시면됩니다.
+
+                }
+            }
+        });
+
+pageToken, nextPageToken 활용한 리사이클러뷰 페이지 넘기기
+	Places 실습 프로젝트 참고
+	
+[[ TODO ]] 버튼 누를 때마다 order가 바뀌게 해놨는데 스크롤시 order가 반전된 데이터를 불러오는 오류가 발생함. 경우(if)에 따라 해당 안되게 만들어놓아야 함. 
+	해결~
+
+=======================  200810 월요일 수업 내용 메모
+
+---------------------  안드로이드 : movie-server 실습
+
+파싱한 데이터가 null이면 파싱을 할 수 없음.
+
+---------------------------  안드로이드 : MyCamera
+
+안드로이드에서 사진 불러오기
+	1. 카메라에서 바로 불러오기(저화질)
+		1.1. 매니페스트 환경설정
+	<uses-permission android:name="android.permission.CAMERA"/>
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+		1.2. 카메라 권한 요청
+	int permissionCheck = ContextCompat.checkSelfPermission(
+	MainActivity.this, Manifest.permission.CAMERA);
+
+	// 퍼미션 승낙이 안 되어있는 경우 권한 요청하기
+	if(permissionCheck != PackageManager.PERMISSION_GRANTED){
+		ActivityCompat.requestPermissions(MainActivity.this,
+				new String[]{Manifest.permission.CAMERA}, 1000);
+		Toast.makeText(MainActivity.this,"카메라 권한이 필요합니다", Toast.LENGTH_SHORT).show();
+		return;
+	}else{
+		// 이미지 캡쳐 해죠라(사진 찍겠다) - 앱 하나면 그거 켜지고 다양하면 앱 선택
+		Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		// 폰에 카메라 앱이 있으면
+		if(i.resolveActivity(MainActivity.this.getPackageManager()) != null){
+			Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		if(i.resolveActivity(MainActivity.this.getPackageManager())  != null  ){
+			startActivityForResult(i, 100);
+			return;
+		}else{
+			// 폰에 카메라 앱이 없으면
+			Toast.makeText(MainActivity.this,"카메라 앱이 없음",Toast.LENGTH_SHORT);
+			return;
+		}
+		1.3. 권한 승인/거부 처리
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		switch(requestCode){
+			case 1000: {
+				if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+					Toast.makeText(MainActivity.this, "권한 허가 되었음",
+							Toast.LENGTH_SHORT).show();
+				}else{
+					Toast.makeText(MainActivity.this, "아직 승인하지 않았음",
+							Toast.LENGTH_SHORT).show();
+				}
+				return;
+			}
+		}
+	}
+		1.4. 권한 승인받은 후 사진을 찍으면 이미지 뷰에 셋팅
+	@Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if(requestCode == 100 && resultCode == RESULT_OK){
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            imageView.setImageBitmap(photo);
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+	2. 카메라에서 찍은 사진을 로컬 폴더에 저장한 다음 저장된 사진을 고화질(원본 파일)로 불러오기
+		MyCamera 프로젝트 참고 ^.^
 
 
 
+--------------------------------------  기타 메모
 
+어댑터에서 context 불러오기
+	v.getContext().~
 
+카멜 표기법 예시 : btnCamera
 
-
+[[TODO]] movie_api 즐겨찾기 기능 완성
 
 
 

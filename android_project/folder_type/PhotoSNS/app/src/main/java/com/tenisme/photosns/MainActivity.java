@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // 로그인 되어있을 경우(토큰값이 있을 경우) 웰컴 액티비티로 스킵하는 코드
         SharedPreferences sharedPreferences = getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
         if(token != null){
