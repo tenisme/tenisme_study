@@ -130,7 +130,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                         if (is_favorite == 1) {
                             // 즐겨찾기 삭제
-                            ((MainActivity)context).unFavoriteRequest(position);
+                            ((MainActivity) context).deleteFavoriteRequest(position);
                         } else if(is_favorite == 0) {
                             // 즐겨찾기 추가
                             ((MainActivity) context).addFavoriteRequest(position);

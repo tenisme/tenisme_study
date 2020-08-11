@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String api_url = "";
     String query = "";
     JSONArray itemArray;
+    JSONObject object;
 
     boolean success = false;
     int cnt = 0;
@@ -102,23 +103,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     switch (searchOn) {
                         case 1:
                             query = "?offset=" + offset + "&limit=" + limit;
-                            addRequest(Request.Method.GET, "/api/v1/movies", null);
+                            api_url = Utils.BASE_URL+"/api/v1/movies"+query;
+                            addRequest(Request.Method.GET, api_url, null);
                             break;
                         case 2:
                             query = "?offset=" + offset + "&limit=" + limit + "&keyword=" + search;
-                            addRequest(Request.Method.GET, "/api/v1/movies/search", null);
+                            api_url = Utils.BASE_URL+"/api/v1/movies/search"+query;
+                            addRequest(Request.Method.GET, api_url, null);
                             break;
                         case 3:
                             query = "?offset=" + offset + "&limit=" + limit + "&order=" + addOrder + "&keyword=" + search;
-                            addRequest(Request.Method.GET, "/api/v1/movies/year", null);
+                            api_url = Utils.BASE_URL+"/api/v1/movies/year"+query;
+                            addRequest(Request.Method.GET, api_url, null);
                             break;
                         case 4:
                             query = "?offset=" + offset + "&limit=" + limit + "&order=" + addOrder + "&keyword=" + search;
-                            addRequest(Request.Method.GET, "/api/v1/movies/attnd", null);
+                            api_url = Utils.BASE_URL+"/api/v1/movies/attnd"+query;
+                            addRequest(Request.Method.GET, api_url, null);
                             break;
                         case 5:
                             query = "?offset=" + offset + "&limit=" + limit;
-                            addRequest(Request.Method.GET, "/api/v1/movies/auth", null);
+                            api_url = Utils.BASE_URL+"/api/v1/movies/auth"+query;
+                            addRequest(Request.Method.GET, api_url, null);
 
                     }
                 }
@@ -349,6 +355,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 int attendance = objectInItems.getInt("attendance");
                                 String year = objectInItems.getString("year");
 
+                                int cnt_comments;
+                                if(itemArray.getJSONObject(i).isNull("cnt_comments")){
+                                    cnt_comments = 0;
+                                }else{
+                                    cnt_comments = itemArray.getJSONObject(i).getInt("cnt_comments");
+                                }
+
+                                Double avg_rating;
+                                if(itemArray.getJSONObject(i).isNull("avg_rating")){
+                                    avg_rating = 0.0d;
+                                }else{
+                                    avg_rating = itemArray.getJSONObject(i).getDouble("avg_rating");
+                                }
+
                                 int is_favorite;
                                 if (itemArray.getJSONObject(i).isNull("is_favorite")) {
                                     is_favorite = 0;
@@ -356,7 +376,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     is_favorite = itemArray.getJSONObject(i).getInt("is_favorite");
                                 }
 
-                                movie = new Movie(id, title, genre, attendance, year, is_favorite);
+                                movie = new Movie(id, title, genre, attendance, year, cnt_comments, avg_rating, is_favorite);
                                 movieArrayList.add(movie);
 
                             } catch (JSONException e) {
@@ -404,7 +424,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void addRequest(int method, final String api_url, JSONObject object) {
         requestQueue = Volley.newRequestQueue(MainActivity.this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(method, Utils.BASE_URL + api_url + query, object,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(method, api_url, object,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -415,7 +435,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        Log.i("Movie_app", Utils.BASE_URL + api_url + query);
+                        Log.i("Movie_app", api_url);
                         Log.i("Movie_app", "success : " + success + ", cnt : " + cnt);
 
                         // cnt 가 0이면(리스트의 끝까지 왔으면) endSearch 를 ON 하고 리턴
@@ -438,8 +458,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 String genre = objectInItems.getString("genre");
                                 int attendance = objectInItems.getInt("attendance");
                                 String year = objectInItems.getString("year");
-                                int reply;
+                                int cnt_comments;
+                                if(itemArray.getJSONObject(i).isNull("cnt_comments")){
+                                    cnt_comments = 0;
+                                }else{
+                                    cnt_comments = itemArray.getJSONObject(i).getInt("cnt_comments");
+                                }
+
                                 Double avg_rating;
+                                if(itemArray.getJSONObject(i).isNull("avg_rating")){
+                                    avg_rating = 0.0d;
+                                }else{
+                                    avg_rating = itemArray.getJSONObject(i).getDouble("avg_rating");
+                                }
 
                                 int is_favorite;
                                 if (itemArray.getJSONObject(i).isNull("is_favorite")) {
@@ -448,7 +479,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     is_favorite = itemArray.getJSONObject(i).getInt("is_favorite");
                                 }
 
-                                movie = new Movie(id, title, genre, attendance, year, is_favorite);
+                                movie = new Movie(id, title, genre, attendance, year, cnt_comments, avg_rating, is_favorite);
                                 movieArrayList.add(movie);
 
                             } catch (JSONException e) {
@@ -551,14 +582,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         movie = movieArrayList.get(position);
         int movie_id = movie.getMovie_id();
 
-        JSONObject object = new JSONObject();
+        object = new JSONObject();
         try {
             object.put("movie_id", movie_id);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        api_url = Utils.BASE_URL + "/api/v1/favorites";
+        api_url = Utils.BASE_URL + "/api/v1/favorites/add";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, api_url, object,
                 new Response.Listener<JSONObject>() {
@@ -607,24 +638,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Volley.newRequestQueue(MainActivity.this).add(request);
     }
 
-    public void unFavoriteRequest(int position) {
+    public void deleteFavoriteRequest(int position) {
         Log.i("Movie_app", "즐겨찾기 삭제 실행");
 
         movie = movieArrayList.get(position);
         int movie_id = movie.getMovie_id();
 
-        JSONObject object = new JSONObject();
+        object = new JSONObject();
         try {
             object.put("movie_id", movie_id);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.i("Movie_app", ""+object);
 
-        api_url = Utils.BASE_URL + "/api/v1/favorites";
-
-        // TODO : DELETE 에 object 값이 undefined 나옴. 바로 위에 로그에는 찍힘. 왜 그런지 알아내기.
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.DELETE, api_url, object,
+        api_url = Utils.BASE_URL + "/api/v1/favorites/delete";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, api_url, object,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -641,7 +669,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Log.i("Movie_app", "ERROR : " + error.toString());
                     }
                 }
-        ) {
+        ){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 SharedPreferences sharedPreferences = getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);

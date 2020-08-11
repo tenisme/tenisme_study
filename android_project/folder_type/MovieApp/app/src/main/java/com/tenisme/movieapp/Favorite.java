@@ -119,7 +119,28 @@ public class Favorite extends AppCompatActivity {
                                 int attendance = objectInItems.getInt("attendance");
                                 String year = objectInItems.getString("year");
 
-                                movie = new Movie(id, title, genre, attendance, year, 0);
+                                int cnt_comments;
+                                if(itemArray.getJSONObject(i).isNull("cnt_comments")){
+                                    cnt_comments = 0;
+                                }else{
+                                    cnt_comments = itemArray.getJSONObject(i).getInt("cnt_comments");
+                                }
+
+                                Double avg_rating;
+                                if(itemArray.getJSONObject(i).isNull("avg_rating")){
+                                    avg_rating = 0.0d;
+                                }else{
+                                    avg_rating = itemArray.getJSONObject(i).getDouble("avg_rating");
+                                }
+
+                                int is_favorite;
+                                if (itemArray.getJSONObject(i).isNull("is_favorite")) {
+                                    is_favorite = 0;
+                                } else {
+                                    is_favorite = itemArray.getJSONObject(i).getInt("is_favorite");
+                                }
+
+                                movie = new Movie(id, title, genre, attendance, year, cnt_comments, avg_rating, is_favorite);
                                 movieArrayList.add(movie);
 
                             } catch (JSONException e) {
@@ -194,7 +215,28 @@ public class Favorite extends AppCompatActivity {
                                 int attendance = objectInItems.getInt("attendance");
                                 String year = objectInItems.getString("year");
 
-                                movie = new Movie(id, title, genre, attendance, year, 0);
+                                int cnt_comments;
+                                if(itemArray.getJSONObject(i).isNull("cnt_comments")){
+                                    cnt_comments = 0;
+                                }else{
+                                    cnt_comments = itemArray.getJSONObject(i).getInt("cnt_comments");
+                                }
+
+                                Double avg_rating;
+                                if(itemArray.getJSONObject(i).isNull("avg_rating")){
+                                    avg_rating = 0.0d;
+                                }else{
+                                    avg_rating = itemArray.getJSONObject(i).getDouble("avg_rating");
+                                }
+
+                                int is_favorite;
+                                if (itemArray.getJSONObject(i).isNull("is_favorite")) {
+                                    is_favorite = 0;
+                                } else {
+                                    is_favorite = itemArray.getJSONObject(i).getInt("is_favorite");
+                                }
+
+                                movie = new Movie(id, title, genre, attendance, year, cnt_comments, avg_rating, is_favorite);
                                 movieArrayList.add(movie);
 
                             } catch (JSONException e) {
