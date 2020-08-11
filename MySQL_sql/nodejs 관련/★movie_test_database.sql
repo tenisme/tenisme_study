@@ -89,3 +89,11 @@ where m.id = 1 and u.user_id = 2
 order by m.id;
 
 select * from favorites where movie_id = 1 and user_id = 2;
+
+select *
+from movies as m
+left join replies as r on m.id = r.movie_id
+left join favorites as f on r.movie_id = f.movie_id
+group by m.id
+order by m.id
+limit 0, 25;

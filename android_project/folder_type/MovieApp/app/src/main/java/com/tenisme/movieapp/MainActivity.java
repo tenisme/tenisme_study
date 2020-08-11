@@ -24,7 +24,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.tenisme.movieapp.adapter.RecyclerViewAdapterMain;
+import com.tenisme.movieapp.adapter.RecyclerViewAdapter;
 import com.tenisme.movieapp.model.Movie;
 import com.tenisme.movieapp.utils.Utils;
 
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ArrayList<Movie> movieArrayList = new ArrayList<>();
 
     RecyclerView recyclerView;
-    RecyclerViewAdapterMain recyclerViewAdapterMain;
+    RecyclerViewAdapter recyclerViewAdapter;
     int searchOn = 0;
     int endSearch;
 
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String search;
     int order = 1; // 1 = desc, 0 = asc
     int addOrder;
+    String api_url = "";
     String query = "";
     JSONArray itemArray;
 
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 super.onScrolled(recyclerView, dx, dy);
 
                 // 리스트의 끝에 도달하면 아래를 실행하지 않고 리턴
-                if(endSearch == 1){
+                if (endSearch == 1) {
                     return;
                 }
 
@@ -98,23 +99,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (lastPosition + 1 == totalCount) {
                     // 아이템 추가! 입맛에 맞게 설정하시면됩니다.
-                    switch(searchOn){
-                        case 1 :
+                    switch (searchOn) {
+                        case 1:
                             query = "?offset=" + offset + "&limit=" + limit;
                             addRequest(Request.Method.GET, "/api/v1/movies", null);
                             break;
-                        case 2 :
+                        case 2:
                             query = "?offset=" + offset + "&limit=" + limit + "&keyword=" + search;
                             addRequest(Request.Method.GET, "/api/v1/movies/search", null);
                             break;
-                        case 3 :
+                        case 3:
                             query = "?offset=" + offset + "&limit=" + limit + "&order=" + addOrder + "&keyword=" + search;
                             addRequest(Request.Method.GET, "/api/v1/movies/year", null);
                             break;
-                        case 4 :
+                        case 4:
                             query = "?offset=" + offset + "&limit=" + limit + "&order=" + addOrder + "&keyword=" + search;
                             addRequest(Request.Method.GET, "/api/v1/movies/attnd", null);
                             break;
+                        case 5:
+                            query = "?offset=" + offset + "&limit=" + limit;
+                            addRequest(Request.Method.GET, "/api/v1/movies/auth", null);
+
                     }
                 }
             }
@@ -141,97 +146,115 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // endSearch 디폴트값으로 초기화
         endSearch = 0;
 
-        // 버튼 클릭 : 검색
-        if (v == btn_search) {
-            Log.i("Movie_app", "버튼 클릭 : 검색");
+        if (token == null) {
+            // 버튼 클릭 : 검색
+            if (v == btn_search) {
+                Log.i("Movie_app", "버튼 클릭 : 검색");
 
-            // 버튼 누를 때마다 리스트 초기화
-            if (movieArrayList.size() > 0) {
-                Log.i("Movie_app", "리스트 초기화");
-                movieArrayList.clear();
+                // 버튼 누를 때마다 리스트 초기화
+                if (movieArrayList.size() > 0) {
+                    Log.i("Movie_app", "리스트 초기화");
+                    movieArrayList.clear();
+                }
+
+                // 아무 검색어도 입력하지 않으면 모든 영화를 movie_id 순으로 가져옴
+                if (search.isEmpty()) {
+                    Log.i("Movie_app", "검색어 미입력");
+                    query = "?offset=" + offset + "&limit=" + limit;
+                    api_url = Utils.BASE_URL + "/api/v1/movies" + query;
+                    getRequest(Request.Method.GET, api_url, null);
+                    searchOn = 1;
+                    return;
+                }
+
+                // 검색어 입력시 검색어에 해당되는 영화를 movie_id 순으로 가져옴
+                Log.i("Movie_app", "검색어 입력 : " + search);
+                query = "?offset=" + offset + "&limit=" + limit + "&keyword=" + search;
+                api_url = Utils.BASE_URL + "/api/v1/movies" + query;
+                getRequest(Request.Method.GET, api_url, null);
+                searchOn = 2;
             }
 
+            // 버튼 클릭 : 연도로 정렬
+            if (v == btn_by_year) {
+                Log.i("Movie_app", "버튼 클릭 : 연도로 정렬");
+
+                // 버튼 누를 때마다 리스트 초기화
+                if (movieArrayList.size() > 0) {
+                    Log.i("Movie_app", "리스트 초기화");
+                    movieArrayList.clear();
+                }
+
+                // 검색어 입력, 미입력과 상관없이 가져온 데이터를 개봉 연도로 정렬함
+                if (search.isEmpty()) {
+                    Log.i("Movie_app", "검색어 미입력");
+                } else {
+                    Log.i("Movie_app", "검색어 입력 : " + search);
+                }
+
+                query = "?offset=" + offset + "&limit=" + limit + "&order=" + order + "&keyword=" + search;
+                api_url = Utils.BASE_URL + "/api/v1/movies/year" + query;
+                getRequest(Request.Method.GET, "api_url", null);
+                searchOn = 3;
+
+                // order 값을 변경하기 전에, 추가 목록을 불러올 때 '변경된 order' 값을 불러오는 것을 막기 위한 셋팅
+                // addOrder 값은 목록을 추가로 불러오는 곳(스크롤)에서만 사용함.
+                addOrder = order;
+
+                // 버튼을 누를 때마다 asc, desc 순서 변환
+                if (order == 1) {
+                    order = 0;
+                } else if (order == 0) {
+                    order = 1;
+                }
+            }
+
+            // 버튼 클릭 : 관객수로 정렬
+            if (v == btn_by_attnd) {
+                Log.i("Movie_app", "버튼 클릭 : 관객수로 정렬");
+
+                // 버튼 누를 때마다 리스트 초기화
+                if (movieArrayList.size() > 0) {
+                    Log.i("Movie_app", "리스트 초기화");
+                    movieArrayList.clear();
+                }
+
+                // 검색어 입력, 미입력과 상관없이 가져온 데이터를 관객수로 정렬함
+                if (search.isEmpty()) {
+                    Log.i("Movie_app", "검색어 미입력");
+                } else {
+                    Log.i("Movie_app", "검색어 입력 : " + search);
+                }
+
+                query = "?offset=" + offset + "&limit=" + limit + "&order=" + order + "&keyword=" + search;
+                api_url = Utils.BASE_URL + "/api/v1/movies/attnd" + query;
+                getRequest(Request.Method.GET, api_url, null);
+                searchOn = 4;
+
+                // order 값을 변경하기 전에, 추가 목록을 불러올 때 '변경된 order' 값을 불러오는 것을 막기 위한 셋팅
+                // addOrder 값은 목록을 추가로 불러오는 곳(스크롤)에서만 사용함.
+                addOrder = order;
+
+                // 버튼을 누를 때마다 asc, desc 순서 변환
+                if (order == 1) {
+                    order = 0;
+                } else if (order == 0) {
+                    order = 1;
+                }
+            }
+        } else {
             // 아무 검색어도 입력하지 않으면 모든 영화를 movie_id 순으로 가져옴
             if (search.isEmpty()) {
                 Log.i("Movie_app", "검색어 미입력");
                 query = "?offset=" + offset + "&limit=" + limit;
-                getRequest(Request.Method.GET, "/api/v1/movies", null);
-                searchOn = 1;
+                api_url = Utils.BASE_URL + "/api/v1/movies/auth" + query;
+                getRequest(Request.Method.GET, api_url, null);
+                searchOn = 5;
                 return;
             }
-
-            // 검색어 입력시 검색어에 해당되는 영화를 movie_id 순으로 가져옴
-            Log.i("Movie_app", "검색어 입력 : " + search);
-            query = "?offset=" + offset + "&limit=" + limit + "&keyword=" + search;
-            getRequest(Request.Method.GET, "/api/v1/movies/search", null);
-            searchOn = 2;
         }
 
-        // 버튼 클릭 : 연도로 정렬
-        if (v == btn_by_year) {
-            Log.i("Movie_app", "버튼 클릭 : 연도로 정렬");
 
-            // 버튼 누를 때마다 리스트 초기화
-            if (movieArrayList.size() > 0) {
-                Log.i("Movie_app", "리스트 초기화");
-                movieArrayList.clear();
-            }
-
-            // 검색어 입력, 미입력과 상관없이 가져온 데이터를 개봉 연도로 정렬함
-            if (search.isEmpty()) {
-                Log.i("Movie_app", "검색어 미입력");
-            } else {
-                Log.i("Movie_app", "검색어 입력 : " + search);
-            }
-
-            query = "?offset=" + offset + "&limit=" + limit + "&order=" + order + "&keyword=" + search;
-            getRequest(Request.Method.GET, "/api/v1/movies/year", null);
-            searchOn = 3;
-
-            // order 값을 변경하기 전에, 추가 목록을 불러올 때 '변경된 order' 값을 불러오는 것을 막기 위한 셋팅
-            // addOrder 값은 목록을 추가로 불러오는 곳(스크롤)에서만 사용함.
-            addOrder = order;
-
-            // 버튼을 누를 때마다 asc, desc 순서 변환
-            if (order == 1) {
-                order = 0;
-            } else if (order == 0) {
-                order = 1;
-            }
-        }
-
-        // 버튼 클릭 : 관객수로 정렬
-        if (v == btn_by_attnd) {
-            Log.i("Movie_app", "버튼 클릭 : 관객수로 정렬");
-
-            // 버튼 누를 때마다 리스트 초기화
-            if (movieArrayList.size() > 0) {
-                Log.i("Movie_app", "리스트 초기화");
-                movieArrayList.clear();
-            }
-
-            // 검색어 입력, 미입력과 상관없이 가져온 데이터를 관객수로 정렬함
-            if (search.isEmpty()) {
-                Log.i("Movie_app", "검색어 미입력");
-            } else {
-                Log.i("Movie_app", "검색어 입력 : " + search);
-            }
-
-            query = "?offset=" + offset + "&limit=" + limit + "&order=" + order + "&keyword=" + search;
-            getRequest(Request.Method.GET, "/api/v1/movies/attnd", null);
-            searchOn = 4;
-
-            // order 값을 변경하기 전에, 추가 목록을 불러올 때 '변경된 order' 값을 불러오는 것을 막기 위한 셋팅
-            // addOrder 값은 목록을 추가로 불러오는 곳(스크롤)에서만 사용함.
-            addOrder = order;
-
-            // 버튼을 누를 때마다 asc, desc 순서 변환
-            if (order == 1) {
-                order = 0;
-            } else if (order == 0) {
-                order = 1;
-            }
-        }
     }
 
     // R.menu.menu_main.xml 파일을 엮어준다.
@@ -268,10 +291,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (id == R.id.favorite) {
             Log.i("Movie_app", "버튼 클릭 : 즐겨찾기");
-            if(token == null){
-                Toast.makeText(MainActivity.this,"로그인이 되어있지 않습니다",Toast.LENGTH_SHORT).show();
+            if (token == null) {
+                Toast.makeText(MainActivity.this, "로그인이 되어있지 않습니다", Toast.LENGTH_SHORT).show();
                 return true;
-            }else{
+            } else {
                 Intent i = new Intent(MainActivity.this, Favorite.class);
                 startActivity(i);
                 finish();
@@ -279,13 +302,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return true;
         }
 
-        if(id == R.id.logout) {
+        if (id == R.id.logout) {
             Log.i("Movie_app", "버튼 클릭 : 로그아웃");
             // 토큰이 없으면 리턴
-            if(token == null){
-                Toast.makeText(MainActivity.this,"로그인이 되어있지 않습니다",Toast.LENGTH_SHORT).show();
+            if (token == null) {
+                Toast.makeText(MainActivity.this, "로그인이 되어있지 않습니다", Toast.LENGTH_SHORT).show();
                 return true;
-            }else{
+            } else {
                 query = "";
                 logoutRequest(Request.Method.DELETE, "/api/v1/users/logout", null);
             }
@@ -297,7 +320,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Request.Method.GET = 0, POST = 1, PUT = 2, DELETE = 3, HEAD = 4
     public void getRequest(int method, final String api_url, JSONObject object) {
         requestQueue = Volley.newRequestQueue(MainActivity.this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(method, Utils.BASE_URL + api_url + query, object,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(method, api_url, object,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -308,7 +331,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        Log.i("Movie_app", Utils.BASE_URL + api_url + query);
+                        Log.i("Movie_app", api_url);
                         Log.i("Movie_app", "success : " + success + ", cnt : " + cnt);
 
                         try {
@@ -326,15 +349,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 int attendance = objectInItems.getInt("attendance");
                                 String year = objectInItems.getString("year");
 
-                                movie = new Movie(id, title, genre, attendance, year);
+                                int is_favorite;
+                                if (itemArray.getJSONObject(i).isNull("is_favorite")) {
+                                    is_favorite = 0;
+                                } else {
+                                    is_favorite = itemArray.getJSONObject(i).getInt("is_favorite");
+                                }
+
+                                movie = new Movie(id, title, genre, attendance, year, is_favorite);
                                 movieArrayList.add(movie);
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
-                        recyclerViewAdapterMain = new RecyclerViewAdapterMain(MainActivity.this, movieArrayList);
-                        recyclerView.setAdapter(recyclerViewAdapterMain);
+                        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this, movieArrayList);
+                        recyclerView.setAdapter(recyclerViewAdapter);
 
                         offset = offset + cnt;
                     }
@@ -345,7 +375,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Log.i("Movie_app", "ERROR : " + error.toString());
                     }
                 }
-        );
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "Bearer " + token);
+                return params;
+            }
+        };
         jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
             @Override
             public int getCurrentTimeout() {
@@ -382,7 +419,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Log.i("Movie_app", "success : " + success + ", cnt : " + cnt);
 
                         // cnt 가 0이면(리스트의 끝까지 왔으면) endSearch 를 ON 하고 리턴
-                        if(cnt == 0){
+                        if (cnt == 0) {
                             endSearch = 1;
                             return;
                         }
@@ -401,16 +438,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 String genre = objectInItems.getString("genre");
                                 int attendance = objectInItems.getInt("attendance");
                                 String year = objectInItems.getString("year");
+                                int reply;
+                                Double avg_rating;
 
-                                movie = new Movie(id, title, genre, attendance, year);
+                                int is_favorite;
+                                if (itemArray.getJSONObject(i).isNull("is_favorite")) {
+                                    is_favorite = 0;
+                                } else {
+                                    is_favorite = itemArray.getJSONObject(i).getInt("is_favorite");
+                                }
+
+                                movie = new Movie(id, title, genre, attendance, year, is_favorite);
                                 movieArrayList.add(movie);
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
-                        recyclerViewAdapterMain.notifyDataSetChanged();
-                        Log.i("Movie_app", "offset : "+offset);
+                        recyclerViewAdapter.notifyDataSetChanged();
+                        Log.i("Movie_app", "offset : " + offset);
 
                         offset = offset + cnt;
                     }
@@ -421,7 +467,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Log.i("Movie_app", "ERROR : " + error.toString());
                     }
                 }
-        );
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "Bearer " + token);
+                return params;
+            }
+        };
         jsonObjectRequest.setRetryPolicy(new RetryPolicy() {
             @Override
             public int getCurrentTimeout() {
@@ -451,7 +504,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         try {
                             boolean success = response.getBoolean("success");
-                            if(success){
+                            if (success) {
                                 // 토큰 삭제
                                 SharedPreferences sharedPreferences =
                                         getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
@@ -461,9 +514,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                 editor.apply();
 
-                                Toast.makeText(MainActivity.this,"성공적으로 로그아웃되었습니다", Toast.LENGTH_LONG).show();
-                            }else{
-                                Toast.makeText(MainActivity.this,"로그아웃 실패", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "성공적으로 로그아웃되었습니다", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(MainActivity.this, "로그아웃 실패", Toast.LENGTH_SHORT).show();
                                 return;
                             }
                         } catch (JSONException e) {
@@ -474,26 +527,155 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this,"로그아웃 실패", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "로그아웃 실패", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
-        ){
+        ) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
+                SharedPreferences sharedPreferences = getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
+                token = sharedPreferences.getString("token", null);
+
                 Map<String, String> params = new HashMap<>();
-                params.put("Authorization", "Bearer "+token);
+                params.put("Authorization", "Bearer " + token);
                 return params;
             }
         };
         Volley.newRequestQueue(MainActivity.this).add(jsonObjectRequest);
     }
 
+    public void addFavoriteRequest(int position) {
+        Log.i("Movie_app", "즐겨찾기 추가 실행");
+
+        movie = movieArrayList.get(position);
+        int movie_id = movie.getMovie_id();
+
+        JSONObject object = new JSONObject();
+        try {
+            object.put("movie_id", movie_id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        api_url = Utils.BASE_URL + "/api/v1/favorites";
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, api_url, object,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i("Movie_app", "즐겨찾기 추가 성공");
+
+                        movie.setIs_favorite(1);
+                        recyclerViewAdapter.notifyDataSetChanged();
+                        Toast.makeText(MainActivity.this, "즐겨찾기 추가 성공", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("Movie_app", "ERROR : " + error.toString());
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                SharedPreferences sharedPreferences = getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
+                token = sharedPreferences.getString("token", null);
+
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "Bearer " + token);
+                return params;
+            }
+        };
+        request.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+        Volley.newRequestQueue(MainActivity.this).add(request);
+    }
+
+    public void unFavoriteRequest(int position) {
+        Log.i("Movie_app", "즐겨찾기 삭제 실행");
+
+        movie = movieArrayList.get(position);
+        int movie_id = movie.getMovie_id();
+
+        JSONObject object = new JSONObject();
+        try {
+            object.put("movie_id", movie_id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.i("Movie_app", ""+object);
+
+        api_url = Utils.BASE_URL + "/api/v1/favorites";
+
+        // TODO : DELETE 에 object 값이 undefined 나옴. 바로 위에 로그에는 찍힘. 왜 그런지 알아내기.
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.DELETE, api_url, object,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i("Movie_app", "즐겨찾기 삭제 성공");
+
+                        movie.setIs_favorite(0);
+                        recyclerViewAdapter.notifyDataSetChanged();
+                        Toast.makeText(MainActivity.this, "즐겨찾기 삭제 성공", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("Movie_app", "ERROR : " + error.toString());
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                SharedPreferences sharedPreferences = getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
+                token = sharedPreferences.getString("token", null);
+
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "Bearer " + token);
+                return params;
+            }
+        };
+        request.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+        Volley.newRequestQueue(MainActivity.this).add(request);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        if(recyclerViewAdapterMain != null){
-            recyclerViewAdapterMain.notifyDataSetChanged();
+        if (recyclerViewAdapter != null) {
+            recyclerViewAdapter.notifyDataSetChanged();
         }
     }
 }

@@ -166,18 +166,6 @@ public class RecyclerViewAdapterFavorite extends RecyclerView.Adapter<RecyclerVi
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.i("Movie_app", "ERROR : " + error.toString());
-                        String json = null;
-
-                        NetworkResponse response = error.networkResponse;
-                        if(response != null && response.data != null){
-                            switch(response.statusCode){
-                                case 400:
-                                    Log.i("Movie_app", "ERROR : " + response.toString());
-                                    // 1062(이미 존재하는 즐겨찾기일 경우)를 뽑아와서 작성
-                                    break;
-                            }
-                            //Additional cases
-                        }
                     }
                 }
         ){

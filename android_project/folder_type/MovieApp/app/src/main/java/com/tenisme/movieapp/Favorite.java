@@ -9,9 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -20,7 +17,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.tenisme.movieapp.adapter.RecyclerViewAdapterFavorite;
-import com.tenisme.movieapp.adapter.RecyclerViewAdapterMain;
 import com.tenisme.movieapp.model.Movie;
 import com.tenisme.movieapp.utils.Utils;
 
@@ -123,7 +119,7 @@ public class Favorite extends AppCompatActivity {
                                 int attendance = objectInItems.getInt("attendance");
                                 String year = objectInItems.getString("year");
 
-                                movie = new Movie(id, title, genre, attendance, year);
+                                movie = new Movie(id, title, genre, attendance, year, 0);
                                 movieArrayList.add(movie);
 
                             } catch (JSONException e) {
@@ -198,7 +194,7 @@ public class Favorite extends AppCompatActivity {
                                 int attendance = objectInItems.getInt("attendance");
                                 String year = objectInItems.getString("year");
 
-                                movie = new Movie(id, title, genre, attendance, year);
+                                movie = new Movie(id, title, genre, attendance, year, 0);
                                 movieArrayList.add(movie);
 
                             } catch (JSONException e) {

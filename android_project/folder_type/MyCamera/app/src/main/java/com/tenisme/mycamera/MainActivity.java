@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -51,16 +52,16 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this, Manifest.permission.CAMERA);
 
                 // 퍼미션 승낙이 안 되어있는 경우 권한 요청하기
-                if(permissionCheck != PackageManager.PERMISSION_GRANTED){
+                if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this,
                             new String[]{Manifest.permission.CAMERA}, 1000);
-                    Toast.makeText(MainActivity.this,"카메라 권한이 필요합니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "카메라 권한이 필요합니다", Toast.LENGTH_SHORT).show();
                     return;
-                }else{
+                } else {
                     // 이미지 캡쳐 해죠라(사진 찍겠다) - 앱 하나면 그거 켜지고 다양하면 앱 선택
                     Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     // 폰에 카메라 앱이 있으면
-                    if(i.resolveActivity(MainActivity.this.getPackageManager()) != null){
+                    if (i.resolveActivity(MainActivity.this.getPackageManager()) != null) {
                         // 사진의 파일명을 만들기
                         String fileName = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
                         photoFile = getPhotoFile(fileName);
@@ -71,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
                         i.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
                         startActivityForResult(i, 100);
 
-                    }else{
+                    } else {
                         // 폰에 카메라 앱이 없으면
-                        Toast.makeText(MainActivity.this,"카메라 앱이 없음",Toast.LENGTH_SHORT);
+                        Toast.makeText(MainActivity.this, "카메라 앱이 없음", Toast.LENGTH_SHORT);
                         return;
                     }
                 }
@@ -84,16 +85,54 @@ public class MainActivity extends AppCompatActivity {
         btnGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if (checkPermission()) {
+                        displayFileChoose();
 
+                    } else {
+                        requestPermission();
+                    }
+
+                }
             }
         });
     }
 
+    // 직접 파일 가져오기 함수들(아래 세개)
+    private void displayFileChoose() {
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(i, "SELECT IMAGE"), 300);
+    }
+
+    private void requestPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(MainActivity.this, "권한 수락이 필요합니다", Toast.LENGTH_SHORT).show();
+        } else {
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 500);
+            // 위 리퀘스트 코드는 겹치면 안되므로 나중에 상수처리한다.
+        }
+    }
+
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_DENIED) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // 고화질 사진 가져오기
     private File getPhotoFile(String fileName) {
         File storageDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         try {
             return File.createTempFile(fileName, ".jpg", storageDirectory);
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
@@ -102,14 +141,22 @@ public class MainActivity extends AppCompatActivity {
     // 퍼미션(권한 요청) OK가 들어올 때의 함수
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch(requestCode){
-            case 1000 : {
+        switch (requestCode) {
+            case 1000: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(MainActivity.this, "권한 허가되었음", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MainActivity.this, "권한이 승인되지 않음", Toast.LENGTH_SHORT).show();
                 }
-                return;
+                break;
+            }
+            case 500: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(MainActivity.this, "권한 허가되었음", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "권한이 승인되지 않음", Toast.LENGTH_SHORT).show();
+                }
+                break;
             }
         }
     }
@@ -118,12 +165,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
-        if(requestCode == 100 & resultCode == RESULT_OK){
+        if (requestCode == 100 & resultCode == RESULT_OK) {
             // 화소가 떨어지는 이미지를 돌려받기
             Bitmap photo = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
             image.setImageBitmap(photo);
+        }else if(requestCode == 300 && resultCode == RESULT_OK && data != null && data.getData() != null){
+            // 이미지 저장소에서 직접 파일 가져오기
+            Uri imgPath = data.getData();
+            image.setImageURI(imgPath);
         }
-
         super.onActivityResult(requestCode, resultCode, data);
     }
 }
