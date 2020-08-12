@@ -1,4 +1,4 @@
-package com.tenisme.photosns;
+package com.block.photoapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,20 +10,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.tenisme.photosns.adapter.RecyclerViewAdapter;
-import com.tenisme.photosns.api.NetworkClient;
-import com.tenisme.photosns.api.PostsAPI;
-import com.tenisme.photosns.model.Post;
-import com.tenisme.photosns.utils.Utils;
+import com.block.photoapp.adapter.RecyclerViewAdapter;
+import com.block.photoapp.api.NetworkClient;
+import com.block.photoapp.api.PostsApi;
+import com.block.photoapp.model.Post;
+import com.block.photoapp.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,11 +37,11 @@ import retrofit2.Retrofit;
 
 public class Welcome extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    RecyclerViewAdapter recyclerViewAdapter;
-    ArrayList<Post> postArrayList = new ArrayList<>();
-
     Button btn_logout;
+
+    RecyclerView recyclerView;
+    RecyclerViewAdapter adapter;
+    ArrayList<Post> postArrayList = new ArrayList<>();
 
     String token;
 
@@ -60,24 +58,28 @@ public class Welcome extends AppCompatActivity {
 
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                // 1. 쉐어드 프리퍼런스에 저장되어있는 토큰을 가져온다.
                 SharedPreferences sharedPreferences =
-                    getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
-                token = sharedPreferences.getString("token", null);
-                Log.i("Photo_sns", token);
+                        getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
+                final String token = sharedPreferences.getString("token", null);
+                Log.i("AAA", token);
 
                 JsonObjectRequest request = new JsonObjectRequest(
-                        Request.Method.DELETE, Utils.BASE_URL + "/api/v1/photo_sns/user", null,
+                        Request.Method.DELETE,
+                        Utils.BASE_URL + "/api/v1/users/logout",
+                        null,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
+                                Log.i("AAA", "logout : " + response.toString());
                                 try {
                                     boolean success = response.getBoolean("success");
-                                    if(success){
-                                        // 토큰 삭제
-                                        SharedPreferences preferences =
-                                                getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = preferences.edit();
+                                    if(success == true){
+                                        // 토큰을 지워줘야 한다.
+                                        SharedPreferences sharedPreferences =
+                                                getSharedPreferences(Utils.PREFERENCES_NAME,MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
                                         editor.putString("token", null);
                                         editor.apply();
 
@@ -85,8 +87,7 @@ public class Welcome extends AppCompatActivity {
                                         startActivity(i);
                                         finish();
                                     }else{
-                                        Toast.makeText(Welcome.this,"로그아웃 실패", Toast.LENGTH_SHORT).show();
-                                        return;
+                                        // 토스트 띄운다.
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -96,8 +97,7 @@ public class Welcome extends AppCompatActivity {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(Welcome.this,"로그아웃 실패", Toast.LENGTH_SHORT).show();
-                                return;
+                                // 토스트 띄운다. 로그아웃 실패라고 토스트.
                             }
                         }
                 ){
@@ -108,36 +108,41 @@ public class Welcome extends AppCompatActivity {
                         return params;
                     }
                 };
+
                 Volley.newRequestQueue(Welcome.this).add(request);
+
             }
         });
 
+
         SharedPreferences sp = getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
         token = sp.getString("token", null);
+
+        Log.i("AAA", "token : "+token);
 
         getNetworkData();
     }
 
     private void getNetworkData() {
-        // 레트로핏 가져오기
         Retrofit retrofit = NetworkClient.getRetrofitClient(Welcome.this);
 
-        //
-        PostsAPI postsAPI = retrofit.create(PostsAPI.class);
+        PostsApi postsApi = retrofit.create(PostsApi.class);
 
-        Call<ResponseBody> call = postsAPI.getPosts("Bearer "+token, 0, 25);
+        Call<ResponseBody> call = postsApi.getPosts(token, 0, 25);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-                Log.i("Photo_sns", response.toString());
+                Log.i("AAA", response.toString());
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.i("Photo_sns", t.toString());
+                Log.i("AAA", t.toString());
             }
         });
+
     }
+
 
 }

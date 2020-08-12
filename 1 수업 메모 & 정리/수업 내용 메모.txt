@@ -21977,7 +21977,7 @@ git config --global core.autocrlf true
 	SourceArtifact
 
 -----  Elastic Beanstalk url
-TenismeServer-env.eba-fqj4aimt.ap-northeast-2.elasticbeanstalk.com
+http://TenismeServer-env.eba-fqj4aimt.ap-northeast-2.elasticbeanstalk.com
 
 핵심기능 3개 먼저 만들고 그게 완벽하게 돌아가면 거기서 업그레이드해라.
 
@@ -22173,7 +22173,16 @@ pageToken, nextPageToken 활용한 리사이클러뷰 페이지 넘기기
 			3. favorite 버튼 누르면 api 타고 서버에 반영되는 기능
 				- 누를 때마다 이미지 반전되어야 함
 
+=======================  200812 수요일 수업 내용 메모
 
+---------------------------  photo-sns-server 실습
+
+깃헙 13_UI구현 폴더
+
+Retrofit 라이브러리  -------------------------------
+
+네트워크 라이브러리
+이 라이브러리는 자바 버전이 중요함.
 
 
 
