@@ -40,11 +40,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     Movie movie;
 
     String token = "";
-    String api_url = "";
-    JSONObject object;
-
-    int alreadyAdded;
-    int checkStar = 0;
 
     public RecyclerViewAdapter(Context context, ArrayList<Movie> movieArrayList) {
         this.context = context;
@@ -126,14 +121,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         return;
                     } else {
                         int position = getAdapterPosition();
-                        int is_favorite = movieArrayList.get(position).getIs_favorite();
+                            int is_favorite = movieArrayList.get(position).getIs_favorite();
 
-                        if (is_favorite == 1) {
-                            // 즐겨찾기 삭제
-                            ((MainActivity) context).deleteFavoriteRequest(position);
-                        } else if(is_favorite == 0) {
-                            // 즐겨찾기 추가
-                            ((MainActivity) context).addFavoriteRequest(position);
+                            if (is_favorite == 1) {
+                                // 즐겨찾기 삭제
+                                ((MainActivity) context).deleteFavoriteRequest(position);
+                            } else if(is_favorite == 0) {
+                                // 즐겨찾기 추가
+                                ((MainActivity) context).addFavoriteRequest(position);
                         }
                     }
 

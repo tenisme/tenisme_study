@@ -90,10 +90,14 @@ order by m.id;
 
 select * from favorites where movie_id = 1 and user_id = 2;
 
-select *
-from movies as m
-left join replies as r on m.id = r.movie_id
-left join favorites as f on r.movie_id = f.movie_id
+select m.*, if(f.id is not null, true, false), count(r.comments) as cnt_comments,
+ifnull(round(avg(r.rating), 2), "unrated") as avg_rating
+from movies as m left join replies as r on m.id = r.movie_id
+left join favorites as f on m.id = f.movie_id and f.user_id = 10
 group by m.id
 order by m.id
 limit 0, 25;
+
+insert into favorites (user_id, movie_id) values (11, 1);
+
+delete from favorites where user_id = 11 and movie_id = 3;
