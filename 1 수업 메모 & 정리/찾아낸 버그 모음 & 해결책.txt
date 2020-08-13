@@ -85,19 +85,17 @@
 		바디를 담아서 보낼 때 DELETE는 먹히지 않는 것 같음.
 		해결 방법이라고 해서 DELETE로 보낼 수 있는 방법이 첫번째 링크에 적혀있는데 뭔소린지 모르겠어서 그냥 POST로 바꿔 쓰니까 해결됨.
 
+================= Error: Illegal arguments: number, string
+	[[ 원인 ]]
+		passwd를 String으로 적어야 하는데 " "없이 숫자 패스워드를 적어서 숫자로 인식됨으로서 에러가 남
+	[[ 해결 ]]
+		passwd 주변에 " "를 둘러줌
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+==  UnhandledPromiseRejectionWarning: TypeError: res.stats is not a function
+	[[ 원인 ]]
+		res.stats 오타났쥬?
+	[[ 세부 에러 메세지 ]]
+		at exports.uploadPhoto (/var/app/current/controllers/posts.js:20:9)
+		여기로 가면 됨. 이 파일의 20줄의 9번째 글자
+	[[ 해결 ]]
+		res.stats => res.status로 오타 교정

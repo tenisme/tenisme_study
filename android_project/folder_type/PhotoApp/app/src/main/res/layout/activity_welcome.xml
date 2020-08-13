@@ -15,6 +15,16 @@
         android:text="로그아웃"
         android:textSize="24sp" />
 
+    <Button
+        android:id="@+id/btnPosting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="새 포스팅 하기"
+        android:textSize="24sp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

@@ -12,14 +12,22 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.block.photoapp.api.NetworkClient;
+import com.block.photoapp.api.UserApi;
+import com.block.photoapp.model.UserReq;
+import com.block.photoapp.model.UserRes;
 import com.block.photoapp.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class Login extends AppCompatActivity {
 
@@ -54,46 +62,36 @@ public class Login extends AppCompatActivity {
                     return;
                 }
 
-                JSONObject object = new JSONObject();
-                try {
-                    object.put("email", email);
-                    object.put("passwd", passwd);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                // body 셋팅
+                UserReq userReq = new UserReq(email, passwd);
 
-                JsonObjectRequest request = new JsonObjectRequest(
-                        Request.Method.POST,
-                        Utils.BASE_URL + "/api/v1/users/login",
-                        object,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                Log.i("AAA", response.toString());
-                                try {
-                                    String token = response.getString("token");
-                                    SharedPreferences sharedPreferences =
-                                            getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                                    editor.putString("token", token);
-                                    editor.apply();
-                                    Intent i = new Intent(Login.this, Welcome.class);
-                                    startActivity(i);
-                                    finish();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.i("AAA", error.toString());
-                            }
-                        }
-                );
+                // 네트워크로 데이터 처리
+                Retrofit retrofit = NetworkClient.getRetrofitClient(Login.this);
+                // UserApi 만들기
+                UserApi userApi = retrofit.create(UserApi.class);
 
-                Volley.newRequestQueue(Login.this).add(request);
+                Call<UserRes> call = userApi.loginUser(userReq);
+
+                call.enqueue(new Callback<UserRes>() {
+                    @Override
+                    public void onResponse(Call<UserRes> call, Response<UserRes> response) {
+                        String token = response.body().getToken();
+
+                        SharedPreferences sp = getSharedPreferences(Utils.PREFERENCES_NAME, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putString("token", token);
+                        editor.apply();
+
+                        Intent i = new Intent(Login.this, Welcome.class);
+                        startActivity(i);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserRes> call, Throwable t) {
+
+                    }
+                });
             }
         });
 

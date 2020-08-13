@@ -41,3 +41,5 @@ select * from photo_token;
 select * from photo_user;
 
 insert into photo_follow (user_id, friend_user_id) values (32, 34);
+
+select p.* from photo_follow as f join photo_post as p on f.friend_user_id = p.user_id where f.user_id = 32 order by p.created_at desc limit 0, 25;

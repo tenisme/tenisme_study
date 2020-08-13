@@ -1,6 +1,9 @@
 package com.block.photoapp.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Post {
+
 
     private int id;
     private int friendUserId;
