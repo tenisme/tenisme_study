@@ -21,7 +21,10 @@
   - __zip_type__
     - .zip 타입 프로젝트 업로드
 
-### node.js 관련 레파지토리
+### node.js 관련 레파지토리 (update 2020.08.19 - 00:07)
 
-- [tenisme_server](https://github.com/tenisme/tenisme_server)
 - [node-mysql](https://github.com/tenisme/node-mysql)
+- [photo-sns-server](https://github.com/tenisme/photo-sns-server)
+- [photo-server](https://github.com/tenisme/photo-server)
+- [book-rental](https://github.com/tenisme/book-rental)
+- [contact-server](https://github.com/tenisme/contact-server)
