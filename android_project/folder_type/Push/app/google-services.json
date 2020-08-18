@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "164819267456",
+    "firebase_url": "https://push-test-d9752.firebaseio.com",
+    "project_id": "push-test-d9752",
+    "storage_bucket": "push-test-d9752.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164819267456:android:dd07e2efc99c0fefb59b65",
+        "android_client_info": {
+          "package_name": "com.tenisme.push"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "164819267456-03elavoivvo58b6nh0cg00h5trkcp3t0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQW4hlNFyXsnwEzUM9l4mOR8B9Ho1h1sQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "164819267456-03elavoivvo58b6nh0cg00h5trkcp3t0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -22330,6 +22330,80 @@ UI구현 책 시험봄. 시험 범위 알려주신댔음.
 
 엑셀에서 시간차 계산은 =MOD(시간1,시간2,1) 이거
 
+=======================  200818 화요일 수업 내용 메모
+
+----------------------  깃헙 82 : 안드로이드 푸시 FCM
+
+FCM : 파이어베이스 클라우드 메세징
+
+파이어베이스 새 프로젝트 생성 : push
+
+[1] 푸시 환경 셋팅
+안드 아이콘 눌러서 앱과 파이어베이스 연동 과정 실행
+	1) 안드 프로젝트 생성 : Push, 버전 21 사용
+	2) 패키지 이름 카피해서 파이어베이스 연동 페이지에 붙여넣기
+	3) 파베 페이지에서 google-services.json를 다운받은 다음
+	4) 안드에서 왼쪽의 Project -> Push(프로젝트이름) -> app 디렉토리에 받은 파일 붙여넣기
+	5) Android로 돌아와서 build.gradle 위에서부터 차례대로 두 개에 각각 코드 추가
+		5.1) build.gradle (Project: Push) // 프로젝트 단위 gradle
+			dependencies {
+				...
+				classpath 'com.google.gms:google-services:4.3.3'
+			}
+		5.2) build.gradle (Module: app) // 앱 단위 gradle
+			apply plugin: 'com.google.gms.google-services'
+			dependencies {
+				...
+				implementation 'com.google.firebase:firebase-analytics:17.2.2'
+				implementation 'com.google.firebase:firebase-messaging:20.2.3'
+			}
+	6) 파베 페이지에서 연동 완료하기
+
+[2] 푸시 환경 셋팅 2
+MainActivity로 이동해서 아래 코드 추가
+	1) 메인 액티비티에 토픽 등록
+		토픽 이름은 내가 정하는것
+		global 이라는 푸시토픽이 오면, 처리하겠다는 뜻
+		[[ 코드 예시 ]]
+		FirebaseMessaging.getInstance().subscribeToTopic("global").addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // 푸시를 여기서 처리
+
+                        // 푸시 에러 처리
+                        if(!task.isSuccessful()){
+                            Log.i("Push", "Error!");
+                            return;
+                        }
+                        getPushData();
+                    }
+                });
+	2) 푸시에 같이 넘어온 데이터를 처리하는 함수
+		아래 예시에서는 name이라는 데이터를 처리한다.
+		[[ 코드 예시 ]]
+		void getPushData() {
+        // 푸시가 올 때의 동작 (intent로 처리)
+        if(getIntent().getExtras() != null){
+            String name = getIntent().getExtras().getString("name");
+            Log.i("Push", "name : "+name);
+        }
+    }
+
+파베에서 좌측 하단에 '성장'탭 클릭 > Cloud Messaging 클릭
+	1) Send your first message 클릭
+	2) 알림 내용 작성
+		이미지는 웹 이미지여야 함.
+	3) 타겟에서 파베 프로젝트와 연동된 안드 프로젝트 선택(사용자 세그먼트 탭)
+		타겟을 토픽(ex. 아까 만든 global)을 만들어서 사용해도 됨(토픽 탭)
+	5) 메세지 예약 설정도 가능
+	6) 추가 옵션 중요함
+		맞춤 데이터가 중요함.
+		key에 name을 적으면 안드 앱에서 name키의 값을 가져와서 쓸 수 있다.
+	7) 검토 클릭 > 게시하면 푸시 보내짐
+
+푸시 알림을 누르면 [2]-2)가 실행됨.
+	유저가 알림을 누르면 파이어베이스에서 보낸 key와 값을 가져와서 활용할 수 있다.
+
 
 
 
