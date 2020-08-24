@@ -1,0 +1,34 @@
+테이블 레이아웃 하나로 테이블 레이아웃 안의 모든 뷰 가져오는 방법
+
+public class MainActivity extends AppCompatActivity {
+
+    TableLayout tableLayout;
+    ArrayList<View> viewArrayList = new ArrayList<>();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+		
+		tableLayout = findViewById(R.id.tableLayout);
+		
+		addChildView();
+	}
+	
+    public void addChildView() {
+        for (int i = 0; i < tableLayout.getChildCount(); i++) {
+            View child = tableLayout.getChildAt(i);
+
+            if (child instanceof TableRow) {
+                TableRow row = (TableRow) child;
+
+                for (int x = 0; x < row.getChildCount(); x++) {
+                    ImageView view = (ImageView) row.getChildAt(x);//Here you get Your View
+                    imageViewArrayList.add(view);
+                }
+            }
+        }
+    }
+}
+
+끝

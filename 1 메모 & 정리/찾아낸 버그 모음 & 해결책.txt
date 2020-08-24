@@ -99,3 +99,36 @@
 		여기로 가면 됨. 이 파일의 20줄의 9번째 글자
 	[[ 해결 ]]
 		res.stats => res.status로 오타 교정
+
+==  java.lang.IllegalStateException: Unable to get current module info in ModuleManager created with non-module Context
+	[[ 에러 현상 ]]
+		"리사이클러뷰 어댑터에서" 어레이리스트의 원소를 update하는 함수(set()) 부분에서 막히면서(앱 종료됨) 자꾸 위와 같은 에러가 남.
+	[[ 원인 ]]
+		set()에는 업데이트할 인덱스 넘버와 바꿀 데이터가 들어가는데 여기서 인덱스 넘버를 'sentence.getSentence_id' 이런 식으로 적어서 에러가 난 것이었음.
+	[[ 해결 ]]
+		sentence.getSentence_id 부분을 getAdapterPosition()으로 교체 후 위 에러가 나지 않음.
+
+==  java.lang.IllegalStateException: attempt to re-open an already-closed object: SQLiteDatabase: /data/user/0/com.tenisme.trackme/databases/track_me_db
+	[[ 에러 현상 ]]
+		update 이후 DB에서 다시 데이터들을 가져와서 리스트에 배치해서 갱신하려고 sentenceArrayList = dh.getAllSentences() 문구를 추가했는데 로그를 찍어보니까 getAllSentences 함수가 진행되다가 에러가 남.
+	[[ 원인 ]]
+		update 코드 마지막에 db.close()가 있었는데 이것 때문인듯.닫힌 db에서 getAll 하려고 해서 그런듯 싶음. 에러 메세지도 그렇게 떴음.
+	[[ 해결 ]]
+		sentenceArrayList = dh.getAllSentences() 코드를 삭제하니까 해결됨. 위 코드 없이 notifyDataSetChanged()만 해도 잘 갱신됨.
+
+==  Note: Recompile with -Xlint:deprecation for details
+	[[ 에러 현상 ]]
+		앱이 튕김.
+	[[ 원인 ]]
+		자바 파일에 있는 문자열 하드코딩들을 strings.xml에 추가하려고 작업하다가 발생한 문제.
+	[[ 해결 ]]
+		에러 코드를 검색해보니 xml문제일 수 있다고 해서 혹시나 해서 xml 상단에 추가했던 <?xml version="1.0" encoding="utf-8"?>을 삭제함. 엔터가 필요한 문자열을 xml에서 쓰려면 앞선 코드를 적어야 한다고 나와서 그렇게 했던 건데 아니었음.. 되긴 됐는데 저거 없이도 그냥 \n으로 됨.
+		앞선 <?xml ~?>을 삭제하고 돌리니까 돌아갔음. 
+
+==  java.lang.NullPointerException: Attempt to invoke virtual method 'android.content.res.Resources android.content.Context.getResources()' on a null object reference
+	[[ 에러 현상 ]]
+		앱 튕김.
+	[[ 원인 ]]
+		널포인터 익셉션에다가 getResources()에서 에러가 났다고 친절하게 알려줘서 xml에서 키를 못 가져왔구나 싶었음. 하드 코딩 작업하는 중에 strings.xml에서 문자열을 가져올 때 전역변수에서부터 가져왔더니 생긴 문제인 거 같음.
+	[[ 해결 ]]
+		전역변수에서 가져오지 않고 필요한 곳에서 xml을 가져오니까(getString(R.string.~)) 잘 가져와졌음.
