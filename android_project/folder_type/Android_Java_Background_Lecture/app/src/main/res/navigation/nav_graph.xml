@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/executorFragment">
+
+    <fragment
+        android:id="@+id/executorFragment"
+        android:name="com.tenisme.android_java_background_lecture.ui.ExecutorFragment"
+        android:label="fragment_executor"
+        tools:layout="@layout/fragment_executor" />
+    <fragment
+        android:id="@+id/jobFragment"
+        android:name="com.tenisme.android_java_background_lecture.ui.JobFragment"
+        android:label="JobFragment" />
+    <fragment
+        android:id="@+id/workFragment"
+        android:name="com.tenisme.android_java_background_lecture.ui.WorkFragment"
+        android:label="WorkFragment" />
+</navigation>

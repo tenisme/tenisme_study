@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
                     // .centerCrop() 이미지를 가운데에 추가하고 잘라내기
                     // .placeholder(여기) 안에 디폴트 이미지를 추가
 
-//                DownloadImageTask downloadImageTask = new DownloadImageTask(MainActivity.this);
-//                downloadImageTask.execute(url);
+                DownloadImageTask downloadImageTask = new DownloadImageTask(MainActivity.this);
+                downloadImageTask.execute(url);
             }
         });
     }

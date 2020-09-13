@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startService"
+        android:text="서비스 시작" />
+
+    <Button
+        android:id="@+id/btnStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="stopService"
+        android:text="서비스 중지" />
+
+    <Button
+        android:id="@+id/btnStartIntent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onStartIntentService"
+        android:text="인텐트 서비스 시작" />
+
+    <Button
+        android:id="@+id/btnStartForeground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onStartForegroundService"
+        android:text="포그라운드 서비스 시작" />
+
+    <Button
+        android:id="@+id/btnGetCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="getCountValue"
+        android:text="카운팅 값 출력" />
+</LinearLayout>

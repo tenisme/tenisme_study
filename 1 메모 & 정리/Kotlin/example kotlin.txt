@@ -1,0 +1,1399 @@
+// // 기본 지식
+// fun main() {
+// 	var a: Int = 123
+//     a = 121
+//     // 물음표 표시 : null값이 가능하게 해줌
+//     var b: Int? = null
+//     println(a)
+//     println(b)
+// }
+
+
+
+
+
+// // 기본 자료형 리터럴 방법
+// fun main() {
+//     var intValue: Int = 1234 // 32bits 10진수
+//     var longValue: Long = 1234L // 64bits 10진수
+//     var intValueByHex: Int = 0x1af // 16진수
+//     var intValueByBin: Int = 0b10110110 // 2진수
+//     // Kotlin은 8진수 표기는 지원하지 않음.
+//     var doubleValue: Double = 123.5
+//     var doubleValueWithExp: Double = 123.5e10
+//     var floatValue: Float = 123.5F // 16bits의 Float형으로 취급
+//     var charValue: Char = 'a'
+//     var koreanCharValue: Char = '가'
+//     var booleanValue: Boolean = true
+//     var stringValue: String = "one line string test"
+//     var multilineStringValue : String = """multiline
+//     string
+//     value""" // 줄바꿈과 특수문자까지 그대로 사용할 수 있음
+// }
+
+
+
+
+
+// // 명시적 형변환 예시(암시적 형변환은 지원하지 않음)
+// fun main() {
+//     var c: Int = 54321
+//     var d: Long = a.toLong()
+// }
+
+
+
+
+
+// // Array 예시
+// fun main() {
+//     var intArr: Array<Int> = arrayOf(1, 2, 3, 4, 5)
+//     // 공간 개수가 지정된 빈(null로 채워진) 공간의 Array 만들기
+//     var nullArr: Array<Int?> = arrayOfNulls<Int>(5)
+//     // 배열에 값 할당하기
+//     intArr[2] = 8
+//     println(intArr[4])
+// }
+
+
+
+
+
+// // 함수 예시
+// fun main() {
+//     fun add(a: Int, b: Int, c: Int): Int{
+//         return a+b+c
+//     }
+//     println(add(5,6,7))
+//     // 함수 예시 2 : 단일 표현식 함수. 반환형(return)의 타입 추론이 가능하므로 생략 가능
+//     fun add2(a: Int, b: Int, c: Int) = a+b+c
+// }
+
+
+
+
+
+// // 조건문 예시 : 참과 거짓의 조건은 비교 연산을 통해 구할 수 있다
+// fun main() {
+//     var e = 7
+//     if(e > 10) {
+//         println("a는 10보다 크다")
+//     } else {
+//         println("a는 10보다 작다")
+//     }
+//     // if(e > 10) println("a는 10보다 크다") (중괄호 생략)도 가능
+// }
+
+
+
+
+
+// // when 테스트 1
+// fun main() {
+//     fun doWhen(a: Any) {
+//         when(a) {
+//             1 -> println("정수 1")
+//             "DiMo" -> println("디모의 코틀린 강좌")
+//             is Long -> println("Long 타입")
+//             !is String -> println("String 타입이 아님")
+//             else -> println("어떤 조건도 만족하지 않음")
+//         }
+//     }
+// }
+
+
+
+
+
+// // when 테스트 2 : 동작 대신 값을 반환하는 표현식으로서의 역할을 하는 when은 값을 써주면 됨.
+// fun main() {
+//     // when의 값을 변수에 할당하거나 직접 값으로 사용할 수 있음.
+//     fun doWhen2(a: Any) {
+//         var result = when(a) {
+//             1 -> "정수 1"
+//             "DiMo" -> "디모의 코틀린 강좌"
+//             is Long -> "Long 타입"
+//             !is String -> "String 타입이 아님"
+//             else -> "어떤 조건도 만족하지 않음"
+//         }
+        
+//         println(result)
+// 	}
+    
+//     doWhen2(1)
+//     doWhen2("DiMo")
+//     doWhen2(12L)
+//     doWhen2(3.14159)
+//     doWhen2("Kotlin")
+// }
+
+
+
+
+
+// // 반복문 예시 : while
+// fun main() {
+//     var f = 0
+//     while(f < 5) { // 참일 때 while에 따르는 구문을 1회 수행
+//         println(f++) 
+//         // f++ : 후위 증가 연산자 : 화면에 출력되고 나서 증가값이 반영됨
+//         // ++f : 전위 증가 연산자 : 증가값이 먼저 반영되고 나서 화면에 출력됨
+//     }
+//     // 반복문 예시 : do while : do를 조건없이 무조건 한 번 실행한 다음 while로 조건에 따라 반복문을 실행함
+//     var g = 0
+//     do {
+//         println(g++)
+//     } while (g < 5)
+// }
+
+
+
+
+
+// // 반목문 예시 : for
+// fun main() {
+//     // var i로 쓰지 않아도 됨
+//     for(i in 0..9 step 3) {
+//         print(i)
+//     }
+//     for(i in 9 downTo 0) { // downTo 0 뒤에도 step을 붙일 수 있음.
+//         print(i)
+//     }
+//     for(i in 'a'..'e') {
+//         print(i)
+//     }
+//     // 코드 흐름 제어 예시 : break
+//     for(i in 1..10) {
+//         if(i == 3) break
+//         println(i)
+//     }
+//     // 코드 흐름 제어 예시 : continue
+//     for(i in 1..10) {
+//         if(i == 3) continue
+//         println(i)
+//     }
+//     // 코드 흐름 제어 예시 : 코틀린 고유 기능 label
+//     loop@for(i in 1..10){
+//         for(j in 1..10){
+//             if(i == 1 && j == 2) break@loop
+//             println("i : $i, j : $j") // $+변수이름 or $+{변수이름} : 변수 이름에 해당하는 변수값으로 대체되어 출력됨
+//         }
+//     }
+// }
+
+
+
+
+
+// // 논리연산자 예시 1
+// fun main() {
+//     println(true && false)
+//     println(true || false)
+//     println(!true)
+//     println(!false)
+// }
+
+
+
+
+
+// // 논리연산자 예시 2
+// fun main() {
+//     var h = 6
+//     var i = 4
+//     println(h>5 && i>5)
+//     println(h>5 || i>5)
+// }
+
+
+
+
+
+// // 클래스의 기본 구조 예시
+// fun main() {
+//     // 생성한 Person 클래스로 인스턴스 만들기
+//     var j = Person("김ㅁㅁ", 1990)
+//     var k = Person("이ㅇㅇ", 1997)
+//     var l = Person("왕ㄴㄴ", 2004)
+    
+//     var m = Person("정ㅁㅁ")
+//     var n = Person("김ㄹㄹ")
+//     var o = Person("라ㅂㅂ")
+    
+//     println("안녕하세요. ${j.birthYear}년생 ${j.name}입니다")
+//     j.introduce()
+//     k.introduce()
+//     l.introduce()
+// }
+// // class Person(var name: String, val birthYear: Int) 
+// // 함수 없이 속성만 있는 클래스는 위 입력만으로 구현이 완료될 수 있음
+// class Person(var name: String, val birthYear: Int) { // 기본 생성자. 기본값 셋팅은 var ~ 옆에 = 로 기본값을 추가해주면 됨.
+    
+//     init { // 파라미터 및 반환형이 없는 생성자. 만들어놓으면 인스턴스 생성 즉시 기본으로 수행됨
+//         println("${this.birthYear}년생 ${this.name}님이 생성되었습니다")
+//     }
+    
+//     constructor(name: String) : this(name, 1997) { // 보조생성자. 보조생성자는 반드시 기본 생성자를 통해 속성을 초기화해줘야 한다. ex) : this(name, 1997)
+//         println("보조생성자 사용됨")
+//     }
+    
+//     fun introduce() {
+//         println("안녕하세요. ${this.birthYear}년생 ${this.name}입니다")
+//     }
+// }
+
+
+
+
+
+// // 클래스 상속 예시
+// fun main() {
+//     var m = Animal("별이", 5, "개")
+//     var n = Dog("별이", 5)
+    
+//     m.introduce()
+//     n.introduce() // 부모 클래스의 함수(기능)을 쓸 수 있음
+//     n.bark()
+    
+//     var o = Cat("루이", 1)
+    
+//     o.introduce()
+//     o.meow()
+// }
+
+// open class Animal(var name: String, var age: Int, var type: String) {
+//     fun introduce() {
+//         println("저는 ${type} ${name}이고, ${age}살 입니다.")
+//     }
+// }
+
+// class Dog (name: String, age: Int) : Animal(name, age, "개") {
+//     fun bark() { // Dog 클래스에서 새로 추가한 '기능'. 수퍼클래스인 Animal에서는 사용할 수 없음.
+//         println("멍멍")
+//     }
+// }
+
+// class Cat (name: String, age: Int) : Animal(name, age, "고양이") {
+//     fun meow() {
+//         println("야옹")
+//     }
+// }
+
+
+
+
+
+// // 오버라이딩 예시
+// fun main() {
+//     var p = Tiger()
+//     p.eat()
+// }
+
+// open class Animal { // 상속 가능한 클래스
+//     open fun eat() { // 오버라이딩이 가능한 함수
+//         println("음식을 먹습니다")
+//     }
+// }
+
+// class Tiger : Animal() {
+//     override fun eat() { // 오버라이딩을 통해 재구현한 함수
+//         println("고기를 먹습니다")
+//     }
+// }
+
+
+
+
+
+// // 추상화 예시 1 : abstract
+// fun main() {
+//     var q = Rabbit()
+//     q.eat()
+//     q.sniff()
+// }
+
+// abstract class Animal {
+//     abstract fun eat()
+//     fun sniff() {
+//         println("킁킁")
+//     }
+// }
+
+// class Rabbit : Animal() {
+//     override fun eat() {
+//         println("당근을 먹습니다")
+//     }
+// }
+
+
+
+
+
+// // 추상화 예시 2 : interface
+// fun main() {
+//     var r = Dog()
+//     r.run()
+//     r.eat()
+// }
+
+// interface Runner {
+//     fun run()
+// }
+
+// interface Eater {
+//     fun eat() {
+//         println("음식을 먹습니다")
+//     }
+// }
+
+// class Dog : Runner, Eater {
+//     override fun run() {
+//         println("우다다다 뜁니다")
+//     }
+//     override fun eat() {
+//         println("허겁지겁 먹습니다")
+//     }
+// }
+
+
+
+
+
+// // 패키지 스코프 예시
+// fun main() {
+//     val a = "함수 스코프"
+//     println(a)
+//     B().print()
+// }
+
+// val a = "패키지 스코프"
+
+// class B {
+//     fun print() {
+//         val a = "클래스 스코프"
+//         println(a)
+//     }
+// }
+
+
+
+
+
+// // 고차함수 예시 : 고차함수는 변수처럼 사용할 수 있다.
+// fun main() {
+// 	b(::a)
+//     // 함수 b를 호출하면서 함수 a를 패러미터로 넘겨줌.
+//     // 함수 a 앞에 ::연산자를 붙여주면 일반 함수를 고차 함수로 변경해준다.
+// }
+
+// fun a (str: String) {
+//     println("$str 함수 a")
+// }
+
+// fun b (function: (String)->Unit){ // (받을자료형)->반환할자료형. Unit : 반환할 값 없음
+//     function("b가 호출한") 
+//     // 함수 b 안에서 (String)->Unit 함수를 호출한 것과 같음.
+//     // (String)->Unit 형식과 맞는 함수 a를 고차함수로 만들어서 b에 파라미터로 넣어주면 function("blabla")은 a("blabla")이 됨.
+// }
+
+
+
+
+
+// // 람다식 함수 예시
+// fun main() {
+// 	b(::a)
+
+//     // 일반적인 변수 옆에 자료형을 쓰듯이 함수의 형식(람다식)을 썼다.
+//     // = {} 부분이 실제로 동작할 람다식 부분을 구현한 것이다
+//     // {} 안에도 람다식으로 { 파라미터(변수)이름 -> 구현부분 }으로 쓴다
+//     // str은 String으로 받아온 값을 람다함수 내에서 사용할 변수 이름(파라미터로 받은 문자열 변수의 이름)이다. 자바식으로 쓰자면 "String str"과 같다.
+//     // {str:String}로 적는 것이 기본이지만, 
+//     // 앞의 () 안에 이미 String이 기술되어 있으므로 코틀린이 알아서 str을 String으로 인식하기 때문에 이 예시에서는 str만 적어줘도 된다.
+//     var c: (String)->Unit = {str -> println("$str 람다함수")}
+//     // 위 문장 역시 타입 추론 기능을 이용해 아래처럼 축약할 수 있다.
+//     // var c = {str: String -> println("$str 람다함수")} // 이렇게 입력하면 입력한 함수의 형식과 맞는 자료형(여기서는 '(String)->Unit') 으로 자료형이 알아서 저장된다.
+//     b(c) // 변수 c는 람다함수로 만들어져있고, 람다함수는 그 자체로 고차함수이기 때문에 앞에 ::을 붙일 필요가 없다.
+    
+// }
+
+// fun a (str: String) {
+//     println("$str 함수 a")
+// }
+
+// fun b (function: (String)->Unit){
+//     function("b가 호출한")
+// }
+
+
+
+
+
+// // 스코프 함수 예시
+// fun main() {
+//     // also/let 예시
+//     var price = 5000
+    
+//     // apply 예시
+//     var a = Book("디모의 코틀린", 10000).apply {
+//         name = "[초특가]" + name
+//         discount()
+//     } 
+//     // 적절한 예는 아니지만 a.apply { ~ }로 사용한 것과 같다.
+//     // 여기서 apply 뒤의 중괄호를 스코프라고 부른다.
+//     // 스코프 안에서는 참조연산자 없이 사용이 가능하다.
+//     // apply는 인스턴스 자신을 반환한다. 그러므로 '생성되자마자 조작하려는 값'을 인스턴스 변수에 바로 넣어줄 수 있다.
+    
+//     // 기존 변환 방법
+//     // a.name = "[초특가]" + a.name
+//     // a.discount()
+    
+//     // run 예시 1
+//     // var b = a.run {
+//     //     println(a.price)
+//     //     a.name
+//     // } // 이렇게 쓰면 가격은 출력하고 a.name은 반환되어 변수 b에 할당된다.
+    
+//     // run 예시 2
+//     a.run {
+//         println("상품명: ${name}, 가격: ${price}원")
+//     }
+    
+//     // with 예시 : run과 동일한 기능을 가짐
+//     with(a) {
+//         println("상품명: ${name}, 가격: ${price}원")
+//     }
+    
+//     // also/let 예시
+//     a.let {
+//         println("상품명: ${it.name}, 가격: ${it.price}원")
+//     }
+    
+// }
+// class Book(var name: String, var price: Int) {
+//     fun discount(){
+//         price -= 2000 // price에서 -2000을 한 값을 반환
+//     }
+// }
+
+
+
+
+
+// // Object 예시
+// fun main() {
+//     println(Counter.count)
+    
+//     Counter.countUp()
+//     Counter.countUp()
+    
+//     println(Counter.count)
+    
+//     Counter.clear()
+    
+//     println(Counter.count)
+// }
+
+// object Counter {
+//     var count = 0
+    
+//     fun countUp() {
+//         count++
+//     }
+    
+//     fun clear() {
+//         count = 0
+//     }
+// }
+
+
+
+
+
+// // Companion Object 예시
+// fun main() {
+//     var a = FoodPoll("짜장")
+//     var b = FoodPoll("짬뽕")
+    
+//     a.vote()
+//     a.vote()
+    
+//     b.vote()
+//     b.vote()
+//     b.vote()
+    
+//     // a의 count는 2, b의 count는 3이 되고, 
+//     // FoodPool 클래스의 공통 오브젝트 내에 있는 total 변수는 a와 b가 총 5번 호출되는 동안 총 다섯번이 더해져서 2+3 = 5가 된다.
+//     println("${a.name} : ${a.count}")
+//     println("${b.name} : ${b.count}")
+//     println("총계 : ${FoodPoll.total}") // 오브젝트는 오브젝트명 자체로 불러내므로, 여기서는 object가 속한 클래스명 뒤에 참조연산자를 붙여 total을 불러낸다.
+// }
+
+// class FoodPoll (val name: String) {
+//     companion object {
+//         var total = 0
+//     }
+    
+//     var count = 0
+    
+//     fun vote() {
+//         total++
+//         count++
+//     }
+    
+// }
+
+
+
+
+
+// // 옵저버 예시
+
+// // 4. main()에서 EventPrinter 인스턴스를 생성해 자신의 함수를 실행시킨다.
+// fun main() {
+//     EventPrinter().start() // 이벤트(count())를 실행. count()를 실행하면, 리스너(안에 있는 onEvent(~))를 때에 맞춰 작동시킨다.
+// }
+
+// // 1. (종:영상에서 B가 울리는 종. 옵저버, 리스너.) 콜백 함수를 담는 인터페이스를 작성 : "이벤트가 발생했을 때" 정수값을 받아서 처리할 추상함수를 여기서 작성
+// interface EventListener {
+//     fun onEvent(count: Int) // 리스너를 통해 이벤트를 반환하는 함수 이름은 관례적으로 이름 앞에 'on(행위)'을 붙인다는 규칙을 따른다
+// }
+
+// // 2. (이벤트 처리:영상에서 B) 이벤트를 작성하는 클래스. 'A가 리스너를 가져와서 꾸며놓은 종'을 받아서 B의 이벤트와 붙여야 하기 때문에 EventListener를 파라미터로 받아서 처리한다.
+// class Counter(var listener: EventListener) {
+//     fun count() { // 요게 이벤트?
+//         for(i in 1..100) {
+//             if(i % 5 == 0) listener.onEvent(i)
+//             // 영상의 "클릭되면(if(i % 5 == 0)) 종(listener)을 울리겠습니다(.onEvent(i))" 이다.
+//         }
+//     }
+// }
+
+// // // 3.1. (이벤트 수신:영상에서 A) interface에서 정의된 함수를 받아서 B에게 넘겨주는 클래스를 작성. 
+// // // 넘겨주려는 함수는 구현 부분이 없는 함수이기 때문에 EventListener(interface)를 상속받아 구현한 다음 B에게 넘겨줘야 한다.
+// // class EventPrinter: EventListener {
+// //     override fun onEvent(count: Int) { // 영상에서 "종은 내가 만들어두마."이다. onEvent를 override해서 숫자를 출력하는 함수로 만들었다.
+// //         print("${count}-")
+// //     }
+    
+// //     fun start() {
+// //         val counter = Counter(this) 
+// //         // this는 EventPrinter를 나타내지만, 받는 쪽에서는 EventListener만 요구했기 떄문에 
+// //         // EventPrinter가 가지고 있는 "EventListener"의 구현부(onEvent(~))만 넘겨주게 된다. => 객체지향의 다형성
+// //         counter.count() // 위에서 리스너의 구현부를 넘겨받은 Count(~) 인스턴스로 count()를 실행하도록 한다
+// //     }
+// // }
+
+// // 3.2. (이벤트 수신:A) Anonymous Object(익명 객체) 예시
+// class EventPrinter {
+//     // 아래 코드 설명 : Counter의 파라미터에 EventListener를 상속받는 익명의(이름이 없는) "객체(object:)"를 만들고 
+//     // 이 안에서 onEvent(~)를 override해서 기능을 작성한다. 이 익명의 객체는 Counter 인스턴스로 넘어가고
+//     // 이 Counter 인스턴스는 counter 변수에 저장되어 counter.count()를 하면 'A가 (override해서 구현한 다음) 넘긴' onEvent(~)가 같이 실행된다.
+//     // 이렇게 익명 객체를 넘기는 방식으로 코드를 작성하면, (리스너의 함수를 받아 사용하려는) 클래스가 인터페이스를 상속받지 않고도 즉시 객체를 구현해 입맛대로 변경하여 사용할 수 있다.
+//     fun start() {
+//         val counter = Counter(object: EventListener { // B를 호출, 리스너(종!!)를 보냄(이게 콜백?). >> "Counter 와 봐라. 내가 만든 종 줄테니까 내가 너한테 count() 시키면 이 종을 때에 맞춰 울려줘라."
+//             override fun onEvent(count: Int) {
+//             print("${count}-")
+//         	}
+//         })
+//         counter.count()
+//     }
+// }
+
+
+
+
+
+// // 클래스의 다형성 예시 (업캐스팅, 다운캐스팅(as, is))
+fun main() {
+//     var a = Drink()
+//     a.drink()
+    
+//     var b: Drink = Cola()
+//     b.drink()
+// //     b.washDishes() // b는 자신(Drink)의 영역만 쓸 수 있기 때문에 이렇게 쓰면 오류남.
+    
+//     // is 예시
+//     if(b is Cola) {
+//         b.washDishes() // b가 Cola와 호환이 되면 "중괄호 영역 안에서는" b를 Cola로 바꿔주기 때문에 이 코드는 오류 없이 실행된다.
+//     }
+    
+//     var c = b as Cola // b를 Cola로 (완전히) 다운캐스팅함
+//     c.washDishes() // 다운캐스팅했기 때문에 이 코드 역시 잘 실행됨.
+//     b.washDishes() // ★★★★이 코드 역시 잘 실행됨. var c = b as Cola를 할 때 반환값이 var c에만 할당되는 것이 아니라 b에도 다운캐스팅이 적용되기 때문임.
+// }
+
+// open class Drink {
+//     var name = "음료"
+    
+//     open fun drink() {
+//         println("${name}를 마십니다")
+//     }
+// }
+
+// class Cola: Drink() {
+//     var type = "콜라"
+    
+//     override fun drink() {
+//         println("${name}중에 ${type}를 마십니다")
+//     }
+    
+//     fun washDishes() {
+//         println("${type}로 설거지를 합니다")
+//     }
+// }
+
+
+
+
+
+// // Generic 예시
+// fun main() {
+//     // 클래스 제너릭 예시
+//     UsingGeneric(A()).doShouting() // UsingGeneric에 클래스 A의 인스턴스를 넘겨줌
+//     // UsingGeneric<A>(A()).doShouting() 
+//     // <A>처럼 이렇게 타입 패러미터를 수동으로 전달(입력)할 수도 있지만 
+//     // 생성자의 패러미터를 통해 클래스 A라는 것을 추론할 수 있기 때문에 이 상황에서는 생략해도 괜찮음.
+//     UsingGeneric(B()).doShouting()
+//     UsingGeneric(C()).doShouting()
+    
+//     // 펑션 제너릭 예시
+//     doShouting(B())
+//     // B의 객체 그대로 함수에서 사용한다.
+//     // 함수 역시 제너릭의 타입을 자동으로 추론하므로 별도로 타입 패러미터(<>)에 자료형(B)을 전달할 필요는 없다.
+// }
+
+// // 펑션 제너릭 예시
+// fun <T: A> doShouting(t:T) { // 패러미터로 T에 맞는 t를 받는다.
+//     t.shout()
+// }
+
+// // 클래스 제너릭 예시
+// open class A {
+//     open fun shout() {
+//         println("A가 소리칩니다")
+//     }
+// }
+
+// class B: A() {
+//     override fun shout() {
+//         println("B가 소리칩니다")
+//     }
+// }
+
+// class C: A() {
+//     override fun shout() {
+//         println("C가 소리칩니다")
+//     }
+// }
+
+// class UsingGeneric<T: A> (val t: T) { // 제너릭 T에 맞는 인스턴스를 속성 t로 받는다.
+//     // class UsingGeneric(val t: A)로 만들어도 기능은 같지만 
+//     // 제너릭을 사용하는 경우 제너릭이 자료형을 대체하게 되어 캐스팅을 방지할 수 있으므로 성능을 더 높일 수 있다.
+//     fun doShouting() {
+//         t.shout()
+//     }
+// }
+
+
+
+
+
+// // List, MutableList 예시
+// fun main() {
+//     // List 예시
+//     val a = listOf("사과", "딸기", "배")
+//     println(a[1]) // 배열과 사용 방법이 같음
+    
+//     for(fruit in a) { // 리스트 a에서 요소를 하나씩 꺼내 fruit에 할당해줌.
+//         print("${fruit} : ")
+//     }
+    
+//     println()
+    
+//     // MutableList 예시
+//     var b = mutableListOf(6, 3, 1)
+//     println(b)
+    
+//     // 추가 : 마지막 자리에 4를 추가
+//     b.add(4)
+//     println(b)
+    
+//     // 추가 : 2의 자리에 8을 추가(인덱스 2 자리 뒤의 요소들은 한 자리씩 뒤로 밀려남)
+//     b.add(2, 8)
+//     println(b)
+    
+//     // 삭제 : 1의 자리를 삭제
+//     b.removeAt(1)
+//     println(b)
+    
+//     // 무작위 섞기
+//     b.shuffle()
+//     println(b)
+    
+//     // 정렬
+//     b.sort()
+//     println(b)
+// }
+
+
+
+
+
+// // 문자열 다루기 예시
+// fun main() {
+//     val test1 = "Test.Kotlin.String"
+//     // 문자열 길이 구하기
+//     println(test1.length)
+//     // 문자열 전부 소문자로 만들기
+//     println(test1.toLowerCase())
+//     // 문자열 전부 대문자로 만들기
+//     println(test1.toUpperCase())
+    
+//     // 문자열 나누기
+//     val test2 = test1.split(".")
+//     println(test2)
+    
+//     // 나눈 문자열 배열 다시 붙이기 1 => 이렇게 붙이면 중간에 뭐 없이 그냥 다 붙여짐
+//     println(test2.joinToString())
+//     // 나눈 문자열 배열 다시 붙이기 2 => 이렇게 붙이면 붙이는 문자열 사이에 -가 추가됨
+//     println(test2.joinToString("-"))
+//     // 문자열 일부만 사용하기
+//     println(test1.substring(5..10))
+//     // ..은 IntRange, 인티저레인지라고 부름.
+//     // 5부터 10자리까지의 문자열을 출력함.
+    
+//     val nullString: String? = null
+//     val emptyString = ""
+//     val blankString = " "
+//     val nomalString = "A"
+//     // isNullOrEmpty()
+//     println(nullString.isNullOrEmpty()) // true
+//     println(emptyString.isNullOrEmpty()) // true
+//     println(blankString.isNullOrEmpty()) // false
+//     println(nomalString.isNullOrEmpty()) // false
+    
+//     println()
+    
+//     // isNullOrBlank()
+//     // 공백문자로만 이루어진 Blank상태도 비어있는 것으로 본다
+//     // 공백 문자에는 눈에 직접적으로 보이지 않는 문자들을 전부 포함한다.
+//     // ex) Space, tab, Line Feed, Carrige Return, ...
+//     println(nullString.isNullOrBlank()) // true
+//     println(emptyString.isNullOrBlank()) // true
+//     println(blankString.isNullOrBlank()) // true
+//     println(nomalString.isNullOrBlank()) // false
+    
+//     val test3 = "kotlin.kt"
+//     val test4 = "java.java"
+    
+//     // ~로 시작하는 문자열 찾기(논리형 리턴)
+//     println(test3.startsWith("java")) // false
+//     println(test4.startsWith("java")) // true
+    
+//     // ~로 끝나는 문자열 찾기(논리형 리턴)
+//     println(test3.endsWith(".kt")) // true
+//     println(test4.endsWith(".kt")) // false
+    
+//     // ~이 포함된 문자열 찾기(논리형 리턴)
+//     println(test3.contains("lin")) // true
+//     println(test4.contains("lin")) // false
+// }
+
+
+
+
+
+// // nullable 변수에서 null값을 처리하는 방법 예시
+// fun main() {
+//     var a: String? = null
+    
+//     // ?. (null safe operator)예시
+//     println(a?.toUpperCase()) // 변수의 내용이 null이기 때문에 .toUpperCase()가 실행되지 않아 a가 null이라는 내용이 그냥 출력되었음.
+//     // ?:"" (elvis operator)예시
+//     println(a?:"default".toUpperCase()) // a가 null이면 default로 대체된다.
+//     // !!. (non-null assertion operator)예시
+// //     println(a!!.toUpperCase())
+    
+//     // ★★★★ null safe + scope function (if를 대체함)
+//     a?.run { // a가 null이면 run 함수 자체가 실행되지 않고, null이 아니면 전부 실행된다. null을 체크하는 if문 대신 사용하면 쉽고 편리하다.
+//         println(toUpperCase())
+//         println(toLowerCase())
+//     }
+// }
+
+
+
+
+
+// // 변수의 동일성을 체크하는 방법 예시
+// fun main() {
+    
+//     var a = Product("콜라", 1000)
+//     var b = Product("콜라", 1000)
+//     var c = a
+//     var d = Product("사이다", 1000)
+    
+//     println(a == b)
+//     println(a === b)
+    
+//     println(a == c)
+//     println(a === c)
+    
+//     println(a == d)
+//     println(a === d)
+// }
+
+// class Product(val name: String, val price: Int) { // 이 예시에서는 a가 된다.
+    
+//     override fun equals(other: Any?): Boolean { // 이 예시에서는 b, c, d가 Any?가 된다.
+//         if(other is Product) { // b, c, d가 Product이면 (== 비교)
+//             return other.name == name && other.price == price // b, c, d의 name(other.name) 및 price(other.price)가 a의 name 및 price와 같은지 비교한 값을 return.
+//         } else {
+//             return false // b, c, d의 유형 자체가 Product가 아니면 false를 리턴 (=== 비교)
+//         }
+//     }
+// }
+
+
+
+
+
+// // 오버로딩 예시
+// fun main() {
+//     read(7)
+//     read("감사합니다")
+// }
+
+// fun read(x: Int) {
+//     println("숫자 $x 입니다")
+// }
+
+// fun read(x: String) {
+//     println(x)
+// }
+
+
+
+
+
+// // 함수의 argument를 다루는 방법 예시
+// fun main() {
+//     // default arguments 예시
+//     // 예시에서 제시된 함수의 3가지 패러미터중 입력된 패러미터가 없다면 미리 지정되어있는 기본값으로 출력된다. <= default argument를 활용함
+//     deliveryItem("짬뽕") // 나머지 값은 자동으로 1, "집"이 된다.
+//     deliveryItem("책", 3) // 나머지 값은 자동으로 "집"이 된다.
+//     deliveryItem("노트북", 30, "학교") // 파라미터의 모든 값을 직접 기입한다(디폴트 값을 사용하지 않는다).
+//     // named arguments 예시
+//     // named arguments는 패러미터의 "순서와 관계없이" 패러미터의 이름을 사용하여 직접 패러미터의 값을 할당하는 기능이다.
+//     deliveryItem("선물", destination = "친구집") 
+//     // "선물"은 당연히 첫번째 패러미터에 할당되고, "친구집"은 앞에 붙여놓은 변수명(destination)에 해당하는 자리에 할당된다.
+//     // count는 입력되지 않았으므로 default arguments에 의해 디폴트 값으로 자동으로 입력된다.
+// }
+
+// fun deliveryItem(name: String, count: Int = 1, destination: String = "집") {
+//     println("${name} ${count}개를 ${destination}에 배달하였습니다")
+// }
+
+
+
+
+
+// // vararg(배리어블 아규먼츠) 예시
+// // 입력할 패러미터의 개수가 일정하지 않을 때 사용한다.
+// // ★★★★ vararg는 받는 개수가 일정하지 않으므로 vararg를 사용하는 변수는 다른 패러미터와 같이 사용할 때는 반드시 맨 마지막에 붙여야 한다.
+// fun main() {
+//     sum(1, 2, 3, 4)
+// }
+
+// fun sum(vararg numbers: Int) { 
+//     var sum = 0
+    
+//     for(n in numbers) { // vararg가 붙은 패러미터는 배열처럼 for문에 참조할 수 있다.
+//         sum += n // sum에 numbers로 받아온 정수값들을 전부 더해줌
+//     }
+    
+//     println(sum)
+// }
+
+
+
+
+
+// // infix 함수 예시
+// fun main() {
+//     // infix 함수 사용예 1
+//     println(6 multiply 4) // 6 * 4가 됨
+//     // 좌측에 붙은 6이 infix 함수가 적용되는 객체 자신. this에 해당한다.
+//     // 우측에 붙은 4는 (x: Int) 즉 패러미터 값에 해당한다.
+    
+//     // infix 함수 사용예 2
+//     println(6.multiply(4)) // 위와 같은 결과값이 나옴.
+// }
+
+// infix fun Int.multiply(x: Int): Int = this * x
+// // Int.multiply <= 여기서 Int.는 infix 함수 multiply를 "적용"할 자료형의 이름. = 뒤의 this이다.
+// // (x: Int) <= 받는 패러미터 역시 Int값이다.
+// // : Int <= 반환값을 Int로 지정
+
+
+
+
+
+// // 중첩클래스, 내부클래스 예시
+// fun main() {
+    
+//     // Nested Class를 호출
+//     Outer.Nested().introduce()
+    
+//     // Inner Class를 호출
+//     val outer = Outer()
+//     val inner = outer.Inner()
+    
+//     inner.introduceInner()
+//     inner.introduceOuter()
+    
+//     // Outer class의 text 내용을 변경해 Inner에서 다시 호출
+//     outer.text = "Changed Outer Class"
+//     inner.introduceOuter()
+// }
+
+// class Outer {
+//     var text = "Outer Class"
+    
+//     class Nested {
+//         fun introduce() {
+//             println("Nested Class")
+//         }
+//     }
+    
+//     inner class Inner {
+//         var text = "Inner Class"
+        
+//         fun introduceInner() {
+//             println(text)
+//         }
+        
+//         fun introduceOuter() {
+//             println(this@Outer.text) // this@OuterClass이름. <= 내부 클래스와 외부 클래스에 같은 이름의 변수 등이 있는 경우 외부 클래스의 속성을 참조하는 방법
+//         }
+//     }
+// }
+
+
+
+
+
+// // 일반 클래스와 Data 클래스를 비교
+// fun main() {
+//     val a = General("보영", 212)
+//     println(a == General("보영", 212))
+//     println(a.hashCode())
+//     println(a) // toString()의 결과값을 보기 위함
+//     // 일반 함수는 위 기능들이 제대로 구현되지 않음
+    
+//     println()
+    
+//     val b = Data("루다", 306)
+//     println(b == Data("루다", 306))
+//     println(b.hashCode())
+//     println(b) // toString()의 결과값을 보기 위함
+//     println(b.copy())
+//     println(b.copy("아린"))
+//     println(b.copy(id = 618))
+//     // 데이터 클래스는 위 기능들이 모두 유의미하게 제대로 구현됨.
+    
+//     // data class의 component~()함수 예시 
+//     val list = listOf(Data("보영", 212), Data("루다", 306),Data("아린", 618))
+//     // 이 리스트에 담긴 Data 객체의 내용을 for문에서 모두 순회하는 방법
+//     for((a, b) in list) { 
+//         // (a, b) <= 내부적으로 component1(), component2()라는 함수를 사용해 패러미터 순서대로 객체의 값들을 불러오게 된다.
+//         println("${a}, ${b}") // list에서 각각의 데이터 객체를 위와 같이((a, b)) 참조하여 내부의 속성들을 모두 출력한다.
+//     }
+    
+    
+// }
+
+// class General(val name: String, val id: Int)
+
+// data class Data(val name: String, val id: Int)
+
+
+
+
+
+// // Enum Class 예시
+// fun main() {
+    
+//     var state = State.SING // SING <= enum은 선언시에 만든 객체를 이름으로 참조하여 그대로 사용한다.
+//     println(state) // toString()을 통해 상태 객체 이름이 그대로 출력된다 <= 출력값 : SING
+    
+//     state = State.SLEEP
+//     println(state.isSleeping()) // 같은 객체끼리 비교했기 때문에 true가 반환되었다
+    
+//     state = State.EAT
+//     println(state.message) // EAT의 message 속성에 담긴 "밥을 먹습니다"가 출력된다.
+// }
+
+// enum class State(val message: String) {
+//     SING("노래를 부릅니다"),
+//     EAT("밥을 먹습니다"),
+//     SLEEP("잠을 잡니다");
+    
+//     fun isSleeping() = this == State.SLEEP // 비교할 대상이 State 객체 자기 자신이므로 this로 해주어야 한다.
+// }
+
+
+
+
+
+// // MutableSet 예시
+// fun main() {
+//     val a = mutableSetOf("귤", "바나나", "키위")
+    
+//     // 내부 요소 전부 가져오기
+//     for(item in a) {
+//         println("${item}")
+//     }
+    
+//     // 추가하기
+//     a.add("자몽")
+//     println(a)
+    
+//     // 삭제하기
+//     a.remove("바나나")
+//     println(a)
+    
+//     // 특정 데이터가 포함되어있는지 체크하기
+//     println(a.contains("귤")) // return true
+// }
+
+
+
+
+
+// // MutableMap 예시
+// fun main() {
+//     // MutableMap 초기화시 key와 value 는 to로 이어준다.
+//     val a = mutableMapOf("레드벨벳" to "음파음파", "트와이스" to "FANCY", "ITZY" to "ICY")
+    
+//     for(entry in a) {
+//         println("${entry.key} : ${entry.value}")
+//         // MutableMap.MutableEntry 객체로 들어있기 때문에 속성인 key와 value를 위와 같이 출력할 수 있다.
+//     }
+    
+//     // 추가하기
+//     a.put("오마이걸", "번지")
+//     println(a)
+    
+//     // 삭제하기
+//     a.remove("ITZY")
+//     println(a)
+    
+//     // key 값으로 value 참조하기
+//     // key를 어레이, 리스트에서 index를 꺼내는 형태로 참조할 수 있다.
+//     println(a["레드벨벳"])
+// }
+
+
+
+
+
+// // 컬렉션 함수 예시 1
+fun main() {
+    
+    val nameList = listOf("박수영", "김지수", "김다현", "신유나", "김지우")
+    
+    // .forEach{}
+    nameList.forEach{ print(it + " ") }
+    println()
+    // 리턴값 : 박수영 김지수 김다현 신유나 김지우
+    
+    // .filter{}
+    println(nameList.filter{ it.startsWith("김") })
+    // 리턴값 : [김지수, 김다현, 김지우]
+    
+    // .map{}
+    println(nameList.map{ "이름 : " + it }) // 기존 값들 앞에 "이름 : "을 붙여 반환한 값을 출력한다
+    // 리턴값 : [이름 : 박수영, 이름 : 김지수, 이름 : 김다현, 이름 : 신유나, 이름 : 김지우]
+    
+    // .any{}
+    println(nameList.any{ it == "김지연" }) // "김지연"이 nameList에 하나라도 있으면 true를 반환
+    // 리턴값 : false
+    
+    // .all{}
+    println(nameList.all{ it.length == 3 }) // nameList 안의 "모든 객체"의 문자열 길이가 3인지 체크한다
+    // 리턴값 : true
+    
+    // .none{}
+    println(nameList.none{ it.startsWith("이") }) // 문자열 맨 앞이 "이"로 시작되는 객체가 nameList에 "하나도 없으면" true를 반환
+    // 리턴값 : true
+    
+    // .first()
+    println(nameList.first()) // nameList의 제일 첫번째 객체를 반환
+    // 리턴값 : 박수영
+    
+    // .first{}
+    println(nameList.first{ it.startsWith("김") }) // 문자열 맨 앞이 "김"으로 시작하는 객체들 중 제일 첫번째 객체의 값을 리턴한다
+    // 리턴값 : 김지수
+    
+    // .last{}
+    println(nameList.last{ it.startsWith("김") }) // 문자열 맨 앞이 "김"으로 시작하는 객체들 중 제일 마지막 객체의 값을 리턴한다
+    // 리턴값 : 김지우
+    
+    // .count()
+    println(nameList.count()) // nameList 내부 객체들의 전체 갯수를 반환
+    // 리턴값 : 5
+    
+    // .count{}
+    println(nameList.count{ it.contains("지") }) // nameList의 객체들 중 "지"가 포함된 객체의 "갯수"를 리턴한다
+    // 리턴값 : 2
+}
+
+
+
+
+
+// // 컬렉션 함수 2-1
+// fun main() {
+//     data class Person(val name: String, val birthYear: Int)
+    
+//     val personList = listOf(Person("유나", 1992), Person("조이", 1996), Person("츄", 1999), Person("유나", 2003))
+    
+//     // .associateBy{}
+//     println(personList.associateBy{ it.birthYear }) // 년도를 기준으로(년도를 key로 하는) Map을 만든다
+//     // 결과값 : {1992=Person(name=유나, birthYear=1992), 1996=Person(name=조이, birthYear=1996), 
+//     // 			1999=Person(name=츄, birthYear=1999), 2003=Person(name=유나, birthYear=2003)}
+    
+//     // .groupBy{}
+//     println(personList.groupBy{ it.name }) // 이름을 기준으로 묶어 Map을 만든다
+//     // 결과값 : {유나=[Person(name=유나, birthYear=1992), Person(name=유나, birthYear=2003)], 
+//     // 			조이=[Person(name=조이, birthYear=1996)], 츄=[Person(name=츄, birthYear=1999)]}
+    
+//     // .partition{}
+//     val (over98, under98) = personList.partition{ it.birthYear > 1998 } // 1998년도 이상과 이하로 나눠 두 그룹에 저장한다
+//     println(over98) // 결과값 : [Person(name=츄, birthYear=1999), Person(name=유나, birthYear=2003)]
+//     println(under98) // 결과값 : [Person(name=유나, birthYear=1992), Person(name=조이, birthYear=1996)]
+// }
+
+
+
+
+
+// // 컬렉션 함수 2-2
+// fun main() {
+//     val numbers = listOf(-3, 7, 2, -10, 1)
+    
+//     // .flatMap{}
+//     println(numbers.flatMap{ listOf(it * 10, it + 10) }) // numbers 리스트의 개별 아이템에 *10을 한 값, +10을 한 값을 담는 리스트(listOf(~, ~))를 만든다
+//     // 결과값 : [-30, 7, 70, 17, 20, 12, -100, 0, 10, 11]
+    
+//     // .getOrElse{}
+//     println(numbers.getOrElse(1) {50}) // 인덱스 1에 객체가 있으면 인덱스 1의 값을 리턴, 없으면 50을 리턴
+//     // 결과값 : 7
+//     println(numbers.getOrElse(10) {50}) // 인덱스 10에 객체가 있으면 인덱스 10의 값을 리턴, 없으면 50을 리턴
+//     // 결과값 : 50
+   	
+//     // zip
+//     val names = listOf("A", "B", "C", "D")
+//     println(names zip numbers) // 이 때 numbers의 마지막 인덱스의 값인 1은 names와 맞는 짝이 없으므로 제외된다.
+//     // 결과값 : [(A, -3), (B, 7), (C, 2), (D, -10)]
+    
+// }
+
+
+
+
+
+// // 상수 예시
+// fun main() {
+//     val foodCourt = FoodCourt()
+//     foodCourt.searchPrice(FoodCourt.FOOD_CREAM_PASTA)
+//     foodCourt.searchPrice(FoodCourt.FOOD_STEAK)
+//     foodCourt.searchPrice(FoodCourt.FOOD_PIZZA)
+// }
+
+// class FoodCourt {
+    
+//     companion object {
+//         const val FOOD_CREAM_PASTA = "크림파스타"
+//         const val FOOD_STEAK = "스테이크"
+//         const val FOOD_PIZZA = "피자"
+//     }
+    
+//     fun searchPrice(foodName : String) {
+//      	val price = when(foodName) {
+//             FOOD_CREAM_PASTA -> 13000
+//             FOOD_STEAK -> 25000
+//             FOOD_PIZZA -> 15000
+//             else -> 0
+//         }
+        
+//         println("${foodName}의 가격은 ${price}원 입니다")
+//     }
+// }
+
+
+
+
+
+// // lateinit(늦은 초기화) 예시
+// fun main() {
+//     val a = LateInitSample()
+    
+//     println(a.getLateInitText()) // 변수가 초기화되어있지 않은 상태이기 때문에 "기본값"을 return함
+    
+//     a.text = "새로 할당한 값"
+//     println(a.getLateInitText()) // text의 값을 여기서 초기화했기 때문에 앞서 초기화한 값이 그대로 return됨
+// }
+
+// class LateInitSample {
+//     lateinit var text: String
+    
+//     fun getLateInitText(): String {
+//         if(::text.isInitialized) { // text가 초기화 되어있다면 true를 반환함.
+//             return text
+//         } else {
+//             return "기본값"
+//         }
+//     }
+// }
+
+
+
+
+
+// // 초기화의 지연 : 지연 대리자 속성(lazy delegate properties) 예시
+// fun main() {
+//     val number: Int by lazy {
+//         println("초기화를 합니다")
+//         7
+//     }
+    
+//     println("코드를 시작합니다")
+//     println(number) // 이 시점에서 number에 지정해둔 구문(lazy {~})이 실행된다
+//     println(number) // 이미 이전에 초기화를 실행한 상태이기 때문에 ★★★다시 초기화 구문(lazy {~})을 실행하는 것이 아니라★★★ 이전에 최종적으로 초기화된 값이 출력됨을 알 수 있다.
+// }
+
+
+
+
+
+// // 비트 연산 예시
+// fun main() {
+//     var bitData: Int = 0b10000 
+//     // 초기화시 지정되지 않은 상위 비트들은 0으로 채워진다.
+//     // 전체적으로는 하위 다섯번째 비트에만 1을 추가한 모양이 된다.
+    
+//     // 하위 세번째 비트에 set하기(~를 1로 바꾸기)
+//     bitData = bitData or(1 shl 2) 
+//     // 1이라는 값을 shl을 사용하여 좌측으로 2번 민다.
+//     // 1 shl 2는 0b100이 된다.
+//     // 이 값을 bitData값과 or 연산을 하게 되면 하위 세번째 비트가 set이 된다.
+//     // 0b10000 or 0b100 = 0b10100
+    
+//     // 정수형의 경우 toString의 패러미터로 진법 변환을 할 수 있다.
+//     println(bitData.toString(2)) // .toString(2) <= 2진수 형태의 문자열로 변경됨
+    
+//     // 하위 다섯번째 비트에 있는 값을 꺼내 사용하기
+//     var result = bitData and(1 shl 4) 
+//     // 1 shl 4는 0b10000이 됨.
+//     // 이걸 bitData와 and 연산하면 0b10000이 됨.
+//     println(result.toString(2))
+    
+//     println(result shr 4) // 우측으로 네번 밀어주면 원래의 값으로 복원함
+    
+//     // 하위 다섯번째 비트에 있는 1을 clear해보기
+//     bitData = bitData and((1 shl 4).inv())
+//     // (1 shl 4).inv() <= 0b01111
+//     // 0b10100 and 0b01111 <= 0b00100이 됨
+//     println(bitData.toString(2))
+    
+//     println((bitData xor(0b10100)).toString(2)) // 전부 같으면 0b00000이 되어야 함.
+//     // 0b00100 xor 0b10100 <= 0b10000이 됨
+    
+//     // 모든 출력값은 0b가 제외되어있다.
+// }
+
+
+
+
+
+// // 실행이 안 되는 코루틴 예시
+// // 이유는 study kotlin 참고
+// import kotlinx.coroutines.* // 코루틴 관련 라이브러리를 import
+
+// fun main() {
+//     val scope = GlobalScope
+//     scope.launch { // 스코프에 '.launch {}'를 씀으로서 Job 객체의 코루틴 하나를 만들음.
+//         for(i in 1..5) {
+//             println(i)
+//         }
+//     }
+// }
+
+
+
+
+
+// // 정상적인 코루틴 예시
+// import kotlinx.coroutines.*
+
+// fun main() {
+//     runBlocking { // "runBlocking 블럭을 만든다"고 표현한다.
+//         val a = launch { // Job 객체 생성
+//             for(i in 1..5) {
+//                 println(i)
+//                 delay(10)
+//             }
+//         }
+        
+//         val b = async { // Deferred 객체 생성
+//             "async 종료"
+//         }
+        
+//         // 메인 루틴(여기)에서 아래의 문자열을 출력한다
+//         println("async 대기") 
+//         println(b.await()) // b에 await, 즉 비동기를 걸어주고 결과(async{}내의 반환값)를 출력
+        
+// //         // launch 예시 1
+// //         println("launch 대기")
+// //         a.join() // a에 join, 즉 비동기를 걸어 a가 끝날 때까지 대기한다
+// //         println("launch 종료")
+        
+//         // launch 예시 2
+//         println("launch 취소")
+//         a.cancel() // a에 cancel을 걸어 실행 도중에 중단시킨다.
+//         println("launch 종료")
+//     }
+    
+//     // 위 코드를 실행하면 먼저 async의 결과를 기다린 후 .await() 함수에서 결과를 받아 출력하고
+//     // 다시 launch가 끝까지 수행되기를 기다린 후 launch가 종료되었음을 출력한다
+
+// }
+
+
+
+
+
+// // .withTimeoutOrNull() 예시
+// import kotlinx.coroutines.*
+
+// fun main() {
+//     runBlocking {
+//         var result = withTimeoutOrNull(50) { // (50) <= timeout(시간제한)
+//             for(i in 1..3) { // 일부러 1..5에 10딜레이 해봤는데 4까지 출력되고 null이 리턴됨. for문이 딱딱 맞춰서 진행되는 게 아닌가봄. 3까지만 Finish 뜸.
+//                 println(i)
+//                 delay(10)
+//             }
+//             "Finish"
+//         }
+        
+//         println(result) 
+//         // for로 인해 먼저 숫자들이 순서대로 출력되다가, 
+//         // 중간에 제한시간이 되면 timeout 이내에 함수 내부의 구문들이 전부 실행될 수 없음을 감지한다. 
+//         // 그 다음엔 "출력이 중단되고" 리턴값은 "null"이기 때문에, println(result)을 수행하면 null이 출력되는 것이다.
+//     }
+// }
+
+
