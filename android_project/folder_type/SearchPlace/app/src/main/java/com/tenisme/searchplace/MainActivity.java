@@ -33,6 +33,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 import com.tenisme.searchplace.adapter.RecyclerViewAdapter;
 import com.tenisme.searchplace.adapter.RecyclerViewAdapter_SavePlace;
 import com.tenisme.searchplace.data.DatabaseHandler;
@@ -45,7 +46,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
         // todo : 저장해놓은 장소는 어댑터의 "장소 저장"을 "장소 저장됨"으로 바꾸고, 다시 클릭시 "저장을 취소하시겠습니까?"라는 알러트 다이얼로그를 띄운다.
             // "저장 취소"를 누르면 저장된 DB 에서 삭제되고, "아니오"를 누르면 아무 행동도 하지 않는다.
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     RecyclerView recyclerView; // 검색 표시용
     RecyclerViewAdapter recyclerViewAdapter; // 검색 표시용
 
-    Spinner spinnerPlaceType;
+    MaterialSpinner spinnerPlaceType;
     ArrayAdapter arrayAdapter; // spinner 셋팅용
 
     EditText editDistance;
@@ -102,7 +103,37 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinnerPlaceType = findViewById(R.id.spinnerPlaceType);
         arrayAdapter = ArrayAdapter.createFromResource(this, R.array.spinner_array, android.R.layout.simple_spinner_dropdown_item);
         spinnerPlaceType.setAdapter(arrayAdapter);
-        spinnerPlaceType.setOnItemSelectedListener(this);
+        spinnerPlaceType.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+            @Override
+            public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+                switch (position){
+                    case 0 :
+                        Log.i("SearchStore",Integer.toString(position));
+                        placeType = "";
+                        break;
+                    case 1 :
+                        Log.i("SearchStore",Integer.toString(position));
+                        placeType = "&type=bank";
+                        break;
+                    case 2 :
+                        Log.i("SearchStore",Integer.toString(position));
+                        placeType = "&type=atm";
+                        break;
+                    case 3 :
+                        Log.i("SearchStore",Integer.toString(position));
+                        placeType = "&type=library";
+                        break;
+                    case 4 :
+                        Log.i("SearchStore",Integer.toString(position));
+                        placeType = "&type=cafe";
+                        break;
+                    case 5 :
+                        Log.i("SearchStore",Integer.toString(position));
+                        placeType = "&type=restaurant";
+                        break;
+                }
+            }
+        });
 
         editDistance = findViewById(R.id.editDistance);
         editSearchStore = findViewById(R.id.editSearchStore);
@@ -230,42 +261,37 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    // Spinner 항목 클릭시 설정
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        switch (position){
-            case 0 :
-                Log.i("SearchStore",Integer.toString(position));
-                placeType = "";
-                break;
-            case 1 :
-                Log.i("SearchStore",Integer.toString(position));
-                placeType = "&type=bank";
-                break;
-            case 2 :
-                Log.i("SearchStore",Integer.toString(position));
-                placeType = "&type=atm";
-                break;
-            case 3 :
-                Log.i("SearchStore",Integer.toString(position));
-                placeType = "&type=library";
-                break;
-            case 4 :
-                Log.i("SearchStore",Integer.toString(position));
-                placeType = "&type=cafe";
-                break;
-            case 5 :
-                Log.i("SearchStore",Integer.toString(position));
-                placeType = "&type=restaurant";
-                break;
-        }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+//    // Spinner 항목 클릭시 설정
+//    @Override
+//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//        switch (position){
+//            case 0 :
+//                Log.i("SearchStore",Integer.toString(position));
+//                placeType = "";
+//                break;
+//            case 1 :
+//                Log.i("SearchStore",Integer.toString(position));
+//                placeType = "&type=bank";
+//                break;
+//            case 2 :
+//                Log.i("SearchStore",Integer.toString(position));
+//                placeType = "&type=atm";
+//                break;
+//            case 3 :
+//                Log.i("SearchStore",Integer.toString(position));
+//                placeType = "&type=library";
+//                break;
+//            case 4 :
+//                Log.i("SearchStore",Integer.toString(position));
+//                placeType = "&type=cafe";
+//                break;
+//            case 5 :
+//                Log.i("SearchStore",Integer.toString(position));
+//                placeType = "&type=restaurant";
+//                break;
+//        }
+//    }
 
     // Button 클릭시 설정
     @Override

@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 class MainViewModel(application: Application): AndroidViewModel(application) {
 
     val todos: LiveData<List<Todo>> by lazy { getAll() }
+
     var newTodo: String? = null
 
     private val db = Room.databaseBuilder(application, AppDatabase::class.java, "todo-db")

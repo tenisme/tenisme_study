@@ -2,6 +2,7 @@ package com.tenisme.room_exam_kotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -26,7 +27,9 @@ class MainActivity : AppCompatActivity() {
             .get(MainViewModel::class.java)
         binding.viewModel = viewModel
 
-        viewModel.getAll().observe(this, { binding.editTodo.text = null })
+        viewModel.getAll().observe(this, {
+            Log.d("RoomTest", it.toString())
+            binding.editTodo.text = null })
 
         // 뷰모델 사용 + DataBinding 이 없을 때의 사용 예시
 //        viewModel.getAll().observe(this, { txtResult.text = it.toString() })

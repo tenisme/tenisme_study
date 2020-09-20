@@ -178,7 +178,7 @@ is : 자료형이 맞는지 체크한다
 
 !is : 자료형이 틀렸는지를 체크한다
 
-
+* is는 instanceOf를 대신하기도 한다.
 
 
 
@@ -193,6 +193,7 @@ fun doWhen(a: Any) {
 		is Long -> println("Long 타입")
 		!is String -> println("String 타입이 아님")
 		else -> println("어떤 조건도 만족하지 않음")
+		in 2..10 -> println("2~10사이의 값")
 	}
 }
 
@@ -265,7 +266,7 @@ for(i in 'a'..'e') {
 }
 └ Char 자료형 'a'~'z'를 숫자 대신 기입 가능
 
-
+* !in은 for loop와 generic에는 쓰일 수 없다.
 
 
 
@@ -977,7 +978,7 @@ class EventPrinter: EventListener {
 	└ 강의 예시로 빗대자면 "Counter 와 봐라. 내가 만든 종 줄테니까 내가 너한테 count() 시키면 이 종을 때에 맞춰 울려줘라."
 	└ EventPrinter로부터 리스너의 구현부를 넘겨받은 Count(~) 인스턴스로 count()를 실행하면 EventPrinter가 구현한 listener.onEvent(i)가 실행되어 다시 EventPrinter로 돌아온다.
 
-3.2. 이벤트를 수신하는(콜백을 주고받는) 클래스 - 작성 방법 2 - 익명 객체 활용
+3.2. 이벤트를 수신하는(콜백을 주고받는) 클래스 - 작성 방법 2 - 익명 객체(익명 오브젝트) 활용
 
 class EventPrinter {
 	fun start() {
@@ -1103,7 +1104,7 @@ class Cola: Drink() {
 
 
 //// 제너릭 (Generic) - <T>
-└ 제너릭을 사용하면 클래스나 함수에서 사용하는 "자료형을 외부에서 지정할 수 있음."
+└ 제너릭을 사용하면 클래스나 함수에서 사용하는 ★★★"자료형을 외부에서 지정할 수 있음."★★★
 └ 클래스나 함수를 선언할 때 '고정적인 자료형 대신' 실제 자료형으로 '대체되는 타입 패러미터를 받아' 사용하는 방법
 └ 업캐스팅, 다운캐스팅 없이도 다형성의 장점을 활용할 수 있음.
 	└ 자료형을 '있는 그대로' 사용할 수 있음.
@@ -2441,6 +2442,11 @@ private suspend fun doSomething() {
 }
 └ suspend doSomething() 함수 내부에서 launch를 또 실행함.
 
+// 코루틴 미뤄서 실행하기 예시
+val job = GlobalScope.launch(start = CoroutineStart.LAZY) {	// LAZY로 start 설정
+        println("launch Start")
+    }
+
 
 
 
@@ -2528,6 +2534,12 @@ Android Architecture Components
 Android 아키텍처 구성요소는 강력하고 테스트와 유지관리가 쉬운 앱을 디자인하도록 돕는 라이브러리 모음
 
 Livedata를 사용하여 기본 데이터베이스가 변경되면 뷰에 알리는 데이터 객체를 빌드
+
+	* MutableLiveData란 변경할 수 있는 LiveData 형입니다.
+	일반적인 LiveData형은 변경할 수 없고 오로지 데이터의 변경값만을 소비하는데 반해
+	MutableLiveData는 데이터를 UI Thread와 Background Thread에서 선택적으로 바꿀 수 있습니다.
+	
+	* MutableLiveData에 setValue 혹은 PostValue에서 실행하게되는데 두개의 차이점은 setValue에서는 UI Thread즉 Main Thread에서 실행하고 두번째는 Background Thread에서 처리합니다.
 
 ViewModel은 앱 회전 시 제거되지 않는 UI 관련 데이터를 저장
 

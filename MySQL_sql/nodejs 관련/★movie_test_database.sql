@@ -1,5 +1,7 @@
 # movie_test database
 
+use movie_test;
+
 # replies 이후의 테이블 설계 내용
 ## 영화 예약에 필요한 것
 ### 영화 정보(영화 id, 영화 제목, ...)
@@ -101,3 +103,5 @@ limit 0, 25;
 insert into favorites (user_id, movie_id) values (11, 1);
 
 delete from favorites where user_id = 11 and movie_id = 3;
+
+select count(*) from favorites;
