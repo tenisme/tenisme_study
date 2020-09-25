@@ -23144,6 +23144,109 @@ menu.xml
 
 출처 잘 밝히기.
 
+=======================  200925 수요일 수업 내용 메모
+
+-------------------------------------  REST API
+
+강사님 깃헙 86번 REST API / 자바의 자료구조 : https://docs.google.com/presentation/d/1zvKfMiPE9PCr-zvbrL12IYSa_31RQ2ZRKoJS33CeY4Q/edit?usp=sharing
+
+REST(Representational State Transfer)란?
+	서버나 서비스에 존재하는 모든 자원(이미지, 동영상, DB자원)에 고유한 URI를 부여해 활용하는 것 = 자원을 정의하고 자원에 대한 주소를 지정하는 방법론을 의미
+
+API(Application Programming Interface)란?
+	응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다.
+	API를 통해 소스 및 DB에는 접근하지 못하게 하고 해당 프로그램을 사용할 수 있도록 기능을 제공하게하는 것이다.
+
+REST 구성
+	자원(Resource) : http://service.com/users라는 형태의 URI
+	행위(Method) : GET/POST/DELETE/PUT과 같은 메소드
+	표현(Message) : JSON, XML 등의 형태를 이용해 표현
+
+		HTTP POST, http://service.com/users
+		{
+		  "users": {
+			"name": "sol"
+			}
+		}
+
+REST 특징
+	6가지의 조건이 있는데 이를 잘 지키는 서비스 디자인을 보고 Restful하다고 한다.
+
+1) Client-Server
+	클라이언트는 사용자 인증 등을 관리하고 서버는 API를 제공하는 등의 역할이 확실하게 구분되어 작동할 수 있게 한다.
+
+2) Uniform Interface
+	REST는 HTTP 표준만 따른다면, 어떠한 기술이든 사용이 가능한 인터페이스 스타일이다.
+	REST는 수신자가 이해하기 위한 모든 정보를 가지고 있어야 한다.(Self-descriptiveness 구조)
+
+3) Stateless
+	상태에 대한 정보는 클라이언트가 가지고 있고 서버는 이를 저장하지 않는다. => 구현이 쉽고 단순해짐
+
+4) Cacheable
+	웹에서 사용하는 기존의 인프라를 그대로 활용이 가능해 HTTP가 가진 가장 강력한 특징 중 하나인 캐싱 기능을 적용할 수 있다. 이렇게 캐시를 사용하게 되면 네트워크 응답시간 뿐만 아니라, REST 컴포넌트가 위치한 서버에 트랜잭션을 발생시키지 않아, 전체 응답시간과 성능 그리고 서버의 자원 사용률을 비약적으로 향상시킬 수 있다.
+
+5) Layered System
+	서버는 클라이언트가 모르게(클라이언트에서는 REST API서버만 호출) API 서버에 여러 계층(사용자 인증, 암호화, 로드밸런싱 등)을 추가하여 유연한 구조로 개발 될 수 있다.
+
+6) Code on Demand(optional)
+	클라이언트는 리소스에 대한 표현을 응답으로 받고 처리해야 하는데, 어떻게 처리해야 하는지에 대한 code를 서버가 제공하는 것을 의미
+
+------------------  Data Structure ( JAVA Collections )
+
+큐 - 은행 번호표 (먼저 온사람이 먼저)
+	FIFO
+
+스택 - 나중에 들어온 화면이 먼저 없어짐
+	LIFO
+
+----------------------------------  REST API 정리
+
+1. REST 란 무엇?
+	서비스에 존재하는 모든 자원(Resource : 이미지, 유저 정보, 포스팅정보, 동영상 등) 에 대해서 고유의 URI를 부여해서 활용하는 것 
+
+2. API 란 무엇?
+	운영체제(윈도우즈, 리눅스, 맥)에서 돌아가는 프로그램을 만들기 위해서 함수가 필요하고,
+	이 함수는 운영체제가 제공해 준다. 즉 이렇게 운영체제가 제공해 주는 함수를 API라고 한다.
+	현재는, 서비스에서 다른 프로그램이나 서비스로 기능을 제공해 주는 인터페이스를 API 라고 한다.
+
+3. REST 의 구성에 대해서 말씀하세요.
+	3가지로 구성되어 있습니다.
+	첫번째, Resource (자원) 은 http://service.com/api/v1/users URI 형태로 표시합니다.
+	두번째, Method (행동) 는 행동에 따라서 4가지를 주로 사용합니다. GET / POST / DELETE / PUT 
+	세번째, Message (데이터) 는 JSON이나 XML 형식으로 전달합니다.
+	
+	HTTP POST, http://service.com/users
+	{
+	  "users": {
+		"name": "sol"
+		}
+	}
+
+4. REST의 특징 - 위에 적혀있는 것과 같음
+
+---------------  Data Structure ( JAVA Collections ) 정리
+
+1. Data Structure 데이터 스트럭쳐 란?
+	데이터는 2개 이상을 의미하고, 2개 이상의 데이터를 저장하는 구조를 데이터 스트럭쳐라고 한다.
+	데이터를 입력할 수 있고, 수정할 수 있고, 삭제할 수 있고, 억세스 할 수 있어야 한다. (CRUD)
+ 
+
+2. 큐 Queue 란?
+	먼저 입력된 데이터를 먼저 처리하는 자료구조( Data Structure )다.
+	오래된 데이터를 먼저 사용한다. FIFO (Fisrt In First Out)
+
+3. 스택 Stack 이란?
+	나중에 입력된 데이터가, 먼저 사용된다.
+	LIFO (Last In First Out)
+	예를들면, 안드로이드의 화면처리에 사용된다.
+
+4. JAVA 에서의 자료구조 - Collections ( Java의 자료구조 설명 / 자바의 컬렉션 설명 )
+	자바에서는 크게, 리스트 List, 셋 Set, 맵 Map 이 있습니다.
+	리스트는 순서가 있습니다. 주로 스택(Stack)이나 어레이리스트(ArrayList)를 사용합니다.
+	셋은 중복데이터를 허용하지 않습니다. 해쉬셋(HashSet)이나 정렬을 위한 쏘티드셋(SortedSet)을 사용합니다.
+	맵은 키/밸류로 처리합니다. 해쉬맵(HashMap)이나 해쉬테이블(HashTable)을 사용합니다.
+
+=======================  200928 월요일 수업 내용 메모
 
 
 
