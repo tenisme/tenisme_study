@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name" translatable="false">Track Me</string>
+    <string name="loading">Loading</string>
+    <string-array name="default_sentence_array">
+        <item>그대는 인생을 사랑하는가?\n그렇다면 시간을 낭비하지 말라.\n\n- 벤자민 프랭클린 -</item>
+        <item>랜덤 문구 입력 0\n\n- 랜덤 문구 0 -</item>
+        <item>랜덤 문구 입력 1\n\n- 랜덤 문구 1 -</item>
+        <item>랜덤 문구 입력 2\n\n- 랜덤 문구 2 -</item>
+        <item>랜덤 문구 입력 3\n\n- 랜덤 문구 3 -</item>
+    </string-array>
+</resources>

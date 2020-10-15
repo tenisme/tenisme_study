@@ -1,0 +1,10 @@
+이 링크 안의 내용을 해석
+https://stackoverflow.com/questions/31467745/android-how-to-run-multiple-timers-in-background
+
+Android - How To Run Multiple Timers In Background
+
+now add your implementation here, (its too late here) put your code that you already have here, but minor changes if you need to call a Ui method use the user.post(runnable); 
+it the same as handler.post(runnable), also with this you have reference to your view to which you want to alter, so all you to do is do what you want to do easily without actually needing your interface call. and all Views that they rely on the music mechanism that you talked about will each have an instance of this class. your pausing mechanism has already being implemented so maintain your old pausing mechanism. Also if you are done and want totally stop the thread or kill this class set the boolean run variable to false.
+
+이제 여기에 구현을 추가하고 (너무 늦었 음) 이미 가지고있는 코드를 여기에 넣으십시오.하지만 Ui 메서드를 호출해야하는 경우 약간 변경하려면 user.post (runnable);
+handler.post (runnable)과 동일하며, 변경하려는 뷰에 대한 참조가 있으므로 실제로 인터페이스 호출이 필요하지 않고 원하는 작업을 쉽게 수행하면됩니다. 그리고 당신이 말한 음악 메커니즘에 의존하는 모든 뷰는 각각이 클래스의 인스턴스를 가질 것입니다. 일시 중지 메커니즘이 이미 구현되어 있으므로 이전 일시 중지 메커니즘을 유지하십시오. 또한 작업이 완료되고 스레드를 완전히 중지하거나이 클래스를 종료하려면 부울 실행 변수를 false로 설정하십시오.

@@ -255,3 +255,28 @@ Note: If the app targets API level 23 or higher, the app user must explicitly gr
 Protection level: signature|preinstalled|appop|pre23|development
 
 Constant Value: "android.permission.SYSTEM_ALERT_WINDOW"
+
+
+
+
+==  
+
+주석처리 해놓고 필요없어진 거 같은데 왜 안 지웠는지 모르겠는 코드
+
+//    private fun checkNotificationIsActive() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//
+//            val mNotificationManager: NotificationManager =
+//                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//            val notifications: Array<StatusBarNotification> =
+//                mNotificationManager.activeNotifications
+//
+//            if (notifications.isNotEmpty()) {
+//                // you don't have notifications
+//                setSharedData("isNotificationActive", false)
+//            } else {
+//                // you have notifications
+//                setSharedData("isNotificationActive", true)
+//            }
+//        }
+//    }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HowToUseMain">
+
+    <Button
+        android:id="@+id/btnMain"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_gravity="right"
+        android:background="@android:drawable/btn_dialog" />
+
+    <TextView
+        android:id="@+id/txtTemporary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="메인 액티비티 사용 방법 안내 이미지 배치" />
+</LinearLayout>

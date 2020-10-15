@@ -1,0 +1,323 @@
+<map version="freeplane 1.8.0">
+<!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
+<node TEXT="[no.LockScreen] 잠금 화면" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" FOLDED="false" ID="ID_355622970" CREATED="1597716910971" MODIFIED="1597757237982"><hook NAME="MapStyle" background="#3c3f41" layout="OUTLINE">
+    <properties show_icon_for_attributes="true" fit_to_viewport="false" show_note_icons="true" edgeColorConfiguration="#808080ff,#00ddddff,#dddd00ff,#dd0000ff,#00dd00ff,#dd0000ff,#7cddddff,#dddd7cff,#dd7cddff,#7cdd7cff,#dd7c7cff,#7c7cddff"/>
+
+<map_styles>
+<stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24.0 pt">
+<font SIZE="24"/>
+<stylenode LOCALIZED_TEXT="styles.predefined" POSITION="right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="default" ICON_SIZE="12.0 pt" COLOR="#009999" BACKGROUND_COLOR="#ffffff" BACKGROUND_ALPHA="0" STYLE="fork" FORMAT="STANDARD_FORMAT" BORDER_WIDTH_LIKE_EDGE="false" BORDER_WIDTH="3.0 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#999900">
+<font NAME="Malgun Gothic" SIZE="10" BOLD="true"/>
+<hook NAME="NodeConditionalStyles">
+    <conditional_style ACTIVE="true" LOCALIZED_STYLE_REF="default" LAST="false"/>
+</hook>
+<edge STYLE="horizontal" COLOR="#999900" WIDTH="1"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.details" STYLE="fork" BORDER_WIDTH="0.0 px">
+<font SIZE="8"/>
+<hook NAME="NodeConditionalStyles">
+    <conditional_style ACTIVE="true" LOCALIZED_STYLE_REF="defaultstyle.details" LAST="false"/>
+</hook>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.attributes">
+<font SIZE="9"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.note" COLOR="#cccccc" BACKGROUND_COLOR="#3c3f41" TEXT_ALIGN="LEFT"/>
+<stylenode LOCALIZED_TEXT="defaultstyle.floating" BORDER_COLOR="#cccccc">
+<edge STYLE="hide_edge"/>
+<cloud COLOR="#f0f0f0" SHAPE="ROUND_RECT"/>
+</stylenode>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.user-defined" POSITION="right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="styles.topic" COLOR="#18898b" STYLE="fork">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.subtopic" COLOR="#cc3300" STYLE="fork">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.subsubtopic" COLOR="#669900">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.important">
+<icon BUILTIN="yes"/>
+</stylenode>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.AutomaticLayout" POSITION="right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level.root" COLOR="#ffffff" BACKGROUND_COLOR="#009999" STYLE="bubble" SHAPE_HORIZONTAL_MARGIN="3.0 pt" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="CENTER" BORDER_WIDTH="3.0 px">
+<font SIZE="14"/>
+<hook NAME="NodeConditionalStyles">
+    <conditional_style ACTIVE="true" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" LAST="false"/>
+</hook>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,1" COLOR="#009999" BACKGROUND_COLOR="#ffffff" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="CENTER">
+<font SIZE="12"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,2" COLOR="#ffffff" BACKGROUND_COLOR="#ff9900" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="DEFAULT">
+<font SIZE="12"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,3" COLOR="#ffffff" BACKGROUND_COLOR="#3399ff" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="DEFAULT">
+<font SIZE="12"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,4" COLOR="#ffffff" BACKGROUND_COLOR="#ff6666" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="DEFAULT">
+<font SIZE="10"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,5" COLOR="#ffffff" BACKGROUND_COLOR="#666600" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="DEFAULT"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,6" COLOR="#ff9900" STYLE="bubble" SHAPE_VERTICAL_MARGIN="0.0 pt"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,7" COLOR="#009999" STYLE="bubble" SHAPE_VERTICAL_MARGIN="0.0 pt"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,8" COLOR="#ff0066"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,9" COLOR="#99cc00" STYLE="bubble" SHAPE_VERTICAL_MARGIN="0.0 pt"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,10"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,11"/>
+</stylenode>
+</stylenode>
+</map_styles>
+</hook>
+<hook NAME="AutomaticEdgeColor" COUNTER="6" RULE="ON_BRANCH_CREATION"/>
+<node TEXT="[no.Start] 앱 시작" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_205486750" CREATED="1597757041210" MODIFIED="1597757241072">
+<edge COLOR="#dd0000"/>
+<node TEXT="[no.0] 로딩" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1629855657" CREATED="1597717005795" MODIFIED="1597757245509" HGAP_QUANTITY="13.250000022351742 pt" VSHIFT_QUANTITY="15.749999530613437 pt">
+<node TEXT="[no.1.0] 공지사항" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_838047316" CREATED="1597717024274" MODIFIED="1597729121708" HGAP_QUANTITY="12.500000044703482 pt" VSHIFT_QUANTITY="22.499999329447768 pt"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      스킵 가능
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<node TEXT="[no.1.1] 사용 안내(메인)" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_220569477" CREATED="1597717033977" MODIFIED="1597729126996" HGAP_QUANTITY="11.750000067055224 pt" VSHIFT_QUANTITY="19.49999941885473 pt"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      스킵 가능
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<node TEXT="[no.1.2] 메인" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1629037526" CREATED="1597717064512" MODIFIED="1597729134129" HGAP_QUANTITY="14.0 pt" VSHIFT_QUANTITY="14.24999957531692 pt">
+<node TEXT="버튼 설정" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_534797205" CREATED="1597720721829" MODIFIED="1597722766168">
+<node TEXT="[no.2.0] 사용 안내(버튼 설정)" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1715813335" CREATED="1597717084886" MODIFIED="1597729164969" HGAP_QUANTITY="13.250000022351742 pt" VSHIFT_QUANTITY="16.499999508261695 pt"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      스킵 가능
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<node TEXT="[no.2.1] 버튼 설정" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" FOLDED="true" ID="ID_1502606751" CREATED="1597717156623" MODIFIED="1597729172974" HGAP_QUANTITY="13.250000022351742 pt" VSHIFT_QUANTITY="11.249999664723884 pt">
+<node TEXT="(icon) 변경사항 1회 뒤로 가기" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_309472565" CREATED="1597718990490" MODIFIED="1597719356721"/>
+<node TEXT="(icon) 변경사항 1회 앞으로 가기" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_1724920226" CREATED="1597719038460" MODIFIED="1597719363350"/>
+<node TEXT="(icon) 버튼 랜덤 배치" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_336066870" CREATED="1597718916016" MODIFIED="1597719365074"/>
+<node TEXT="(icon) 현재 배치화면 저장" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_332748008" CREATED="1597718890959" MODIFIED="1597719361109"/>
+<node TEXT="편집 메뉴" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_517648004" CREATED="1597718222228" MODIFIED="1597718846388">
+<node TEXT="버튼 목록 조회" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" FOLDED="true" ID="ID_571072243" CREATED="1597718514129" MODIFIED="1597718874191">
+<node TEXT="[no.2.1.0] 사용 안내(버튼 목록)" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1684898869" CREATED="1597718541030" MODIFIED="1597845985852"/>
+<node TEXT="[no.2.1.1] 버튼 목록" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1601685125" CREATED="1597718541030" MODIFIED="1597806731502">
+<node TEXT="(icon) 버튼 만들기" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_334691057" CREATED="1597718442999" MODIFIED="1597806868357">
+<node TEXT="[no.2.1.2] 사용 안내(버튼 만들기)" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1703738355" CREATED="1597718587832" MODIFIED="1597846015706"/>
+<node TEXT="[no.2.1.3] 버튼 만들기" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_723411999" CREATED="1597718587832" MODIFIED="1597846008360"/>
+</node>
+<node TEXT="(icon) 버튼 수정하기" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_1685539155" CREATED="1597718442999" MODIFIED="1597844385652">
+<node TEXT="[no.2.1.4] 사용 안내(버튼 수정하기)" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_941456855" CREATED="1597718587832" MODIFIED="1597846038285"/>
+<node TEXT="[no.2.1.5] 버튼 수정하기" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1172398248" CREATED="1597718587832" MODIFIED="1597896371461"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      여기서 삭제도 가능
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="마지막 저장 상태로 되돌리기" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_197020285" CREATED="1597718650980" MODIFIED="1597718874191"/>
+<node TEXT="현재 배치화면 비우기" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_406782048" CREATED="1597718700283" MODIFIED="1597718874191"/>
+</node>
+<node TEXT="메인으로" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_1333894420" CREATED="1597718236218" MODIFIED="1597730685602">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#ffccff" WIDTH="1" TRANSPARENCY="200" FONT_SIZE="10" FONT_FAMILY="Malgun Gothic" DESTINATION="ID_1629037526" STARTINCLINATION="478;0;" ENDINCLINATION="478;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+</node>
+<node TEXT="(icon) 앱 환경설정" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_1968816364" CREATED="1597718240221" MODIFIED="1597722634234">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#ff9999" WIDTH="1" TRANSPARENCY="200" FONT_SIZE="10" FONT_FAMILY="Malgun Gothic" DESTINATION="ID_1049354102" STARTINCLINATION="511;0;" ENDINCLINATION="511;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="로그 조회" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_1383274744" CREATED="1597720724988" MODIFIED="1597722762204">
+<node TEXT="[no.3.0] 사용 안내(로그 조회)" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_68265713" CREATED="1597717092998" MODIFIED="1597729243284" HGAP_QUANTITY="13.250000022351742 pt" VSHIFT_QUANTITY="20.999999374151248 pt"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      스킵 가능
+    </p>
+  </body>
+</html>
+
+</richcontent>
+<node TEXT="[no.3.1] 로그 조회" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" FOLDED="true" ID="ID_1821175060" CREATED="1597717185065" MODIFIED="1597729261516" HGAP_QUANTITY="16.249999932944775 pt" VSHIFT_QUANTITY="13.49999959766866 pt">
+<node TEXT="날짜" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_1709974998" CREATED="1597719459904" MODIFIED="1597719651277">
+<node TEXT="오늘의 기분" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" FOLDED="true" ID="ID_1059280384" CREATED="1597902802843" MODIFIED="1597902840018">
+<node TEXT="기분 선택" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_950964088" CREATED="1597902857152" MODIFIED="1597902866362"/>
+</node>
+<node TEXT="오늘의 기록 작성" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" FOLDED="true" ID="ID_1350258166" CREATED="1597902806279" MODIFIED="1597906259473">
+<node TEXT="[no.3.1.1] 오늘의 기록 작성" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1142918637" CREATED="1597902875476" MODIFIED="1597906334636"/>
+</node>
+<node TEXT="오늘의 기록 조회" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" FOLDED="true" ID="ID_1670730188" CREATED="1597906268405" MODIFIED="1597906279679">
+<node TEXT="[no.3.1.2] 오늘의 기록 조회" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1407930580" CREATED="1597906296286" MODIFIED="1597906327843"/>
+</node>
+</node>
+<node TEXT="(icon) 활동" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_617405384" CREATED="1597719465862" MODIFIED="1597719651278"/>
+<node TEXT="시작~종료시간" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_906148830" CREATED="1597719498181" MODIFIED="1597719651278"/>
+<node TEXT="(icon) 태그/메모" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_1780628492" CREATED="1597719521935" MODIFIED="1597719651278"/>
+<node TEXT="(icon) 태그/메모 접기/펴기" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_1769701772" CREATED="1597719541332" MODIFIED="1597719651278"/>
+<node TEXT="(icon) 로그 수정/삭제" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_391155658" CREATED="1597719556610" MODIFIED="1597719651278">
+<node TEXT="로그 수정" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_1307286896" CREATED="1597896452713" MODIFIED="1597896485291">
+<node TEXT="[no.3.1.3] 사용 안내(로그 수정)" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_183382625" CREATED="1597896278573" MODIFIED="1597977190406"/>
+<node TEXT="[no.3.1.4] 로그 수정" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_306482368" CREATED="1597896278573" MODIFIED="1597977180283"/>
+</node>
+<node TEXT="로그 삭제" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" FOLDED="true" ID="ID_299328200" CREATED="1597896464201" MODIFIED="1597896485291">
+<node TEXT="로그 삭제 확인" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_316451275" CREATED="1597902912776" MODIFIED="1597902920337"/>
+</node>
+</node>
+<node TEXT="조회 옵션" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_835841730" CREATED="1597718248132" MODIFIED="1597722797613">
+<node TEXT="로그 전체 접기" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_211775987" CREATED="1597719822081" MODIFIED="1597722797613" VSHIFT_QUANTITY="24.749999262392542 pt"/>
+<node TEXT="로그 전체 펼치기" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_810262484" CREATED="1597721316390" MODIFIED="1597721349868"/>
+<node TEXT="시간순 정렬 반전" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_36471918" CREATED="1597721325735" MODIFIED="1597721349869"/>
+<node TEXT="특정 날짜 조회" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" FOLDED="true" ID="ID_910817834" CREATED="1597721334429" MODIFIED="1597721349869">
+<node TEXT="" ID="ID_1374132703" CREATED="1597721642263" MODIFIED="1597721642263">
+<hook NAME="FirstGroupNode"/>
+</node>
+<node TEXT="(radio) 오늘" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_1598203713" CREATED="1597937315971" MODIFIED="1597937363893"/>
+<node TEXT="(radio) 어제" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_1799672578" CREATED="1597721363630" MODIFIED="1597721707524"/>
+<node TEXT="(radio) 어제~오늘" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_1774522679" CREATED="1597721373643" MODIFIED="1597721713565"/>
+<node TEXT="(radio) 그저께~오늘" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_811805746" CREATED="1597721377751" MODIFIED="1597721716146"/>
+<node TEXT="(radio) 일주일 전~오늘" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_1621834729" CREATED="1597721383694" MODIFIED="1597721719283"/>
+<node TEXT="(radio) 직접 선택" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_1347871589" CREATED="1597721392486" MODIFIED="1597721845834">
+<node TEXT="달력 이미지 or 기간 직접 입력" LOCALIZED_STYLE_REF="AutomaticLayout.level,4" ID="ID_918787538" CREATED="1597721429612" MODIFIED="1597723745700"/>
+</node>
+<node TEXT="" ID="ID_141475791" CREATED="1597721642261" MODIFIED="1597721642263">
+<hook NAME="SummaryNode"/>
+<hook NAME="AlwaysUnfoldedNode"/>
+<node TEXT="조회" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_795210603" CREATED="1597721642263" MODIFIED="1597891902958">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#ff6666" WIDTH="1" TRANSPARENCY="200" FONT_SIZE="10" FONT_FAMILY="Malgun Gothic" DESTINATION="ID_1821175060" STARTINCLINATION="601;0;" ENDINCLINATION="601;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="메인으로" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_1719003032" CREATED="1597718250982" MODIFIED="1597730731891">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#ffccff" WIDTH="1" TRANSPARENCY="200" FONT_SIZE="10" FONT_FAMILY="Malgun Gothic" DESTINATION="ID_1629037526" STARTINCLINATION="510;0;" ENDINCLINATION="510;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+</node>
+<node TEXT="(icon) 앱 환경설정" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_1509813420" CREATED="1597718254136" MODIFIED="1597722642390">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#ff9999" WIDTH="1" TRANSPARENCY="200" FONT_SIZE="10" FONT_FAMILY="Malgun Gothic" DESTINATION="ID_1049354102" STARTINCLINATION="252;0;" ENDINCLINATION="252;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="(icon) 앱 환경설정" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_272523802" CREATED="1597720726376" MODIFIED="1597722770961">
+<node TEXT="[no.4] 앱 환경설정" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" FOLDED="true" ID="ID_1049354102" CREATED="1597717150631" MODIFIED="1597729973704" HGAP_QUANTITY="11.750000067055224 pt" VSHIFT_QUANTITY="17.249999485909953 pt">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#ffccff" WIDTH="1" TRANSPARENCY="200" FONT_SIZE="10" FONT_FAMILY="Malgun Gothic" DESTINATION="ID_1629037526" STARTINCLINATION="393;0;" ENDINCLINATION="393;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+<node TEXT="어플 잠금 비밀번호 설정" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_1742448701" CREATED="1597722905887" MODIFIED="1597754955493">
+<node TEXT="[no.4.1] 액티비티" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1256349819" CREATED="1597719239335" MODIFIED="1597729977227"/>
+</node>
+<node TEXT="잠금화면에서 시간 기록 사용" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_1498541228" CREATED="1597754413811" MODIFIED="1597756460072"><richcontent TYPE="DETAILS">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      스위치 사용
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="로그 조회 기본 화면 설정" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_849591263" CREATED="1597723015308" MODIFIED="1597748212121">
+<node TEXT="[no.4.6] 액티비티" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1102606039" CREATED="1597719239335" MODIFIED="1597729990116">
+<node TEXT="로그 편집 버튼 위치 변경" LOCALIZED_STYLE_REF="AutomaticLayout.level,4" FOLDED="true" ID="ID_871398919" CREATED="1597723125764" MODIFIED="1597735595477">
+<node TEXT="좌측 배치" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_1605875971" CREATED="1597723362221" MODIFIED="1597723403134"/>
+<node TEXT="우측 배치" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_147391378" CREATED="1597723393377" MODIFIED="1597723403135"/>
+</node>
+</node>
+</node>
+<node TEXT="태그/메모 기능 사용 설정" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_252981995" CREATED="1597723044591" MODIFIED="1597723345383">
+<node TEXT="[no.4.7] 액티비티" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_623579796" CREATED="1597719239335" MODIFIED="1597729995099">
+<node TEXT="로그에서 태그/메모 버튼 보이기/숨기기" ID="ID_130240075" CREATED="1597723068288" MODIFIED="1597723120620"/>
+</node>
+</node>
+<node TEXT="로딩 화면 문구 설정" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_872034474" CREATED="1597723171558" MODIFIED="1597748365811">
+<node TEXT="[no.4.8] 액티비티" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1525828016" CREATED="1597719239335" MODIFIED="1597729998512"/>
+</node>
+<node TEXT="오류/개선사항 피드백" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_752727518" CREATED="1597722969243" MODIFIED="1597748432491">
+<node TEXT="[no.4.3] 액티비티" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1432719258" CREATED="1597719239335" MODIFIED="1597729982852"/>
+</node>
+<node TEXT="도움말" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_241470942" CREATED="1597723198390" MODIFIED="1597723345383">
+<node TEXT="안내 페이지 다시보기" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_21722466" CREATED="1597723203987" MODIFIED="1597723448273">
+<node TEXT="[no.4.9] 액티비티" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_296769463" CREATED="1597719239335" MODIFIED="1597730001450"/>
+</node>
+<node TEXT="유용한 팁" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_1124294448" CREATED="1597723209459" MODIFIED="1597723448273">
+<node TEXT="[no.4.11] 액티비티" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_855459569" CREATED="1597719239335" MODIFIED="1597730003631"/>
+</node>
+</node>
+<node TEXT="업데이트 내역" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_795447725" CREATED="1597723004746" MODIFIED="1597723345382">
+<node TEXT="[no.4.5] 액티비티" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1830102574" CREATED="1597719239335" MODIFIED="1597729987891"/>
+</node>
+<node TEXT="광고 제거" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_275363137" CREATED="1597722979759" MODIFIED="1597748455234">
+<node TEXT="[no.4.4] 액티비티" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1798720204" CREATED="1597719239335" MODIFIED="1597729985522"/>
+</node>
+<node TEXT="로그 조회" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_884717254" CREATED="1597735104642" MODIFIED="1597735345036">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#ff6666" WIDTH="1" TRANSPARENCY="200" FONT_SIZE="10" FONT_FAMILY="Malgun Gothic" DESTINATION="ID_1821175060" STARTINCLINATION="526;0;" ENDINCLINATION="40;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+</node>
+<node TEXT="메인으로" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_453213540" CREATED="1597735111195" MODIFIED="1597735403306">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#ffccff" WIDTH="1" TRANSPARENCY="200" FONT_SIZE="10" FONT_FAMILY="Malgun Gothic" DESTINATION="ID_1629037526" STARTINCLINATION="714;0;" ENDINCLINATION="40;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+</node>
+<node TEXT="백업" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" FOLDED="true" ID="ID_97806016" CREATED="1597722962655" MODIFIED="1597723345382">
+<node TEXT="[no.4.2] 액티비티" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_511734872" CREATED="1597719239335" MODIFIED="1597729980289"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="마인드맵 포맷 설명" FOLDED="true" POSITION="left" ID="ID_240765791" CREATED="1597719191179" MODIFIED="1597719431198">
+<edge COLOR="#00dd00"/>
+<node TEXT="액티비티" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_77311233" CREATED="1597719239335" MODIFIED="1597719290325"/>
+<node TEXT="텍스트형 버튼" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_188372746" CREATED="1597719251740" MODIFIED="1597719415925">
+<node TEXT="(icon) 아이콘형 버튼" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_1583473816" CREATED="1597719401684" MODIFIED="1597719421230"/>
+</node>
+<node TEXT="다이얼로그" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_1361604082" CREATED="1597719260174" MODIFIED="1597719302579"/>
+<node TEXT="일반 뷰" LOCALIZED_STYLE_REF="AutomaticLayout.level,4" ID="ID_656727165" CREATED="1597723312686" MODIFIED="1597723323937"/>
+</node>
+</node>
+</map>

@@ -1,0 +1,164 @@
+<map version="freeplane 1.8.0">
+<!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
+<node TEXT="select * from ~" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" FOLDED="false" ID="ID_562275398" CREATED="1598359231032" MODIFIED="1598373042283"><hook NAME="MapStyle" background="#3c3f41">
+    <properties fit_to_viewport="false" show_icon_for_attributes="true" show_note_icons="true" edgeColorConfiguration="#808080ff,#00ddddff,#dddd00ff,#dd0000ff,#00dd00ff,#dd0000ff,#7cddddff,#dddd7cff,#dd7cddff,#7cdd7cff,#dd7c7cff,#7c7cddff"/>
+
+<map_styles>
+<stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24.0 pt">
+<font SIZE="24"/>
+<stylenode LOCALIZED_TEXT="styles.predefined" POSITION="right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="default" ICON_SIZE="12.0 pt" COLOR="#009999" BACKGROUND_COLOR="#ffffff" BACKGROUND_ALPHA="0" STYLE="fork" FORMAT="STANDARD_FORMAT" BORDER_WIDTH_LIKE_EDGE="false" BORDER_WIDTH="3.0 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#999900">
+<font NAME="Malgun Gothic" SIZE="10" BOLD="true"/>
+<hook NAME="NodeConditionalStyles">
+    <conditional_style ACTIVE="true" LOCALIZED_STYLE_REF="default" LAST="false"/>
+</hook>
+<edge STYLE="horizontal" COLOR="#999900" WIDTH="1"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.details" STYLE="fork" BORDER_WIDTH="0.0 px">
+<font SIZE="8"/>
+<hook NAME="NodeConditionalStyles">
+    <conditional_style ACTIVE="true" LOCALIZED_STYLE_REF="defaultstyle.details" LAST="false"/>
+</hook>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.attributes">
+<font SIZE="9"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.note" COLOR="#cccccc" BACKGROUND_COLOR="#3c3f41" TEXT_ALIGN="LEFT"/>
+<stylenode LOCALIZED_TEXT="defaultstyle.floating" BORDER_COLOR="#cccccc">
+<edge STYLE="hide_edge"/>
+<cloud COLOR="#f0f0f0" SHAPE="ROUND_RECT"/>
+</stylenode>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.user-defined" POSITION="right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="styles.topic" COLOR="#18898b" STYLE="fork">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.subtopic" COLOR="#cc3300" STYLE="fork">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.subsubtopic" COLOR="#669900">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.important">
+<icon BUILTIN="yes"/>
+</stylenode>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.AutomaticLayout" POSITION="right" STYLE="bubble">
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level.root" COLOR="#ffffff" BACKGROUND_COLOR="#009999" STYLE="bubble" SHAPE_HORIZONTAL_MARGIN="3.0 pt" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="CENTER" BORDER_WIDTH="3.0 px">
+<font SIZE="14"/>
+<hook NAME="NodeConditionalStyles">
+    <conditional_style ACTIVE="true" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" LAST="false"/>
+</hook>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,1" COLOR="#009999" BACKGROUND_COLOR="#ffffff" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="CENTER">
+<font SIZE="12"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,2" COLOR="#ffffff" BACKGROUND_COLOR="#ff9900" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="DEFAULT">
+<font SIZE="12"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,3" COLOR="#ffffff" BACKGROUND_COLOR="#3399ff" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="DEFAULT">
+<font SIZE="12"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,4" COLOR="#ffffff" BACKGROUND_COLOR="#ff6666" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="DEFAULT">
+<font SIZE="10"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,5" COLOR="#ffffff" BACKGROUND_COLOR="#666600" STYLE="rectangle" SHAPE_VERTICAL_MARGIN="0.0 pt" TEXT_ALIGN="DEFAULT"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,6" COLOR="#ff9900" STYLE="bubble" SHAPE_VERTICAL_MARGIN="0.0 pt"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,7" COLOR="#009999" STYLE="bubble" SHAPE_VERTICAL_MARGIN="0.0 pt"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,8" COLOR="#ff0066"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,9" COLOR="#99cc00" STYLE="bubble" SHAPE_VERTICAL_MARGIN="0.0 pt"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,10"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,11"/>
+</stylenode>
+</stylenode>
+</map_styles>
+</hook>
+<hook NAME="AutomaticEdgeColor" COUNTER="16" RULE="ON_BRANCH_CREATION"/>
+<node TEXT="daily_record" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="left" ID="ID_1735979168" CREATED="1598361894186" MODIFIED="1598361918745">
+<edge COLOR="#00dddd"/>
+<node TEXT="daily_record_id" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_644887836" CREATED="1598361922510" MODIFIED="1598362025502">
+<node TEXT="int not null AI PK" ID="ID_1602031322" CREATED="1598362441907" MODIFIED="1598362456569"/>
+</node>
+<node TEXT="day" LOCALIZED_STYLE_REF="AutomaticLayout.level,9" ID="ID_1613571296" CREATED="1598361923272" MODIFIED="1598362370105">
+<node TEXT="date not null" ID="ID_221460164" CREATED="1598362396424" MODIFIED="1598362409400"/>
+</node>
+<node TEXT="note" LOCALIZED_STYLE_REF="AutomaticLayout.level,9" ID="ID_416207887" CREATED="1598361924211" MODIFIED="1598362375513">
+<node TEXT="varchar(2000)" ID="ID_194565026" CREATED="1598362421675" MODIFIED="1598362432835"/>
+</node>
+</node>
+<node TEXT="record_activity" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_1076350271" CREATED="1598359620868" MODIFIED="1598373170491">
+<edge COLOR="#dd0000"/>
+<node TEXT="r_a_id" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_623115537" CREATED="1598359895576" MODIFIED="1598373170491" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="17.249999485909953 pt">
+<node TEXT="int not null AI PK" ID="ID_839270014" CREATED="1598362441907" MODIFIED="1598373111751" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="35.99999892711642 pt"/>
+<node TEXT="tag_in_r_a" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1592601504" CREATED="1598359633209" MODIFIED="1598373098358" HGAP_QUANTITY="20.749999798834327 pt" VSHIFT_QUANTITY="-15.749999530613437 pt">
+<node TEXT="r_a_tag_id" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_967678204" CREATED="1598359861419" MODIFIED="1598362920508" HGAP_QUANTITY="15.499999955296518 pt" VSHIFT_QUANTITY="12.7499996200204 pt">
+<node TEXT="int not null AI PK" ID="ID_597762160" CREATED="1598362441907" MODIFIED="1598362456569"/>
+</node>
+<node TEXT="r_a_id" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_414649256" CREATED="1598359864986" MODIFIED="1598362025504">
+<node TEXT="int not null" ID="ID_1440073350" CREATED="1598362923365" MODIFIED="1598362929673"/>
+</node>
+<node TEXT="tag_id" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_221026006" CREATED="1598359865892" MODIFIED="1598367318903">
+<node TEXT="int not null" ID="ID_1853724654" CREATED="1598362933871" MODIFIED="1598368621662" HGAP_QUANTITY="12.500000044703482 pt" VSHIFT_QUANTITY="20.24999939650299 pt"/>
+<node TEXT="tag" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_877935103" CREATED="1598360479791" MODIFIED="1598360501263">
+<node TEXT="tag_id" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_1562804727" CREATED="1598360498805" MODIFIED="1598362507999">
+<node TEXT="int not null AI PK" ID="ID_991273806" CREATED="1598362441907" MODIFIED="1598362507998" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="17.99999946355821 pt"/>
+<node TEXT="tag_in_activity" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1173958129" CREATED="1598361635380" MODIFIED="1598361912669" HGAP_QUANTITY="61.24999859184031 pt" VSHIFT_QUANTITY="-6.749999798834329 pt">
+<node TEXT="t_i_a_id" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_340637413" CREATED="1598361683209" MODIFIED="1598362025505">
+<node TEXT="int not null AI PK" ID="ID_1634524132" CREATED="1598362441907" MODIFIED="1598362456569"/>
+</node>
+<node TEXT="activity_id" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_306173206" CREATED="1598361686872" MODIFIED="1598362025505">
+<node TEXT="int not null" ID="ID_252821152" CREATED="1598364332291" MODIFIED="1598364339279"/>
+</node>
+<node TEXT="tag_id" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_388369095" CREATED="1598361687553" MODIFIED="1598362025505">
+<node TEXT="int not null" ID="ID_1367806398" CREATED="1598364342180" MODIFIED="1598371219283"/>
+</node>
+</node>
+</node>
+<node TEXT="tag" LOCALIZED_STYLE_REF="AutomaticLayout.level,9" ID="ID_298658843" CREATED="1598360510317" MODIFIED="1598362385819">
+<node TEXT="varchar(100) not null" ID="ID_1068189177" CREATED="1598364262981" MODIFIED="1598364270538"/>
+</node>
+<node TEXT="unique(tag)" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_611250915" CREATED="1598364088699" MODIFIED="1598364285255"/>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="record_id" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_993636406" CREATED="1598359896261" MODIFIED="1598363118597">
+<node TEXT="int not null" ID="ID_1779161583" CREATED="1598362759598" MODIFIED="1598363118596" HGAP_QUANTITY="14.749999977648258 pt" VSHIFT_QUANTITY="5.999999821186071 pt"/>
+<node TEXT="record_time" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1718465245" CREATED="1598360088418" MODIFIED="1598360138973">
+<node TEXT="record_id" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_1028242100" CREATED="1598360143844" MODIFIED="1598362025504">
+<node TEXT="int not null AI PK" ID="ID_1410264511" CREATED="1598362441907" MODIFIED="1598362456569"/>
+</node>
+<node TEXT="start_time" LOCALIZED_STYLE_REF="AutomaticLayout.level,9" ID="ID_819449765" CREATED="1598360144526" MODIFIED="1598362385818">
+<node TEXT="timestamp default now()" ID="ID_1704979866" CREATED="1598363137664" MODIFIED="1598363149125"/>
+</node>
+<node TEXT="finish_time" LOCALIZED_STYLE_REF="AutomaticLayout.level,9" ID="ID_456195609" CREATED="1598360145298" MODIFIED="1598362385818">
+<node TEXT="timestamp default now() on update now()" ID="ID_13116940" CREATED="1598363151225" MODIFIED="1598363157952"/>
+</node>
+</node>
+</node>
+<node TEXT="activity_id" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_1879384683" CREATED="1598359896882" MODIFIED="1598362825739">
+<node TEXT="int not null" ID="ID_1201229357" CREATED="1598362814640" MODIFIED="1598362825738" HGAP_QUANTITY="12.500000044703482 pt" VSHIFT_QUANTITY="7.499999776482589 pt"/>
+<node TEXT="activity" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_715092759" CREATED="1598360176619" MODIFIED="1598360197340">
+<node TEXT="activity_id" LOCALIZED_STYLE_REF="AutomaticLayout.level,6" ID="ID_262759539" CREATED="1598360216997" MODIFIED="1598362025504">
+<arrowlink SHAPE="CUBIC_CURVE" COLOR="#ff9900" WIDTH="1" TRANSPARENCY="200" FONT_SIZE="10" FONT_FAMILY="Malgun Gothic" DESTINATION="ID_306173206" STARTINCLINATION="300;0;" ENDINCLINATION="300;0;" STARTARROW="NONE" ENDARROW="DEFAULT"/>
+<node TEXT="int not null AI PK" ID="ID_1155260721" CREATED="1598362441907" MODIFIED="1598362456569"/>
+</node>
+<node TEXT="name" LOCALIZED_STYLE_REF="AutomaticLayout.level,9" ID="ID_1839234719" CREATED="1598360238200" MODIFIED="1598362385818">
+<node TEXT="varchar(100) not null" ID="ID_58765888" CREATED="1598363179014" MODIFIED="1598363182166"/>
+</node>
+<node TEXT="icon" LOCALIZED_STYLE_REF="AutomaticLayout.level,9" ID="ID_1756385181" CREATED="1598360246403" MODIFIED="1598362385819">
+<node TEXT="int not null" ID="ID_1795764797" CREATED="1598363192406" MODIFIED="1598363194579"/>
+</node>
+<node TEXT="bg_color" LOCALIZED_STYLE_REF="AutomaticLayout.level,9" ID="ID_732768136" CREATED="1598360246403" MODIFIED="1598363699522">
+<node TEXT="int not null" ID="ID_656380977" CREATED="1598363192406" MODIFIED="1598363194579"/>
+</node>
+<node TEXT="unique(name, icon, bg_color)" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_44083371" CREATED="1598364038471" MODIFIED="1598364221635"/>
+</node>
+</node>
+<node TEXT="note" LOCALIZED_STYLE_REF="AutomaticLayout.level,9" ID="ID_364286155" CREATED="1598359897458" MODIFIED="1598362385817">
+<node TEXT="varchar(1000)" ID="ID_565423807" CREATED="1598362831485" MODIFIED="1598362842604"/>
+</node>
+<node TEXT="unique(record_id, activity_id)" LOCALIZED_STYLE_REF="AutomaticLayout.level,5" ID="ID_560568558" CREATED="1598362849403" MODIFIED="1598373159562" HGAP_QUANTITY="20.74999979883433 pt" VSHIFT_QUANTITY="-70.49999789893633 pt"/>
+</node>
+</node>
+</map>
