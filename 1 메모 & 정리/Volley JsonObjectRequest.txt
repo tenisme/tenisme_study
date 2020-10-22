@@ -1,0 +1,92 @@
+public class MainActivity extends AppCompatActivity {
+
+    RequestQueue requestQueue;
+    public static final String URL = "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDZTBpF7-q9LiD9zvVi8nscaCof8-PgbpY&maxResults=20&type=video&q=골프";
+
+    JSONArray objectArray;
+    JSONObject itemsObject;
+    JSONObject idObject;
+    JSONObject snippetObject;
+    JSONObject thumbnailsObject;
+    JSONObject defaultObject;
+    JSONObject highObject;
+
+    Youtube youtube;
+    ArrayList<Youtube> youtubeArrayList = new ArrayList<>();
+
+    RecyclerView recyclerView;
+    RecyclerViewAdapter recyclerViewAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Log.i("YTB","Start on Create");
+
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
+        requestQueue = Volley.newRequestQueue(MainActivity.this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i("YTB","Response : "+response.toString());
+
+                        try {
+                            objectArray = response.getJSONArray("items");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+//                        Log.i("YTB", itemsArray.toString());
+
+                        for(int i = 0 ; i < objectArray.length() ; i++){
+                            try {
+                                itemsObject = objectArray.getJSONObject(i);
+//                                Log.i("YTB",i+" "+idObject.toString());
+
+                                idObject = itemsObject.getJSONObject("id");
+                                snippetObject = itemsObject.getJSONObject("snippet");
+                                thumbnailsObject = snippetObject.getJSONObject("thumbnails");
+                                defaultObject = thumbnailsObject.getJSONObject("default");
+                                highObject = thumbnailsObject.getJSONObject("high");
+//                                Log.i("YTB", i+" "+idObject.toString());
+//                                Log.i("YTB",i+" "+snippetObject.toString());
+
+                                // videoId 가져오기
+                                String videoId = idObject.getString("videoId");
+                                // title 가져오기
+                                String title = snippetObject.getString("title");
+                                // description 가져오기
+                                String description = snippetObject.getString("description");
+                                // 썸네일 url 2가지 가져오기
+                                String thumbnailUrl = defaultObject.getString("url");
+                                String thumbnailBigUrl = highObject.getString("url");
+//                                Log.i("YTB", i+" "+videoId);
+//                                Log.i("YTB",i+" "+title);
+//                                Log.i("YTB",i+" "+description);
+//                                Log.i("YTB",i+" "+thumbnailUrl);
+
+                                youtube = new Youtube(videoId,title,description,thumbnailUrl,thumbnailBigUrl);
+                                youtubeArrayList.add(youtube);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        recyclerViewAdapter = new RecyclerViewAdapter(MainActivity.this,youtubeArrayList);
+                        recyclerView.setAdapter(recyclerViewAdapter);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.i("YTB","Error : "+error.toString());
+                    }
+                }
+        );
+        requestQueue.add(jsonObjectRequest);
+    }
+
+}
