@@ -24,8 +24,6 @@ import android.widget.LinearLayout
 class MainActivity : AppCompatActivity(), View.OnDragListener, View.OnLongClickListener,
     View.OnClickListener {
 
-    // todo : 몇가지 더 테스트해보고 옮기기
-
     companion object {
         private const val IMAGE_VIEW_TAG = "icon bitmap"
     }
@@ -92,7 +90,6 @@ class MainActivity : AppCompatActivity(), View.OnDragListener, View.OnLongClickL
             editor.putBoolean("isMoving", false)
             editor.apply()
         }
-
     }
 
     override fun onDrag(v: View, dragEvent: DragEvent): Boolean {
@@ -246,46 +243,46 @@ class MainActivity : AppCompatActivity(), View.OnDragListener, View.OnLongClickL
 
 }
 
-// API 11 이상
-class CustomDragShadowBuilder(v: View) : View.DragShadowBuilder(v) {
-
-    private val shadow = ColorDrawable(Color.LTGRAY)
-
-    override fun onProvideShadowMetrics(outShadowSize: Point?, outShadowTouchPoint: Point?) {
-        super.onProvideShadowMetrics(outShadowSize, outShadowTouchPoint)
-//            // 보여질 shadow size
-//            outShadowSize?.set(width, height)
-//            // touchPoint 가 shadow 의 중심 좌표로 따라 이동됨
-//            outShadowTouchPoint?.set(x, y)
-
-        // Sets the width of the shadow to half the width of the original View
-        val width: Int = view.width
-
-        // Sets the height of the shadow to half the height of the original View
-        val height: Int = view.height
-
-        // The drag shadow is a ColorDrawable. This sets its dimensions to be the same as the
-        // Canvas that the system will provide. As a result, the drag shadow will fill the
-        // Canvas.
-        shadow.setBounds(0, 0, width, height)
-
-        // Sets the size parameter's width and height values. These get back to the system
-        // through the size parameter.
-        outShadowSize?.set(width, height)
-
-        // Sets the touch point's position to be in the middle of the drag shadow
-        outShadowTouchPoint?.set(width / 2, height / 2)
-    }
-
-    override fun onDrawShadow(canvas: Canvas?) {
-        shadow.draw(canvas!!)
-        // Shadow 를 새롭게 Draw 해야할 때
-    }
-}
-
-class CustomShadowBuilder: View.DragShadowBuilder() {
-    override fun onProvideShadowMetrics(outShadowSize: Point?, outShadowTouchPoint: Point?) {
-        outShadowSize?.set(1, 1)
-        outShadowTouchPoint?.set(0, 0)
-    }
-}
+//// API 11 이상
+//class CustomDragShadowBuilder(v: View) : View.DragShadowBuilder(v) {
+//
+//    private val shadow = ColorDrawable(Color.LTGRAY)
+//
+//    override fun onProvideShadowMetrics(outShadowSize: Point?, outShadowTouchPoint: Point?) {
+//        super.onProvideShadowMetrics(outShadowSize, outShadowTouchPoint)
+////            // 보여질 shadow size
+////            outShadowSize?.set(width, height)
+////            // touchPoint 가 shadow 의 중심 좌표로 따라 이동됨
+////            outShadowTouchPoint?.set(x, y)
+//
+//        // Sets the width of the shadow to half the width of the original View
+//        val width: Int = view.width
+//
+//        // Sets the height of the shadow to half the height of the original View
+//        val height: Int = view.height
+//
+//        // The drag shadow is a ColorDrawable. This sets its dimensions to be the same as the
+//        // Canvas that the system will provide. As a result, the drag shadow will fill the
+//        // Canvas.
+//        shadow.setBounds(0, 0, width, height)
+//
+//        // Sets the size parameter's width and height values. These get back to the system
+//        // through the size parameter.
+//        outShadowSize?.set(width, height)
+//
+//        // Sets the touch point's position to be in the middle of the drag shadow
+//        outShadowTouchPoint?.set(width / 2, height / 2)
+//    }
+//
+//    override fun onDrawShadow(canvas: Canvas?) {
+//        shadow.draw(canvas!!)
+//        // Shadow 를 새롭게 Draw 해야할 때
+//    }
+//}
+//
+//class CustomShadowBuilder: View.DragShadowBuilder() {
+//    override fun onProvideShadowMetrics(outShadowSize: Point?, outShadowTouchPoint: Point?) {
+//        outShadowSize?.set(1, 1)
+//        outShadowTouchPoint?.set(0, 0)
+//    }
+//}
