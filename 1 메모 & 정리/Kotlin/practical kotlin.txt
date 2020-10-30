@@ -135,6 +135,54 @@ var nullArr: Array<Int?> = arrayOfNulls<Int>(5)
 
 
 
+//// 다차원 배열(강좌 외 내용)
+
+어떤 배열 요소에 값이 아닌 또 다른 배열을 저장하면 2차원 배열이 된다.
+2차원 배열은 행과 열로 구성되어있는 표라고 생각해도 좋다.
+
+// 2차원 배열 예시
+
+fun main() {
+    val arr1 = arrayOf(arrayOf(1, 2, 3), arrayOf(4, 5, 6), arrayOf(7, 8, 9))
+	val arr2 = Array(3, {Array(3, {i -> i+1})})
+    
+    arr1[0].forEach { print(it) }
+    println()
+    arr1[1].forEach { print(it) }
+    println()
+    arr1[2].forEach { print(it) }
+    
+    println()
+    println()
+    
+    arr2[0].forEach { print(it) }
+    println()
+	arr2[1].forEach { print(it) }
+    println()
+	arr2[2].forEach { print(it) }
+	
+	println()
+    println()
+    
+    print(arr1[0].elementAt(2))
+}
+└ 출력값 : 
+	123
+	456
+
+	123
+	123
+	
+	3
+
+// Arrays.deepToString(arr)
+└ Array 클래스의 메서드로 다차원 배열을 문자열로 보기 좋게 출력해준다.
+└ ex) [[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]]
+
+
+
+
+
 //// 함수
 
 fun add(a: Int, b: Int, c: Int): Int {
@@ -2459,7 +2507,7 @@ val job = GlobalScope.launch(start = CoroutineStart.LAZY) {	// LAZY로 start 설
 
 
 
-//// 싱글턴 패턴(Singleton pattern)
+//// 싱글톤 패턴(Singleton pattern)
 
 └ 생성자가 여러 차례 호출되더라도 실제로 생성되는 객체는 하나이고 최초 생성 이후에 호출된 생성자는 최초의 생성자가 생성한 객체를 리턴한다.
 └ 이와 같은 디자인 유형을 싱글턴 패턴이라고 한다.
@@ -2566,3 +2614,77 @@ Room은 SQLite 객체 매핑 라이브러리입니다. 이것을 사용하여 �
 
 	- 코틀린에서는 by 키워드를 사용하여 위임 기능을 사용할 수 있음
 
+
+
+
+
+//// Pair
+
+	- Pair 는 동일하거나 다른 데이터 유형의 두 값을 저장하거나 반환하는 데 사용됩니다.
+	- 두 값 사이에는 관계가있을 수도 있고 없을 수도 있습니다. 동일하거나 다른 데이터 형이 될 수 있습니다.
+	- 저장할 두 값을 Pair 의 생성자에 전달하면 간단하게 Pair 클래스 객체가 만들어집니다.
+	- 저장된 값은 first 와 second 프로퍼티 나 componentN 메서드를 사용하여 각각 별도의 변수에 저장하여 사용하거나 이미 componentN 메서드가 정의되어 있기 때문에 분리 선언 하여 두개의 변수로 나누어 받을수도 있습니다.
+	- Pair 객체에서도 toString ()과 같은 일반적인 메서드를 사용할 수도 있습니다.
+	- Pair 객체에서 copy 메서드를 이용할때 값을 변경할 수도 있지만 변경되는 데이터 형은 기존과 변경없이 동일해야합니다.
+	- toList 메서드를 사용하여 Pair 객체를 List 로 변환한 다음 List 의 인덱스 를 사용하여 값을 가져 오거나 다른 작업을 수행 할 수도 있습니다.
+	
+// ex1 - Create Pair value
+ 
+Pair ("Hello", "How are you")
+Pair ("First", 1)
+Pair (10, null)
+Pair (1.5, listOf(null))
+var variable1 = "I am a String"
+var variable2 = 10
+    
+Pair (variable1, variable2)
+
+// ex2 - Get Pair value
+
+var pair = Pair("Hello", "How are you")
+println(pair.first)
+println(pair.second)
+println(pair.component1())
+println(pair.component2())
+//또는 분리 선언 하여 사용합니다
+var (firstName, lastName) = Pair("Suneet", "Agrawal")
+println(firstName)
+println(lastName)
+
+// ex3 - .toString()
+
+val pair = Pair("I am a String", listOf(1,2,3))
+print(pair.toString())
+
+// ex4 - .copy()
+
+val pair = Pair("I am a String", listOf(1,2,3))
+print(pair)
+    
+val anotherPair = pair.copy(first = "I am new String")
+print(anotherPair)
+
+// ex5 - .toList()
+
+val pair = Pair("I am a String", 10)
+val list = pair.toList()
+    
+println(list[0])
+println(list.get(1))
+
+
+
+
+
+//// Triple
+
+	- 메서드에서 세 개의 값을 반환
+	- 세 번째 값은 third 프로퍼티 나 component3 메서드를 사용하여 검색 할 수 있습니다.
+	- Pair와 같이 copy 및 toList 메서드도 지원합니다.
+	- 4 개 이상의 값을 반환 하려면 자신 만의 데이터 클래스를 만들고 그 클래스의 객체를 반환하는게 나을것 같습니다.
+
+// ex1 - Create, Get Triple value
+
+val triple = Triple("I am a String", listOf(1,2,3) , 10)
+println(triple.third)
+println(triple.component3())
