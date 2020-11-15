@@ -133,9 +133,21 @@
 	[[ 해결 ]]
 		전역변수에서 가져오지 않고 필요한 곳에서 xml을 가져오니까(getString(R.string.~)) 잘 가져와졌음.
 
-== Android Studio에서 터치가 한번에 되지 않음(두번째부터 제대로 실행(터치)됨)
+==  Android Studio에서 터치가 한번에 되지 않음(두번째부터 제대로 실행(터치)됨)
 	[[ 원인 ]]
 		검색해보니 android:focusableInTouchMode과 android:focusable이 true로 되어있으면 터치를 한 번 먹음. 즉 실행되지 않음. 확인해보니까 첫 터치시에는 로그도 안 찍힘.
 	[[ 해결 ]]
 		텍스트가 길면 흘러가도록 해놓으려고 셋팅해놨던 설정이었는데 위 두가지를 지우고 실행해도 텍스트가 잘 흘러감. 터치도 한번에 잘 바뀜.
 
+==  Firebase: The database '/google_app_measurement_local.db' is not open
+	[[ 에러 현상 ]]
+	앱 실행 자체는 문제가 없지만 run 로그에 db와 관련된 무수한 에러들이 광고가 바뀔 때마다 뜸.
+	[[ 원인 및 해결 ]]
+	gradle(모듈)에서 firebase 관련 dependencies 버전을 최신으로 업그레이드하지 않아서 생긴 문제였음. 업그레이드 이후 이전의 로그 상태로 돌아옴.
+	[[ 추가 설명 ]]
+	내 경우에는 아래 에러 메세지들이 떴음.
+	Failed to write entry to local database
+	(5) database is locked
+	Failed to open database
+	code 5 SQLITE_BUSY
+	
